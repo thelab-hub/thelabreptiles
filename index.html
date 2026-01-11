@@ -1,13 +1,12 @@
 
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Lab Reptiles | Home</title>
+    <style>
 
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>The Lab Reptiles | Premium Genetics</title>
-
-<style>
 
 /* MINIMALIST THEME SETUP */
 
@@ -29,319 +28,94 @@
 
 
 
-body {
-
-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
-background-color: var(--bg-color);
-
-color: var(--text-main);
-
-margin: 0;
-
-padding: 0;
-
-line-height: 1.5;
-
-}
-
-
-
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-
-/* HEADER */
-
-header { padding: 40px 0; border-bottom: 1px solid #f0f0f0; }
-
-nav { display: flex; justify-content: space-between; align-items: center; }
-
-.logo { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: -1px; }
-
-.nav-links a { text-decoration: none; color: var(--text-main); margin-left: 30px; font-size: 0.9rem; font-weight: 500;}
-
-
-
-/* HERO */
-
-.hero { text-align: center; padding: 100px 20px; background: #fafafa; }
-
-.hero h1 { font-size: 3.5rem; margin-bottom: 20px; letter-spacing: -2px; }
-
-.btn { display: inline-block; background: black; color: white; padding: 12px 24px; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; font-weight: bold; }
-
-
-
-/* INVENTORY SYSTEM */
-
-.animal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; padding-bottom: 100px; margin-top: 60px; }
-
-
-
-.animal-card { border: 1px solid #f0f0f0; transition: transform 0.2s ease; background: white; }
-
-.animal-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-
-
-
-/* IMAGE AREA */
-
-.card-image { width: 100%; height: 300px; background-color: #f9f9f9; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden;}
-
-.card-image img { width: 100%; height: 100%; object-fit: cover; }
-
-
-
-/* STATUS BADGES */
-
-.status-badge { position: absolute; top: 10px; right: 10px; background: white; padding: 5px 12px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-
-
-/* Status Colors */
-
-.status-badge.available { color: var(--accent-avail); }
-
-.status-badge.hold { color: var(--accent-hold); }
-
-
-/* DETAILS AREA */
-
-.card-details { padding: 20px; }
-
-.card-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
-
-.animal-title { font-size: 1.1rem; font-weight: 700; margin: 0; }
-
-.animal-price { font-size: 1.1rem; }
-
-
-.specs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-
-.tag { font-size: 0.75rem; padding: 4px 8px; border: 1px solid #eee; border-radius: 4px; color: var(--text-secondary); background: #fafafa; }
-
-
-
-/* BUTTONS */
-
-.inquire-btn { width: 100%; text-align: center; display: block; background: white; color: black; border: 1px solid black; padding: 10px 0; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.2s; cursor: pointer; }
-
-.inquire-btn:hover { background: black; color: white; }
-
-
-/* DISABLED BUTTON FOR HOLD ITEMS */
-
-.inquire-btn.disabled { background: #f0f0f0; color: #aaa; border-color: #f0f0f0; cursor: not-allowed; pointer-events: none; }
-
-
-
-/* --- THE MAGIC CLASS: SOLD --- */
-
-/* If you add the class "sold" to an animal-card, it vanishes from the site */
-
-.animal-card.sold {
-
-display: none !important;
-
-}
-
-
-
-footer { background: #111; color: #fff; padding: 60px 0; text-align: center; font-size: 0.9rem; }
-
-</style></head><body>
-
-
-
-<header>
-
-<div class="container">
-
-<nav>
-
-<div class="logo">The Lab Reptiles</div>
-
-<div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="available.html">Available</a>
-    <a href="collection.html">Collection</a>
-    <a href="contact.html">Contact Us</a>
-</div>
-
-</nav>
-
-</div>
-
-</header>
-
-
-
-<section class="hero">
-
-<div class="container">
-
-<h1>Premium Genetics</h1>
-
-<a href="#available" class="btn">View Animals</a>
-
-</div>
-
-</section>
-
-
-
-<div class="container" id="available">
-
-<div class="animal-grid">
-
-
-<div class="animal-card">
-
-<div class="card-image">
-
-<img src="https://via.placeholder.com/400x400?text=Snake+Image" alt="Ball Python">
-
-<span class="status-badge available">Available</span>
-
-</div>
-
-<div class="card-details">
-
-<div class="card-header">
-
-<h3 class="animal-title">Banana Pied</h3>
-
-<span class="animal-price">$450</span>
-
-</div>
-
-<div class="specs">
-
-<span class="tag">Male</span>
-
-<span class="tag">120g</span>
-
-<span class="tag">ID: BP-24-01</span>
-
-</div>
-
-<a onclick="openInquiry('BP-24-01')" class="inquire-btn">Inquire</a>
-
-</div>
-
-</div>
-
-
-
-<div class="animal-card">
-
-<div class="card-image">
-
-<img src="https://via.placeholder.com/400x400?text=Gecko+Image" alt="Crested Gecko">
-
-<span class="status-badge hold">On Hold</span>
-
-</div>
-
-<div class="card-details">
-
-<div class="card-header">
-
-<h3 class="animal-title">Lilly White</h3>
-
-<span class="animal-price">$1,200</span>
-
-</div>
-
-<div class="specs">
-
-<span class="tag">Female</span>
-
-<span class="tag">35g</span>
-
-<span class="tag">ID: CW-24-05</span>
-
-</div>
-
-<a class="inquire-btn disabled">Pending Sale</a>
-
-</div>
-
-</div>
-
-
-
-<div class="animal-card sold">
-
-<div class="card-image">
-
-<img src="https://via.placeholder.com/400x400?text=Sold+Snake" alt="Snake">
-
-<span class="status-badge">SOLD</span>
-
-</div>
-
-<div class="card-details">
-
-<div class="card-header">
-
-<h3 class="animal-title">Clown Het Ghost</h3>
-
-<span class="animal-price">$800</span>
-
-</div>
-
-<div class="specs">
-
-<span class="tag">ID: BP-23-88</span>
-
-<span class="tag">Sold to: John Doe</span>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-</div>
-
-</div>
-
-
-
-<footer>
-
-<div class="container">
-
-<p>Shipping: $125 (Domestic) | Export: $500 (USA)</p>
-
-<p>&copy; 2024 The Lab Reptiles</p>
-
-</div>
-
-</footer>
-    
-<script>
-
-function openInquiry(animalID) {
-
-// --- CONFIGURATION ---
-
-// PASTE YOUR GOOGLE FORM PRE-FILLED LINK BETWEEN THE QUOTES BELOW
-
-// Example: "https://docs.google.com/...&entry.123456=ANIMAL_ID_GOES_HERE"
-
-const formTemplate = "YOUR_GOOGLE_PREFILLED_LINK_HERE";
-
-
-// This replaces the placeholder text with the actual Animal ID
-
-const finalLink = formTemplate.replace("ANIMAL_ID_GOES_HERE", animalID);
-
-
-window.open(finalLink, '_blank');
-
-}
-
-</script></body></html>
+body { font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; color: var(--text-main); line-height: 1.6; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Updated Navigation */
+        header { padding: 30px 0; border-bottom: 1px solid #eee; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: -1px; }
+        .nav-links a { text-decoration: none; color: var(--text-main); margin-left: 25px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
+
+        /* Hero Section */
+        .hero { padding: 120px 0; text-align: center; background: #fafafa; border-bottom: 1px solid #eee; }
+        .hero h1 { font-size: 4rem; margin: 0; letter-spacing: -3px; line-height: 1; }
+        .hero p { font-size: 1.2rem; color: var(--text-secondary); margin: 20px 0 40px; }
+        .btn { background: black; color: white; padding: 15px 35px; text-decoration: none; font-weight: bold; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; }
+
+        /* Mission Section */
+        .mission { padding: 100px 0; text-align: center; max-width: 700px; margin: 0 auto; }
+        .mission h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-secondary); margin-bottom: 20px; }
+        .mission p { font-size: 1.5rem; font-weight: 300; line-height: 1.6; color: #333; }
+
+        /* Featured Section */
+        .featured { padding-bottom: 100px; }
+        .section-title { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 2px solid #111; padding-bottom: 10px; }
+        .section-title h3 { margin: 0; text-transform: uppercase; letter-spacing: 1px; }
+        .section-title a { color: var(--text-main); font-size: 0.8rem; font-weight: bold; }
+
+        /* Footer */
+        footer { background: #111; color: white; padding: 60px 0; text-align: center; font-size: 0.8rem; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">The Lab Reptiles</div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="available.html">Available</a>
+                    <a href="collection.html">Collection</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>PREMIUM GENETICS.</h1>
+            <p>Specializing in high-end Ball Python and Crested Gecko morphs.</p>
+            <a href="available.html" class="btn">Shop Available Inventory</a>
+        </div>
+    </section>
+
+    <section class="mission">
+        <div class="container">
+            <h2>Our Mission</h2>
+            <p>At The Lab Reptiles, we focus on quality over quantity. Every animal in our care is produced with a focus on health, integrity, and the advancement of reptile genetics.</p>
+        </div>
+    </section>
+
+    <section class="featured">
+        <div class="container">
+            <div class="section-title">
+                <h3>Latest Arrivals</h3>
+                <a href="available.html">View All &rarr;</a>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div style="border: 1px solid #eee; padding: 15px; text-align: center;">
+                    <img src="https://via.placeholder.com/400x400" style="width: 100%; grayscale: 20%;">
+                    <h4 style="margin: 15px 0 5px;">Banana Pied</h4>
+                    <p style="font-size: 0.8rem; color: #666;">View Details in Shop</p>
+                </div>
+                <div style="border: 1px solid #eee; padding: 15px; text-align: center;">
+                    <img src="https://via.placeholder.com/400x400" style="width: 100%; grayscale: 20%;">
+                    <h4 style="margin: 15px 0 5px;">Lilly White</h4>
+                    <p style="font-size: 0.8rem; color: #666;">View Details in Shop</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 THE LAB REPTILES | SHIPS VIA FEDEX OVERNIGHT</p>
+        </div>
+    </footer>
+
+</body>
+</html>
