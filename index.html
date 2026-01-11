@@ -1,78 +1,99 @@
+I understand—making the jump to "Dark Mode" can sometimes look messy if the transition isn't 100% complete across all elements. If some parts stayed white while others went dark, it definitely won't look professional.
+
+Let’s fix this. I have completely redesigned the Home Page (index.html) below. I’ve balanced the "Bacon" reds and oranges with a clean charcoal background to ensure your photos will pop without looking "cheap."
+
+The "Bacon Line" Edition Preview
+Copy this entire block into your index.html to see the new look:
+
+HTML
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Lab Reptiles | Home</title>
+    <title>The Lab Reptiles | Premium Genetics</title>
     <style>
+        :root {
+            --bg-deep: #0a0a0a;
+            --bg-card: #151515;
+            --text-bright: #ffffff;
+            --text-dim: #a0a0a0;
+            --bacon-red: #d90429;
+            --bacon-orange: #f48c06;
+            --bacon-gradient: linear-gradient(90deg, #d90429 0%, #f48c06 100%);
+        }
 
+        body { 
+            background-color: var(--bg-deep); 
+            color: var(--text-bright); 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            margin: 0; 
+            line-height: 1.6;
+        }
 
-/* MINIMALIST THEME SETUP */
-
-:root {
-    --bg-color: #0d0d0d;       /* Deep Charcoal/Black */
-    --card-bg: #1a1a1a;       /* Dark Grey for cards */
-    --text-main: #f5f5f5;     /* Off-white text */
-    --text-secondary: #a1a1a1;
-    --accent-red: #e63946;    /* "Bacon" Red */
-    --accent-orange: #f59e0b; /* "Bacon" Orange */
-    --gradient-bacon: linear-gradient(135deg, #e63946 0%, #f59e0b 100%);
-}
-
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-}
-
-header {
-    background: rgba(13, 13, 13, 0.95);
-    border-bottom: 1px solid #333;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.nav-links a {
-    color: var(--text-main) !important;
-}
-
-.nav-links a:hover {
-    color: var(--accent-orange) !important;
-}
-
-.animal-card {
-    background: var(--card-bg) !important;
-    border: 1px solid #333 !important;
-}
+        /* --- NAVIGATION --- */
+        header { 
+            padding: 25px 0; 
+            border-bottom: 1px solid #222; 
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 100;
+        }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        
-        /* Updated Navigation */
-        header { padding: 30px 0; border-bottom: 1px solid #eee; }
         nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo {font-size: 1.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; background: var(--gradient-bacon); -webkit-background-clip: text; -webkit-text-fill-color: transparent; /* This makes your logo name a gradient! */}
-        .nav-links a { text-decoration: none; color: var(--text-main); margin-left: 25px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
+        
+        .logo { 
+            font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; 
+            background: var(--bacon-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links a { 
+            text-decoration: none; color: var(--text-dim); 
+            margin-left: 30px; font-size: 0.85rem; font-weight: 600; 
+            text-transform: uppercase; transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--bacon-orange); }
 
-        /* Hero Section */
-        .hero { padding: 120px 0; text-align: center; background: #fafafa; border-bottom: 1px solid #eee; }
-        .hero h1 { font-size: 4rem; margin: 0; letter-spacing: -3px; line-height: 1; }
-        .hero p { font-size: 1.2rem; color: var(--text-secondary); margin: 20px 0 40px; }
-        .btn { background: black; color: white; padding: 15px 35px; text-decoration: none; font-weight: bold; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; }
+        /* --- HERO SECTION --- */
+        .hero { 
+            padding: 140px 0; text-align: center; 
+            background: radial-gradient(circle at center, #221111 0%, #0a0a0a 70%);
+        }
+        .hero h1 { 
+            font-size: clamp(3rem, 8vw, 5rem); margin: 0; 
+            line-height: 0.9; letter-spacing: -2px; 
+        }
+        .hero span { color: var(--bacon-red); }
+        .hero p { color: var(--text-dim); font-size: 1.2rem; margin: 30px 0; }
 
-        /* Mission Section */
-        .mission { padding: 100px 0; text-align: center; max-width: 700px; margin: 0 auto; }
-        .mission h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-secondary); margin-bottom: 20px; }
-        .mission p { font-size: 1.5rem; font-weight: 300; line-height: 1.6; color: #333; }
+        /* --- BUTTONS --- */
+        .btn { 
+            background: var(--bacon-gradient); color: white; 
+            padding: 16px 40px; text-decoration: none; border-radius: 50px;
+            font-weight: 800; text-transform: uppercase; font-size: 0.9rem;
+            display: inline-block; transition: transform 0.2s;
+            box-shadow: 0 10px 20px rgba(217, 4, 41, 0.3);
+        }
+        .btn:hover { transform: scale(1.05); }
 
-        /* Featured Section */
-        .featured { padding-bottom: 100px; }
-        .section-title { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 2px solid #111; padding-bottom: 10px; }
-        .section-title h3 { margin: 0; text-transform: uppercase; letter-spacing: 1px; }
-        .section-title a { color: var(--text-main); font-size: 0.8rem; font-weight: bold; }
+        /* --- FEATURED SECTION --- */
+        .featured { padding: 100px 0; }
+        .section-header { border-left: 4px solid var(--bacon-red); padding-left: 15px; margin-bottom: 50px; }
+        .section-header h2 { margin: 0; font-size: 2rem; text-transform: uppercase; }
 
-        /* Footer */
-        footer { background: #111; color: white; padding: 60px 0; text-align: center; font-size: 0.8rem; letter-spacing: 1px; }
+        .preview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .preview-card { 
+            background: var(--bg-card); border-radius: 12px; overflow: hidden; 
+            border: 1px solid #222; transition: 0.3s;
+        }
+        .preview-card:hover { border-color: var(--bacon-orange); }
+        .card-img { width: 100%; height: 250px; background: #222; object-fit: cover; }
+        .card-info { padding: 20px; }
+
+        footer { padding: 60px 0; border-top: 1px solid #222; text-align: center; color: var(--text-dim); font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -80,7 +101,7 @@ header {
     <header>
         <div class="container">
             <nav>
-                <div class="logo">The Lab Reptiles</div>
+                <div class="logo">THE LAB REPTILES</div>
                 <div class="nav-links">
                     <a href="index.html">Home</a>
                     <a href="available.html">Available</a>
@@ -93,36 +114,31 @@ header {
 
     <section class="hero">
         <div class="container">
-            <h1>PREMIUM GENETICS.</h1>
-            <p>Specializing in Ball Pythons and Gargoyle Geckos.</p>
-            <a href="available.html" class="btn">Shop Available Inventory</a>
-        </div>
-    </section>
-
-    <section class="mission">
-        <div class="container">
-            <h2>Our Mission</h2>
-            <p>At The Lab Reptiles, we focus on quality over quantity. Every animal in our care is produced with a focus on health, integrity, and the advancement of reptile genetics.</p>
+            <h1>THE <span>BACON</span> LINE.</h1>
+            <p>Extreme contrast. High intensity. Premium genetics.</p>
+            <a href="available.html" class="btn">View Inventory</a>
         </div>
     </section>
 
     <section class="featured">
         <div class="container">
-            <div class="section-title">
-                <h3>Latest Arrivals</h3>
-                <a href="available.html">View All &rarr;</a>
+            <div class="section-header">
+                <h2>Featured Projects</h2>
             </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                <div style="border: 1px solid #eee; padding: 15px; text-align: center;">
-                    <img src="https://via.placeholder.com/400x400" style="width: 100%; grayscale: 20%;">
-                    <h4 style="margin: 15px 0 5px;">Banana Pied</h4>
-                    <p style="font-size: 0.8rem; color: #666;">View Details in Shop</p>
+            <div class="preview-grid">
+                <div class="preview-card">
+                    <img src="https://via.placeholder.com/600x400/222/white?text=Bacon+Project+1" class="card-img">
+                    <div class="card-info">
+                        <h3>Hypo Bacon</h3>
+                        <p style="color: var(--text-dim);">The foundation of our high-intensity orange projects.</p>
+                    </div>
                 </div>
-                <div style="border: 1px solid #eee; padding: 15px; text-align: center;">
-                    <img src="https://via.placeholder.com/400x400" style="width: 100%; grayscale: 20%;">
-                    <h4 style="margin: 15px 0 5px;">Lilly White</h4>
-                    <p style="font-size: 0.8rem; color: #666;">View Details in Shop</p>
+                <div class="preview-card">
+                    <img src="https://via.placeholder.com/600x400/222/white?text=Bacon+Project+2" class="card-img">
+                    <div class="card-info">
+                        <h3>Red Stripe Pied</h3>
+                        <p style="color: var(--text-dim);">Pushing the limits of red pigmentation.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -130,7 +146,7 @@ header {
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 THE LAB REPTILES | SHIPS VIA FEDEX OVERNIGHT</p>
+            <p>&copy; 2026 THE LAB REPTILES | ENGINEERED BY NATURE</p>
         </div>
     </footer>
 
