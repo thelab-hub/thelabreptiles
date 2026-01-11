@@ -1,288 +1,181 @@
-<!DOCTYPE html><html lang="en"><head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>The Lab Reptiles | Premium Genetics</title>
-
-<style>
-
-/* MINIMALIST THEME SETUP */
-
-:root {
-    --bg-color: #0d0d0d;       /* Deep Charcoal/Black */
-    --card-bg: #1a1a1a;       /* Dark Grey for cards */
-    --text-main: #f5f5f5;     /* Off-white text */
-    --text-secondary: #a1a1a1;
-    --accent-red: #e63946;    /* "Bacon" Red */
-    --accent-orange: #f59e0b; /* "Bacon" Orange */
-    --gradient-bacon: linear-gradient(135deg, #e63946 0%, #f59e0b 100%);
-}
-
-
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-}
-
-header {
-    background: rgba(13, 13, 13, 0.95);
-    border-bottom: 1px solid #333;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.nav-links a {
-    color: var(--text-main) !important;
-}
-
-.nav-links a:hover {
-    color: var(--accent-orange) !important;
-}
-
-.animal-card {
-    background: var(--card-bg) !important;
-    border: 1px solid #333 !important;
-}
-
-
-
-.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-
-/* HEADER */
-
-header { padding: 40px 0; border-bottom: 1px solid #f0f0f0; }
-
-nav { display: flex; justify-content: space-between; align-items: center; }
-
-.logo {font-size: 1.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; background: var(--gradient-bacon); -webkit-background-clip: text; -webkit-text-fill-color: transparent; /* This makes your logo name a gradient! */}
-
-.nav-links a { text-decoration: none; color: var(--text-main); margin-left: 30px; font-size: 0.9rem; font-weight: 500;}
-
-
-
-/* HERO */
-
-.hero { text-align: center; padding: 100px 20px; background: #fafafa; }
-
-.hero h1 { font-size: 3.5rem; margin-bottom: 20px; letter-spacing: -2px; }
-
-.btn { display: inline-block; background: black; color: white; padding: 12px 24px; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; font-weight: bold; }
-
-
-
-/* INVENTORY SYSTEM */
-
-.animal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; padding-bottom: 100px; margin-top: 60px; }
-
-
-
-.animal-card { border: 1px solid #f0f0f0; transition: transform 0.2s ease; background: white; }
-
-.animal-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-
-
-
-/* IMAGE AREA */
-
-.card-image { width: 100%; height: 300px; background-color: #f9f9f9; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden;}
-
-.card-image img { width: 100%; height: 100%; object-fit: cover; }
-
-
-
-/* STATUS BADGES */
-
-.status-badge { position: absolute; top: 10px; right: 10px; background: white; padding: 5px 12px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-
-
-/* Status Colors */
-
-.status-badge.available { color: var(--accent-avail); }
-
-.status-badge.hold { color: var(--accent-hold); }
-
-
-/* DETAILS AREA */
-
-.card-details { padding: 20px; }
-
-.card-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
-
-.animal-title { font-size: 1.1rem; font-weight: 700; margin: 0; }
-
-.animal-price { font-size: 1.1rem; }
-
-
-.specs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-
-.tag { font-size: 0.75rem; padding: 4px 8px; border: 1px solid #eee; border-radius: 4px; color: var(--text-secondary); background: #fafafa; }
-
-
-
-/* BUTTONS */
-
-.inquire-btn { width: 100%; text-align: center; display: block; background: white; color: black; border: 1px solid black; padding: 10px 0; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.2s; cursor: pointer; }
-
-.inquire-btn:hover { background: black; color: white; }
-
-
-/* DISABLED BUTTON FOR HOLD ITEMS */
-
-.inquire-btn.disabled { background: #f0f0f0; color: #aaa; border-color: #f0f0f0; cursor: not-allowed; pointer-events: none; }
-
-
-
-/* --- THE MAGIC CLASS: SOLD --- */
-
-/* If you add the class "sold" to an animal-card, it vanishes from the site */
-
-.animal-card.sold {
-
-display: none !important;
-
-}
-
-
-
-footer { background: #111; color: #fff; padding: 60px 0; text-align: center; font-size: 0.9rem; }
-
-</style></head><body>
-
-
-
-<header>
-
-<div class="container">
-
-<nav>
-
-<div class="logo">Collection</div>
-
-<div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="available.html">Available</a>
-    <a href="collection.html">Collection</a>
-    <a href="contact.html">Contact Us</a>
-</div>
-
-</nav>
-
-</div>
-
-</header>
-
-
-
-<section class="hero">
-
-<div class="container">
-
-<h1>Premium Genetics</h1>
-
-<a href="#available" class="btn">View Animals</a>
-
-</div>
-
-</section>
-
-
-
-<div class="container" id="available">
-
-<div class="animal-grid">
-
-<div class="animal-card">
-    <div class="card-image">
-        <img src="your-breeder-photo.jpg" alt="Breeder Name">
-        <span class="status-badge">Breeder</span>
-    </div>
-    <div class="card-details">
-        <h3 class="animal-title">"Super Nova" - Sunset Het Clown</h3>
-        <p class="tag">Produced by: The Lab</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Collection | The Lab Reptiles</title>
+    <style>
+        :root {
+            --bg-deep: #0a0a0a;
+            --bg-card: #151515;
+            --text-pure: #ffffff;
+            --text-silver: #e0e0e0;
+            --bacon-red: #ff002b;
+            --bacon-orange: #ff9100;
+            --bacon-gradient: linear-gradient(90deg, #ff002b 0%, #ff9100 100%);
+        }
+
+        body { 
+            background-color: var(--bg-deep); 
+            color: var(--text-pure); 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            margin: 0; 
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- NAVIGATION --- */
+        header { 
+            padding: 25px 0; 
+            border-bottom: 1px solid #333; 
+            background: rgba(10, 10, 10, 0.98);
+            position: sticky; top: 0; z-index: 100;
+        }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { 
+            font-size: 1.6rem; font-weight: 900; letter-spacing: -1px; 
+            background: var(--bacon-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-links a { 
+            text-decoration: none; color: var(--text-pure); 
+            margin-left: 30px; font-size: 0.9rem; font-weight: 700; 
+            text-transform: uppercase; transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--bacon-orange); }
+
+        /* --- PAGE HEADER --- */
+        .page-header { 
+            padding: 80px 0 40px; 
+            border-left: 8px solid var(--bacon-red);
+            padding-left: 30px;
+            margin: 40px 0;
+        }
+        .page-header h1 { 
+            font-size: 4rem; font-weight: 900; margin: 0; 
+            text-transform: uppercase; letter-spacing: -3px; 
+        }
+        .page-header p { 
+            font-size: 1.4rem; font-weight: 700; color: var(--bacon-orange); 
+            margin-top: 10px; text-transform: uppercase;
+        }
+
+        /* --- COLLECTION GRID --- */
+        .collection-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); 
+            gap: 40px; 
+            padding-bottom: 100px; 
+        }
+
+        .breeder-card { 
+            background: var(--bg-card); 
+            border: 1px solid #222; 
+            border-radius: 4px; 
+            overflow: hidden; 
+            transition: 0.3s ease;
+        }
+        .breeder-card:hover { border-color: var(--bacon-orange); transform: translateY(-5px); }
+
+        .card-image { width: 100%; height: 350px; background: #111; position: relative; }
+        .card-image img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .breeder-badge { 
+            position: absolute; top: 15px; left: 15px; 
+            background: rgba(0,0,0,0.8); color: var(--bacon-orange);
+            padding: 5px 12px; font-weight: 800; font-size: 0.7rem; 
+            text-transform: uppercase; border: 1px solid var(--bacon-orange);
+        }
+
+        .card-info { padding: 30px; }
+        .breeder-name { font-size: 1.6rem; font-weight: 900; margin-bottom: 5px; text-transform: uppercase; }
+        .breeder-morph { color: #888; font-weight: 700; font-size: 0.9rem; margin-bottom: 20px; }
+        
+        .project-status { 
+            border-top: 1px solid #333; padding-top: 20px; 
+            font-size: 0.85rem; font-weight: 700; color: var(--text-pure);
+        }
+        .status-dot { height: 8px; width: 8px; background: var(--bacon-red); border-radius: 50%; display: inline-block; margin-right: 8px; }
+
+        footer { padding: 60px 0; background: #000; text-align: center; color: #444; font-weight: bold; border-top: 1px solid #222; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">THE LAB REPTILES</div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="available.html">Available</a>
+                    <a href="collection.html">Collection</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </nav>
         </div>
-</div>
+    </header>
 
-</div>
+    <div class="container">
+        <div class="page-header">
+            <h1>The <span style="color: white;">Collection</span></h1>
+            <p>Our Foundational Breeding Projects</p>
+        </div>
 
+        <div class="collection-grid">
+            
+            <div class="breeder-card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/600x600?text=Breeder+Photo" alt="Breeder Name">
+                    <span class="breeder-badge">MALE MASTER</span>
+                </div>
+                <div class="card-info">
+                    <h3 class="breeder-name">"The King"</h3>
+                    <div class="breeder-morph">Hypo Bacon Red Stripe</div>
+                    <div class="project-status">
+                        <span class="status-dot"></span> CURRENTLY BREEDING
+                    </div>
+                </div>
+            </div>
 
+            <div class="breeder-card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/600x600?text=Breeder+Photo" alt="Breeder Name">
+                    <span class="breeder-badge">FEMALE BREEDER</span>
+                </div>
+                <div class="card-info">
+                    <h3 class="breeder-name">"Nova"</h3>
+                    <div class="breeder-morph">Lilly White (Bacon Lineage)</div>
+                    <div class="project-status">
+                        <span class="status-dot" style="background: #888;"></span> RESTING / OFF-SEASON
+                    </div>
+                </div>
+            </div>
 
-<div class="animal-card sold">
+            <div class="breeder-card">
+                <div class="card-image">
+                    <img src="https://via.placeholder.com/600x600?text=Breeder+Photo" alt="Breeder Name">
+                    <span class="breeder-badge">FUTURE BREEDER</span>
+                </div>
+                <div class="card-info">
+                    <h3 class="breeder-name">"Ignis"</h3>
+                    <div class="breeder-morph">Extreme Orange Gargoyle</div>
+                    <div class="project-status">
+                        <span class="status-dot" style="background: var(--bacon-orange);"></span> PROVING OUT 2026
+                    </div>
+                </div>
+            </div>
 
-<div class="card-image">
+        </div>
+    </div>
 
-<img src="https://via.placeholder.com/400x400?text=Sold+Snake" alt="Snake">
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 THE LAB REPTILES | ENGINEERED BY NATURE</p>
+        </div>
+    </footer>
 
-<span class="status-badge">SOLD</span>
-
-</div>
-
-<div class="card-details">
-
-<div class="card-header">
-
-<h3 class="animal-title">Clown Het Ghost</h3>
-
-<span class="animal-price">$800</span>
-
-</div>
-
-<div class="specs">
-
-<span class="tag">ID: BP-23-88</span>
-
-<span class="tag">Sold to: John Doe</span>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-</div>
-
-</div>
-
-
-
-<footer>
-
-<div class="container">
-
-<p>Shipping: $125 (Domestic) | Export: $500 (USA)</p>
-
-<p>&copy; 2024 The Lab Reptiles</p>
-
-</div>
-
-</footer>
-    
-<script>
-
-function openInquiry(animalID) {
-
-// --- CONFIGURATION ---
-
-// PASTE YOUR GOOGLE FORM PRE-FILLED LINK BETWEEN THE QUOTES BELOW
-
-// Example: "https://docs.google.com/...&entry.123456=ANIMAL_ID_GOES_HERE"
-
-const formTemplate = "YOUR_GOOGLE_PREFILLED_LINK_HERE";
-
-
-// This replaces the placeholder text with the actual Animal ID
-
-const finalLink = formTemplate.replace("ANIMAL_ID_GOES_HERE", animalID);
-
-
-window.open(finalLink, '_blank');
-
-}
-
-</script></body></html>
+</body>
+</html>

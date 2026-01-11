@@ -3,127 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | The Lab Reptiles</title>
+    <title>Contact | The Lab Reptiles</title>
     <style>
-        /* Base styles consistent with your Home and Available pages */
-        :root {
-    --bg-color: #0d0d0d;       /* Deep Charcoal/Black */
-    --card-bg: #1a1a1a;       /* Dark Grey for cards */
-    --text-main: #f5f5f5;     /* Off-white text */
-    --text-secondary: #a1a1a1;
-    --accent-red: #e63946;    /* "Bacon" Red */
-    --accent-orange: #f59e0b; /* "Bacon" Orange */
-    --gradient-bacon: linear-gradient(135deg, #e63946 0%, #f59e0b 100%);
-}
-
-        body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-}
-
-header {
-    background: rgba(13, 13, 13, 0.95);
-    border-bottom: 1px solid #333;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.nav-links a {
-    color: var(--text-main) !important;
-}
-
-.nav-links a:hover {
-    color: var(--accent-orange) !important;
-}
-
-.animal-card {
-    background: var(--card-bg) !important;
-    border: 1px solid #333 !important;
-}
-        
-        header { padding: 30px 0; border-bottom: 1px solid #eee; }
+        /* Shared Styles (Copy from above) */
+        :root { --bg-deep: #0a0a0a; --bg-card: #151515; --text-pure: #ffffff; --bacon-gradient: linear-gradient(90deg, #ff002b 0%, #ff9100 100%); }
+        body { background: var(--bg-deep); color: var(--text-pure); font-family: 'Inter', sans-serif; margin: 0; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        header { padding: 25px 0; border-bottom: 1px solid #333; background: #0a0a0a; }
         nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo {font-size: 1.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; background: var(--gradient-bacon); -webkit-background-clip: text; -webkit-text-fill-color: transparent; /* This makes your logo name a gradient! */}
-        .nav-links a { text-decoration: none; color: var(--text-main); margin-left: 25px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
+        .logo { font-size: 1.6rem; font-weight: 900; background: var(--bacon-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links a { text-decoration: none; color: var(--text-pure); margin-left: 30px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; }
 
-        /* Contact Page Layout */
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding: 100px 0; }
-        .contact-info h1 { font-size: 3rem; letter-spacing: -2px; margin-top: 0; }
-        .contact-info p { color: var(--text-secondary); font-size: 1.1rem; }
+        /* Contact Layout */
+        .contact-section { padding: 100px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .contact-text h1 { font-size: 4rem; font-weight: 900; margin: 0; letter-spacing: -3px; text-transform: uppercase; }
+        .contact-text p { font-size: 1.2rem; font-weight: 700; color: #888; margin: 20px 0; }
         
-        .info-block { margin-top: 40px; }
-        .info-block h3 { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; color: #888; margin-bottom: 5px; }
-        .info-block p { font-size: 1rem; color: var(--text-main); margin-top: 0; }
-
-        /* The Form Button Wrapper */
-        .form-card { background: #fafafa; padding: 40px; border: 1px solid #eee; text-align: center; }
-        .form-card h2 { margin-bottom: 20px; }
-        .contact-btn { display: inline-block; background: black; color: white; padding: 15px 40px; text-decoration: none; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        footer { background: #111; color: white; padding: 60px 0; text-align: center; font-size: 0.8rem; letter-spacing: 1px; }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .contact-grid { grid-template-columns: 1fr; gap: 40px; padding: 50px 0; }
+        .contact-box { background: var(--bg-card); padding: 50px; border-radius: 12px; border: 1px solid #333; text-align: center; }
+        .contact-btn { 
+            display: inline-block; background: var(--bacon-gradient); color: white; padding: 20px 40px; 
+            text-decoration: none; border-radius: 4px; font-weight: 900; text-transform: uppercase; 
         }
     </style>
 </head>
 <body>
-
     <header>
         <div class="container">
             <nav>
-                <div class="logo">The Lab Reptiles</div>
-                <div class="nav-links">
-                    <a href="index.html">Home</a>
-                    <a href="available.html">Available</a>
-                    <a href="collection.html">Collection</a>
-                    <a href="contact.html">Contact Us</a>
-                </div>
+                <div class="logo">THE LAB REPTILES</div>
+                <div class="nav-links"><a href="index.html">Home</a><a href="available.html">Available</a><a href="collection.html">Collection</a><a href="contact.html">Contact</a></div>
             </nav>
         </div>
     </header>
-
     <div class="container">
-        <div class="contact-grid">
-            
-            <div class="contact-info">
-                <h1>Get in Touch.</h1>
-                <p>Have questions about a specific animal or our breeding projects? We're here to help.</p>
-                
-                <div class="info-block">
-                    <h3>Response Time</h3>
-                    <p>Usually within 24 hours.</p>
-                </div>
-
-                <div class="info-block">
-                    <h3>Shipping Days</h3>
-                    <p>Monday – Wednesday (FedEx Overnight)</p>
-                </div>
-
-                <div class="info-block">
-                    <h3>Location</h3>
-                    <p>Shipping Nationwide from Canada</p>
-                </div>
+        <div class="contact-section">
+            <div class="contact-text">
+                <h1>HAVE A <span style="color: #ff9100;">QUESTION?</span></h1>
+                <p>Reach out for shipping quotes, genetics inquiries, or to discuss our current projects.</p>
+                <p style="color: white; border-top: 1px solid #333; padding-top: 20px;">RESPONSE TIME: <span style="color: #ff9100;">UNDER 24 HOURS</span></p>
             </div>
-
-            <div class="form-card">
-                <h2>Send a Message</h2>
-                <p>Click the button below to open our official inquiry form.</p>
-                <br>
-                <a href="PASTE_YOUR_GENERAL_GOOGLE_FORM_LINK_HERE" target="_blank" class="contact-btn">Open Inquiry Form</a>
-                <p style="font-size: 0.8rem; color: #888; margin-top: 20px;">Powered by Google Forms</p>
+            <div class="contact-box">
+                <h2 style="font-weight: 900; text-transform: uppercase; margin-bottom: 30px;">Direct Inquiry Form</h2>
+                <a href="YOUR_GOOGLE_FORM_LINK" target="_blank" class="contact-btn">Open Secure Form</a>
             </div>
-
         </div>
     </div>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 THE LAB REPTILES | ALL RIGHTS RESERVED</p>
-        </div>
-    </footer>
-
 </body>
 </html>
