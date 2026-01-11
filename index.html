@@ -1,12 +1,3 @@
-I understand—making the jump to "Dark Mode" can sometimes look messy if the transition isn't 100% complete across all elements. If some parts stayed white while others went dark, it definitely won't look professional.
-
-Let’s fix this. I have completely redesigned the Home Page (index.html) below. I’ve balanced the "Bacon" reds and oranges with a clean charcoal background to ensure your photos will pop without looking "cheap."
-
-The "Bacon Line" Edition Preview
-Copy this entire block into your index.html to see the new look:
-
-HTML
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,83 +8,103 @@ HTML
         :root {
             --bg-deep: #0a0a0a;
             --bg-card: #151515;
-            --text-bright: #ffffff;
-            --text-dim: #a0a0a0;
-            --bacon-red: #d90429;
-            --bacon-orange: #f48c06;
-            --bacon-gradient: linear-gradient(90deg, #d90429 0%, #f48c06 100%);
+            --text-pure: #ffffff;
+            --text-silver: #e0e0e0; /* Brighter than before */
+            --bacon-red: #ff002b;
+            --bacon-orange: #ff9100;
+            --bacon-gradient: linear-gradient(90deg, #ff002b 0%, #ff9100 100%);
         }
 
         body { 
             background-color: var(--bg-deep); 
-            color: var(--text-bright); 
-            font-family: 'Inter', -apple-system, sans-serif; 
+            color: var(--text-pure); 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             margin: 0; 
             line-height: 1.6;
         }
 
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
         /* --- NAVIGATION --- */
         header { 
             padding: 25px 0; 
-            border-bottom: 1px solid #222; 
-            background: rgba(10, 10, 10, 0.9);
-            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #333; 
+            background: rgba(10, 10, 10, 0.98);
             position: sticky; top: 0; z-index: 100;
         }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         nav { display: flex; justify-content: space-between; align-items: center; }
-        
         .logo { 
-            font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; 
+            font-size: 1.6rem; font-weight: 900; letter-spacing: -1px; 
             background: var(--bacon-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
         .nav-links a { 
-            text-decoration: none; color: var(--text-dim); 
-            margin-left: 30px; font-size: 0.85rem; font-weight: 600; 
+            text-decoration: none; color: var(--text-pure); 
+            margin-left: 30px; font-size: 0.9rem; font-weight: 700; 
             text-transform: uppercase; transition: 0.3s;
         }
-        .nav-links a:hover { color: var(--bacon-orange); }
 
         /* --- HERO SECTION --- */
         .hero { 
-            padding: 140px 0; text-align: center; 
-            background: radial-gradient(circle at center, #221111 0%, #0a0a0a 70%);
+            padding: 120px 0; text-align: center; 
+            background: radial-gradient(circle at center, #2b0b0b 0%, #0a0a0a 80%);
         }
         .hero h1 { 
-            font-size: clamp(3rem, 8vw, 5rem); margin: 0; 
-            line-height: 0.9; letter-spacing: -2px; 
+            font-size: clamp(3.5rem, 10vw, 6rem); 
+            margin: 0; font-weight: 900;
+            line-height: 0.85; letter-spacing: -4px; 
+            text-transform: uppercase;
         }
-        .hero span { color: var(--bacon-red); }
-        .hero p { color: var(--text-dim); font-size: 1.2rem; margin: 30px 0; }
+        .bacon-text { 
+            background: var(--bacon-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(255, 0, 43, 0.3));
+        }
+        
+        /* THE SPECIFIC LINES YOU WANTED STRONGER */
+        .hero .sub-headline { 
+            color: var(--text-pure); /* Changed from dim to pure white */
+            font-size: 1.5rem; 
+            font-weight: 800; /* Extra bold */
+            margin: 25px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- MISSION SECTION --- */
+        .mission { 
+            padding: 100px 0; 
+            background: #000; 
+            text-align: center;
+        }
+        .mission-content { max-width: 850px; margin: 0 auto; }
+        .mission h2 { 
+            color: var(--bacon-orange); 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            font-size: 1rem; 
+            margin-bottom: 30px; 
+        }
+        .mission p { 
+            font-size: 1.8rem; /* Larger */
+            font-weight: 700; /* Bold */
+            line-height: 1.4; 
+            color: var(--text-pure); /* Full white */
+        }
 
         /* --- BUTTONS --- */
         .btn { 
             background: var(--bacon-gradient); color: white; 
-            padding: 16px 40px; text-decoration: none; border-radius: 50px;
-            font-weight: 800; text-transform: uppercase; font-size: 0.9rem;
-            display: inline-block; transition: transform 0.2s;
-            box-shadow: 0 10px 20px rgba(217, 4, 41, 0.3);
+            padding: 20px 50px; text-decoration: none; border-radius: 4px;
+            font-weight: 900; text-transform: uppercase; font-size: 1rem;
+            display: inline-block; transition: 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 0, 43, 0.4);
         }
-        .btn:hover { transform: scale(1.05); }
+        .btn:hover { transform: scale(1.03); filter: brightness(1.2); }
 
-        /* --- FEATURED SECTION --- */
-        .featured { padding: 100px 0; }
-        .section-header { border-left: 4px solid var(--bacon-red); padding-left: 15px; margin-bottom: 50px; }
-        .section-header h2 { margin: 0; font-size: 2rem; text-transform: uppercase; }
-
-        .preview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .preview-card { 
-            background: var(--bg-card); border-radius: 12px; overflow: hidden; 
-            border: 1px solid #222; transition: 0.3s;
-        }
-        .preview-card:hover { border-color: var(--bacon-orange); }
-        .card-img { width: 100%; height: 250px; background: #222; object-fit: cover; }
-        .card-info { padding: 20px; }
-
-        footer { padding: 60px 0; border-top: 1px solid #222; text-align: center; color: var(--text-dim); font-size: 0.8rem; }
+        footer { padding: 40px 0; background: #000; text-align: center; color: #555; font-weight: bold; font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -106,7 +117,7 @@ HTML
                     <a href="index.html">Home</a>
                     <a href="available.html">Available</a>
                     <a href="collection.html">Collection</a>
-                    <a href="contact.html">Contact Us</a>
+                    <a href="contact.html">Contact</a>
                 </div>
             </nav>
         </div>
@@ -114,39 +125,24 @@ HTML
 
     <section class="hero">
         <div class="container">
-            <h1>THE <span>BACON</span> LINE.</h1>
-            <p>Extreme contrast. High intensity. Premium genetics.</p>
-            <a href="available.html" class="btn">View Inventory</a>
+            <h1>PREMIUM <span class="bacon-text">GENETICS.</span></h1>
+            <p class="sub-headline">Specializing in Ball Pythons and Gargoyle Geckos.</p>
+            <a href="available.html" class="btn">Shop The Collection</a>
         </div>
     </section>
 
-    <section class="featured">
+    <section class="mission">
         <div class="container">
-            <div class="section-header">
-                <h2>Featured Projects</h2>
-            </div>
-            <div class="preview-grid">
-                <div class="preview-card">
-                    <img src="https://via.placeholder.com/600x400/222/white?text=Bacon+Project+1" class="card-img">
-                    <div class="card-info">
-                        <h3>Hypo Bacon</h3>
-                        <p style="color: var(--text-dim);">The foundation of our high-intensity orange projects.</p>
-                    </div>
-                </div>
-                <div class="preview-card">
-                    <img src="https://via.placeholder.com/600x400/222/white?text=Bacon+Project+2" class="card-img">
-                    <div class="card-info">
-                        <h3>Red Stripe Pied</h3>
-                        <p style="color: var(--text-dim);">Pushing the limits of red pigmentation.</p>
-                    </div>
-                </div>
+            <div class="mission-content">
+                <h2>Our Mission</h2>
+                <p>At The Lab Reptiles, we focus on quality over quantity. Every animal in our care is produced with a focus on health, integrity, and the advancement of reptile genetics.</p>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 THE LAB REPTILES | ENGINEERED BY NATURE</p>
+            <p>&copy; 2026 THE LAB REPTILES | FEDEX CERTIFIED REPTILE SHIPPER</p>
         </div>
     </footer>
 
