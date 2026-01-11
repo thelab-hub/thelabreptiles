@@ -22,21 +22,30 @@
 
 
 body {
-
-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
-background-color: var(--bg-color);
-
-color: var(--text-main);
-
-margin: 0;
-
-padding: 0;
-
-line-height: 1.5;
-
+    background-color: var(--bg-color);
+    color: var(--text-main);
 }
 
+header {
+    background: rgba(13, 13, 13, 0.95);
+    border-bottom: 1px solid #333;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-links a {
+    color: var(--text-main) !important;
+}
+
+.nav-links a:hover {
+    color: var(--accent-orange) !important;
+}
+
+.animal-card {
+    background: var(--card-bg) !important;
+    border: 1px solid #333 !important;
+}
 
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -48,7 +57,7 @@ header { padding: 40px 0; border-bottom: 1px solid #f0f0f0; }
 
 nav { display: flex; justify-content: space-between; align-items: center; }
 
-.logo { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: -1px; }
+.logo {font-size: 1.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; background: var(--gradient-bacon); -webkit-background-clip: text; -webkit-text-fill-color: transparent; /* This makes your logo name a gradient! */}
 
 .nav-links a { text-decoration: none; color: var(--text-main); margin-left: 30px; font-size: 0.9rem; font-weight: 500;}
 
@@ -105,9 +114,19 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 
 /* BUTTONS */
 
-.inquire-btn { width: 100%; text-align: center; display: block; background: white; color: black; border: 1px solid black; padding: 10px 0; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.2s; cursor: pointer; }
+.btn, .inquire-btn {
+    background: var(--gradient-bacon) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 4px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
 
-.inquire-btn:hover { background: black; color: white; }
+.btn:hover, .inquire-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+}
 
 
 /* DISABLED BUTTON FOR HOLD ITEMS */

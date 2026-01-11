@@ -23,19 +23,29 @@
 
 
 body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+}
 
-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+header {
+    background: rgba(13, 13, 13, 0.95);
+    border-bottom: 1px solid #333;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-background-color: var(--bg-color);
+.nav-links a {
+    color: var(--text-main) !important;
+}
 
-color: var(--text-main);
+.nav-links a:hover {
+    color: var(--accent-orange) !important;
+}
 
-margin: 0;
-
-padding: 0;
-
-line-height: 1.5;
-
+.animal-card {
+    background: var(--card-bg) !important;
+    border: 1px solid #333 !important;
 }
 
 
@@ -49,7 +59,7 @@ header { padding: 40px 0; border-bottom: 1px solid #f0f0f0; }
 
 nav { display: flex; justify-content: space-between; align-items: center; }
 
-.logo { font-size: 1.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: -1px; }
+.logo {font-size: 1.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; background: var(--gradient-bacon); -webkit-background-clip: text; -webkit-text-fill-color: transparent; /* This makes your logo name a gradient! */}
 
 .nav-links a { text-decoration: none; color: var(--text-main); margin-left: 30px; font-size: 0.9rem; font-weight: 500;}
 

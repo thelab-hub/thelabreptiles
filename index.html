@@ -21,13 +21,37 @@
 }
 
 
-body { font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; color: var(--text-main); line-height: 1.6; }
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+}
+
+header {
+    background: rgba(13, 13, 13, 0.95);
+    border-bottom: 1px solid #333;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-links a {
+    color: var(--text-main) !important;
+}
+
+.nav-links a:hover {
+    color: var(--accent-orange) !important;
+}
+
+.animal-card {
+    background: var(--card-bg) !important;
+    border: 1px solid #333 !important;
+}
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         
         /* Updated Navigation */
         header { padding: 30px 0; border-bottom: 1px solid #eee; }
         nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: -1px; }
+        .logo {font-size: 1.6rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; background: var(--gradient-bacon); -webkit-background-clip: text; -webkit-text-fill-color: transparent; /* This makes your logo name a gradient! */}
         .nav-links a { text-decoration: none; color: var(--text-main); margin-left: 25px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
 
         /* Hero Section */
