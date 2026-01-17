@@ -54,6 +54,7 @@
                     <a href="index.html">Home</a>
                     <a href="available.html">Available</a>
                     <a href="collection.html">Collection</a>
+                    <a href="caresheets.html">Care</a>
                     <a href="contact.html">Contact</a>
                 </div>
             </nav>
@@ -105,5 +106,13 @@
 
         </div>
     </footer>
+    
+    <script>
+    function openInquiry(animalID) {
+        const formTemplate = "YOUR_GOOGLE_PREFILLED_LINK_HERE";
+        const finalLink = formTemplate.replace("ANIMAL_ID_GOES_HERE", animalID);
+        window.open(finalLink, '_blank');
+    }
+</script>
 </body>
 </html>
