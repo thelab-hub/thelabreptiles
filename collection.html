@@ -100,6 +100,66 @@
         .status-dot { height: 8px; width: 8px; background: var(--bacon-red); border-radius: 50%; display: inline-block; margin-right: 8px; }
 
         footer { padding: 60px 0; background: #000; text-align: center; color: #444; font-weight: bold; border-top: 1px solid #222; }
+        
+        /* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    /* 1. STACK THE NAV BAR */
+    nav {
+        flex-direction: column !important;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .nav-links {
+        margin: 0 !important;
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .nav-links a {
+        margin: 0 !important;
+        font-size: 0.75rem;
+        padding: 6px 10px;
+        border: 1px solid #333;
+        border-radius: 4px;
+    }
+
+    /* 2. FIX THE CONTACT FORM (Stacking vertically) */
+    .contact-section, .contact-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 30px !important;
+        padding: 40px 0 !important;
+    }
+
+    .contact-text, .contact-info {
+        text-align: center;
+    }
+
+    .contact-box, .form-card {
+        width: 100% !important;
+        margin: 0 auto;
+    }
+
+    /* 3. FIX THE HEADERS */
+    .hero h1 {
+        font-size: 2.8rem !important;
+        letter-spacing: -2px !important;
+    }
+
+    .page-header h1, .contact-text h1 {
+        font-size: 2.5rem !important;
+        text-align: center;
+    }
+
+    /* 4. ANIMAL GRIDS (One per row) */
+    .animal-grid, .collection-grid, .care-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+}
     </style>
 </head>
 <body>
