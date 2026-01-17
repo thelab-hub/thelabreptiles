@@ -138,31 +138,38 @@
     border-radius: 4px;
 }
 
-/* Show arrows when hovering over the container */
-.slider-container:hover .slider-arrow {
-    opacity: 1;
+/* This is the 'Window' */
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 350px; /* Forces the box to stay this height */
+    overflow: hidden; /* Hides any photos that aren't the 'Active' one */
+    background: #000;
 }
 
-.arrow-left { left: 10px; }
-.arrow-right { right: 10px; }
-
-/* Hide arrows on mobile since swiping is better */
-@media (max-width: 768px) {
-    .slider-arrow { display: none; }
-}    
-         /*Card Descriptions*/
-}
-        .card-description {
-    margin: 15px 0;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.03); /* Subtle contrast */
-    border-left: 2px solid var(--bacon-red);
-    font-size: 0.85rem;
-    color: #ccc;
-    text-align: left;
-    min-height: 120px;
+/* This is the 'Film Strip' */
+.slider {
+    display: flex; /* Forces photos to sit side-by-side */
+    flex-direction: row !important; /* Prevents vertical stacking */
+    overflow-x: auto; /* Allows horizontal sliding */
+    scroll-snap-type: x mandatory;
+    height: 100%;
+    width: 100%;
+    scrollbar-width: none; /* Hides scrollbar on Firefox */
 }
 
+.slider::-webkit-scrollbar {
+    display: none; /* Hides scrollbar on Chrome/Safari */
+}
+
+/* These are the 'Frames' */
+.slider img {
+    flex: 0 0 100%; /* Each photo takes up exactly 100% of the window width */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents stretching */
+    scroll-snap-align: start;
+}
 .card-description p {
     margin: 4px 0;
     line-height: 1.4;
