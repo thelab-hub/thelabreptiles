@@ -44,6 +44,14 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     text-transform: uppercase;
     letter-spacing: -1px;
 }
+.text-gradient {
+    background: var(--bacon-gradient) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important; /* Fallback for older browsers */
+    display: inline-block !important; /* Vital for the gradient to calculate correctly */
+}
 
 .nav-links a { 
     text-decoration: none; 
