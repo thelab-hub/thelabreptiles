@@ -317,9 +317,12 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     font-weight: 900;
     border-radius: 4px;
     border: 1px solid var(--bacon-orange);
-    z-index: 10;
+    z-index: 5;
 }
 .slider-container, .card-image img {
     height: 320px;
     object-fit: cover; /* Prevents "squished" snake photos */
+}
+.slider-arrow {
+    z-index: 10; /* Ensure arrows are always on top */
 }
