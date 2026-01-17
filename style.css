@@ -243,3 +243,101 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     box-shadow: 0 10px 30px rgba(255, 0, 43, 0.4);
 }
 .btn:hover { transform: scale(1.03); filter: brightness(1.2); }
+/* --- COLLECTION / BREEDER CARDS --- */
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 50px 0;
+}
+
+.breeder-card {
+    background: var(--bg-card);
+    border: 1px solid #222;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 0.3s ease;
+}
+
+.breeder-card:hover {
+    border-color: var(--bacon-red);
+    transform: translateY(-5px);
+}
+
+.breeder-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(0,0,0,0.8);
+    color: var(--bacon-orange);
+    padding: 5px 12px;
+    font-size: 0.7rem;
+    font-weight: 900;
+    border-radius: 4px;
+    border: 1px solid var(--bacon-orange);
+}
+
+.card-info { padding: 20px; }
+
+.status-dot {
+    height: 8px;
+    width: 8px;
+    background-color: #00ff00; /* Green for breeding */
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+}
+
+.project-status {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #888;
+    margin-top: 10px;
+}
+/* --- CARE PAGE STYLES --- */
+.care-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    padding: 60px 0;
+}
+
+.care-card {
+    background: var(--bg-card);
+    padding: 40px;
+    border: 1px solid #222;
+    border-radius: 8px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.care-card:hover {
+    border-color: var(--bacon-red);
+}
+
+.care-card h2 {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.care-card p {
+    color: #888;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.view-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border: 1px solid #333;
+    color: #555;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    pointer-events: none; /* Makes it unclickable while "Coming Soon" */
+}
