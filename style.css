@@ -170,3 +170,76 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     
     h1 { font-size: 2.5rem !important; }
 }
+.hero { 
+    padding: 120px 0; 
+    text-align: center; 
+    background: radial-gradient(circle at center, #2b0b0b 0%, #0a0a0a 80%);
+}
+
+.hero h1 { 
+    font-size: clamp(3.5rem, 10vw, 6rem); 
+    margin: 0; 
+    font-weight: 900;
+    line-height: 0.85; 
+    letter-spacing: -4px; 
+    text-transform: uppercase;
+}
+
+/* THE GRADIENT CLASS */
+.bacon-text { 
+    background: var(--bacon-gradient) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    display: inline-block !important;
+    filter: drop-shadow(0 0 10px rgba(255, 0, 43, 0.3));
+}
+
+.sub-headline { 
+    color: var(--text-pure); 
+    font-size: 1.5rem; 
+    font-weight: 800; 
+    margin: 25px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- MISSION SECTION --- */
+.mission { 
+    padding: 100px 0; 
+    background: #000; 
+    text-align: center;
+}
+
+.mission-content { max-width: 850px; margin: 0 auto; }
+
+.mission h2 { 
+    color: var(--bacon-orange); 
+    text-transform: uppercase; 
+    letter-spacing: 4px; 
+    font-size: 1rem; 
+    margin-bottom: 30px; 
+}
+
+.mission p { 
+    font-size: 1.8rem; 
+    font-weight: 700; 
+    line-height: 1.4; 
+    color: var(--text-pure); 
+}
+
+/* --- BUTTONS --- */
+.btn { 
+    background: var(--bacon-gradient); 
+    color: white; 
+    padding: 20px 50px; 
+    text-decoration: none; 
+    border-radius: 4px;
+    font-weight: 900; 
+    text-transform: uppercase; 
+    font-size: 1rem;
+    display: inline-block; 
+    transition: 0.3s;
+    box-shadow: 0 10px 30px rgba(255, 0, 43, 0.4);
+}
+.btn:hover { transform: scale(1.03); filter: brightness(1.2); }

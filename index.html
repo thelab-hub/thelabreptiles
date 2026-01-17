@@ -1,3 +1,12 @@
+This looks like a great foundation for your index.html. Since we just built a more "premium" version of the CSS (with the hero class and bacon-text name), we just need to align this HTML to use those names.
+
+I have updated your code below. I replaced the generic inline styles with the classes we just put into your style.css.
+
+The Optimized index.html
+Copy this and replace your current file content. It will now pull the "Radial Gradient" background and the "Extra Bold" font settings directly from your stylesheet.
+
+HTML
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,38 +35,41 @@
         </div>
     </header>
 
- <main>
-    <section class="hero-section" style="padding: 100px 0; text-align: center;">
-        <div class="container">
-            <h1 style="font-size: 4.5rem; font-weight: 900; margin: 0; line-height: 0.9; letter-spacing: -3px;">
-                THE <span class="text-gradient">LAB</span><br>REPTILES
-            </h1>
-            
-            <p style="font-size: 1.2rem; color: #888; margin-top: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">
-                <span class="text-gradient">Evolution</span> of the Bacon Line
-            </p>
-            
-            <div style="margin-top: 40px;">
-                <a href="available.html" class="inquire-btn" style="display: inline-block; padding: 15px 40px;">View Available</a>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>
+                    THE <span class="bacon-text">LAB</span><br>
+                    <span class="bacon-text">REPTILES</span>
+                </h1>
+                
+                <p class="sub-headline">
+                    The <span class="bacon-text">Evolution</span> of the Bacon Line
+                </p>
+                
+                <div style="margin-top: 40px;">
+                    <a href="available.html" class="btn">View Available</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section style="padding: 80px 0; border-bottom: 1px solid #222;">
-        <div class="container" style="max-width: 800px; text-align: center;">
-            <h2 style="text-transform: uppercase; font-size: 0.9rem; letter-spacing: 3px;" class="text-gradient">Our Mission</h2>
-            <p style="font-size: 1.4rem; font-weight: 400; color: #ccc;">
-                At The Lab, we specialize in high-expression 
-                <span class="text-gradient" style="font-weight:700;">Bacon Line Pieds</span> 
-                and Gargoyle Geckos.
-            </p>
-        </div>
-    </section>
-</main>
+        <section class="mission">
+            <div class="container">
+                <div class="mission-content">
+                    <h2>Our Mission</h2>
+                    <p>
+                        At The Lab, we specialize in high-expression 
+                        <span class="bacon-text">Bacon Line Pieds</span> 
+                        and Gargoyle Geckos.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <footer style="padding: 50px 0; background: #050505; text-align: center; border-top: 1px solid #222;">
+    <footer>
         <div class="container">
-            <p style="font-size: 0.8rem; color: #555;">&copy; 2026 THE LAB REPTILES | ALL RIGHTS RESERVED</p>
+            <p>&copy; 2026 THE LAB REPTILES | FEDEX CERTIFIED REPTILE SHIPPER</p>
         </div>
     </footer>
 
