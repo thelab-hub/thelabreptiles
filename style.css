@@ -3,10 +3,9 @@
     --bg-deep: #0a0a0a;
     --bg-card: #151515;
     --text-pure: #ffffff;
-    --bacon-red: #ff002b;
-    --bacon-orange: #ff9100;
-    --bacon-gradient: linear-gradient(90deg, #ff002b 0%, #ff9100 100%);
-    --card-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    --bacon-red: #d90429;
+    --bacon-orange: #f48c06;
+    --bacon-gradient: linear-gradient(90deg, #d90429 0%, #f48c06 100%);
 }
 
 * { box-sizing: border-box; } /* Prevents padding from breaking widths */
