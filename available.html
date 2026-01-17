@@ -69,21 +69,38 @@
         border-radius: 4px;
     }
 
-    /* 2. FIX THE CONTACT FORM (Stacking vertically) */
-    .contact-section, .contact-grid {
+    /* 2. FIX THE CONTACT FORM */
+    .contact-section {
         display: flex !important;
-        flex-direction: column !important;
-        gap: 30px !important;
-        padding: 40px 0 !important;
+        flex-direction: column !important; 
+        align-items: center !important; /* Centers the box horizontally */
+        gap: 20px !important;
+        padding: 20px 0 !important;
     }
 
-    .contact-text, .contact-info {
-        text-align: center;
-    }
-
-    .contact-box, .form-card {
+    .contact-box {
         width: 100% !important;
-        margin: 0 auto;
+        max-width: 350px !important; /* Prevents it from being "too big" */
+        padding: 30px 20px !important; /* Reduces internal spacing */
+        margin: 0 auto !important;
+        box-sizing: border-box; /* Ensures padding doesn't add to width */
+    }
+
+    .contact-text {
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .contact-text h1 {
+        font-size: 2.2rem !important; /* Smaller header for mobile */
+        line-height: 1.1;
+    }
+
+    .contact-btn {
+        width: 100%; /* Makes the button easy to tap on mobile */
+        padding: 15px 0 !important;
+        font-size: 0.9rem !important;
+        box-sizing: border-box;
     }
 
     /* 3. FIX THE HEADERS */
