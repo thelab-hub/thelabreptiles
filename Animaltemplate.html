@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <nav class="breadcrumbs">
+    <div class="container">
+        <a href="index.html">Home</a> 
+        <span class="sep">/</span> 
+        <a href="available.html">Available</a> 
+        <span class="sep">/</span> 
+        <span class="current">BP-BCN-01</span>
+    </div>
+</nav>
+</nav>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bacon Line Pied #01 | The Lab Reptiles</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="animal-profile">
+            <div class="profile-gallery">
+                <div class="main-photo">
+                    <img src="ReptilePhotos/snake-hero.jpg" id="currentView" alt="Bacon Pied">
+                </div>
+                <div class="thumbnails">
+                    <img src="ReptilePhotos/photo1.jpg" onclick="document.getElementById('currentView').src=this.src">
+                    <img src="ReptilePhotos/photo2.jpg" onclick="document.getElementById('currentView').src=this.src">
+                    <img src="ReptilePhotos/photo3.jpg" onclick="document.getElementById('currentView').src=this.src">
+                </div>
+            </div>
+
+            <div class="profile-info">
+                <h1 class="bacon-text">Bacon Line Pied</h1>
+                <p class="id-tag">ID: BP-BCN-01</p>
+                <div class="price-large">$1,200</div>
+                
+                <div class="specs-grid">
+                    <div class="spec-item"><strong>Sex:</strong> Male</div>
+                    <div class="spec-item"><strong>Weight:</strong> 155g</div>
+                    <div class="spec-item"><strong>Diet:</strong> F/T Rats</div>
+                    <div class="spec-item"><strong>Hatch:</strong> July 2025</div>
+                </div>
+
+                <div class="lineage-box">
+                    <h3>Lineage</h3>
+                    <p>Sire: "The King" (Bacon Red Stripe)</p>
+                    <p>Dam: "Nova" (High White Pied)</p>
+                </div>
+
+                <a href="contact.html" class="btn" style="width:100%;">Inquire About This Animal</a>
+                <a href="available.html" style="display:block; text-align:center; margin-top:20px; color:#666; text-decoration:none;">← Back to Inventory</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
