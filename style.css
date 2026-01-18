@@ -365,3 +365,32 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     left: 0;
     margin-bottom: 10px;
 }
+/* --- BREADCRUMBS --- */
+.breadcrumbs {
+    padding: 20px 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #1a1a1a;
+    margin-bottom: 30px;
+}
+
+.breadcrumbs a {
+    text-decoration: none;
+    color: #666;
+    transition: 0.3s;
+}
+
+.breadcrumbs a:hover {
+    color: var(--bacon-orange);
+}
+
+.breadcrumbs .sep {
+    margin: 0 10px;
+    color: #333;
+}
+
+.breadcrumbs .current {
+    color: var(--text-pure);
+}
