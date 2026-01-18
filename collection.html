@@ -36,8 +36,18 @@
             
             <div class="breeder-card">
   <div class="slider-container">
-    <button class="slider-arrow arrow-left" onclick="this.nextElementSibling.scrollBy({left: -400, behavior: 'smooth'})">&#10094;</button>
+    <button class="slider-arrow arrow-left" 
+    onclick="const s = this.nextElementSibling; if(s.scrollLeft <= 0) { s.scrollTo({left: s.scrollWidth, behavior: 'smooth'}); } else { s.scrollBy({left: -400, behavior: 'smooth'}); }">
+    &#10094;
+    </button>
+
     <div class="slider">
+    </div>
+
+    <button class="slider-arrow arrow-right" 
+    onclick="const s = this.previousElementSibling; if(s.scrollLeft + s.offsetWidth >= s.scrollWidth - 10) { s.scrollTo({left: 0, behavior: 'smooth'}); } else { s.scrollBy({left: 400, behavior: 'smooth'}); }">
+    &#10095;
+</button>
       <img src="ReptilePhotos/Demeter1.jpg" alt="Demeter Photo">
       <img src="ReptilePhotos/Demeter2.jpg" alt="Demeter Photo">
       <img src="ReptilePhotos/Demeter3.jpg" alt="Demeter Photo">
