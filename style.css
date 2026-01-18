@@ -326,3 +326,42 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 .slider-arrow {
     z-index: 10; /* Ensure arrows are always on top */
 }
+/* --- ANIMAL PROFILE PAGE --- */
+.animal-profile {
+    display: flex;
+    gap: 50px;
+    padding: 60px 0;
+}
+
+.profile-gallery { flex: 1.5; }
+.main-photo img { width: 100%; border-radius: 12px; border: 1px solid #222; }
+
+.thumbnails { display: flex; gap: 10px; margin-top: 15px; }
+.thumbnails img { 
+    width: 80px; height: 80px; object-fit: cover; 
+    cursor: pointer; border: 1px solid #222; border-radius: 4px; 
+}
+.thumbnails img:hover { border-color: var(--bacon-red); }
+
+.profile-info { flex: 1; }
+.price-large { font-size: 2.5rem; font-weight: 900; color: var(--bacon-orange); margin: 20px 0; }
+
+.specs-grid { 
+    display: grid; grid-template-columns: 1fr 1fr; gap: 15px; 
+    margin: 30px 0; padding: 20px; background: #111; border-radius: 8px;
+}
+
+.lineage-box { padding: 20px; border: 1px solid #222; margin-bottom: 30px; }
+.lineage-box h3 { margin-top: 0; color: #666; font-size: 0.8rem; text-transform: uppercase; }
+
+/* Mobile Fix */
+@media (max-width: 900px) {
+    .animal-profile { flex-direction: column; }
+}
+/* Fix for badges on profile pages */
+.profile-info .breeder-badge {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-bottom: 10px;
+}
