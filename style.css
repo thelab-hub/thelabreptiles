@@ -96,19 +96,18 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     display: inline-block !important;
-    filter: drop-shadow(0 0 10px rgba(255, 0, 43, 0.3));
 }
 
-/* --- 5. UNIFIED CARD GRID SYSTEM --- */
-.animal-grid, .collection-grid, .care-grid {
+/* --- 5. THE ANIMAL GRID & CARDS --- */
+.animal-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 30px;
-    padding: 60px 0;
+    padding: 40px 0;
     align-items: stretch;
 }
 
-.animal-card, .breeder-card, .care-card {
+.animal-card {
     background: var(--bg-card);
     border: 1px solid #222;
     border-radius: 12px;
@@ -120,14 +119,39 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.animal-card:hover, .breeder-card:hover {
+.animal-card:hover {
     transform: translateY(-8px);
     border-color: var(--bacon-red);
 }
 
-/* Slider inside cards */
-.slider-container { position: relative; width: 100%; height: 320px; overflow: hidden; background: #000; }
-.slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; height: 100%; scrollbar-width: none; }
+/* Photo Slider Settings */
+.slider-container { 
+    position: relative; 
+    width: 100%; 
+    height: 320px; 
+    overflow: hidden; 
+    background: #000; 
+    flex-shrink: 0;
+}
+
+/* Adds a subtle fade on the edges to hint at swiping */
+.slider-container::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.3) 0%, transparent 10%, transparent 90%, rgba(0,0,0,0.3) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.slider { 
+    display: flex; 
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+    scroll-behavior: smooth; 
+    height: 100%; 
+    scrollbar-width: none; 
+}
 .slider::-webkit-scrollbar { display: none; }
 .slider img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; scroll-snap-align: start; }
 
@@ -136,20 +160,52 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     background: rgba(0,0,0,0.7); color: var(--bacon-orange); border: none; 
     padding: 15px 10px; cursor: pointer; font-size: 20px; opacity: 0; transition: 0.3s;
 }
-.slider-container:hover .slider-arrow { opacity: 1; }
+.animal-card:hover .slider-arrow { opacity: 1; }
 .arrow-left { left: 0; border-radius: 0 4px 4px 0; }
 .arrow-right { right: 0; border-radius: 4px 0 0 4px; }
 
-/* Badges */
-.status-badge, .breeder-badge {
+/* Status Badge */
+.status-badge {
     position: absolute; top: 15px; right: 15px; padding: 5px 12px;
     font-size: 0.7rem; font-weight: 900; text-transform: uppercase;
     border-radius: 4px; z-index: 5;
+    background: var(--bacon-red); color: white;
 }
-.available { background: var(--bacon-red); color: white; }
-.breeder-badge { left: 15px; right: auto; background: rgba(0,0,0,0.8); color: var(--bacon-orange); border: 1px solid var(--bacon-orange); }
 
-/* --- 6. INDIVIDUAL ANIMAL PROFILE PAGE --- */
+/* --- 6. CARD DETAILS (Vertical Spacing Fix) --- */
+.card-details { 
+    padding: 25px; 
+    display: flex; 
+    flex-direction: column; 
+    flex-grow: 1; /* This is the key to pushing the button down */
+}
+
+.card-description {
+    margin: 15px 0;
+    font-size: 0.9rem;
+    color: #ccc;
+    flex-grow: 1; /* Fills the middle space */
+}
+
+.card-description p { margin: 5px 0; }
+
+.inquire-btn {
+    display: block; 
+    text-align: center; 
+    background: transparent; 
+    border: 2px solid var(--bacon-red);
+    color: white; 
+    text-decoration: none; 
+    padding: 14px; 
+    font-weight: 800; 
+    text-transform: uppercase;
+    transition: 0.3s; 
+    margin-top: auto; /* Forces button to the absolute bottom */
+    font-size: 0.85rem;
+}
+.inquire-btn:hover { background: var(--bacon-red); }
+
+/* --- 7. INDIVIDUAL PROFILE PAGE --- */
 .animal-profile { display: flex; gap: 50px; padding: 60px 0; }
 .profile-gallery { flex: 1.5; }
 
@@ -188,11 +244,9 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     margin: 30px 0; padding: 20px; background: #111; border-radius: 8px;
 }
 
-.lineage-box, .description-box { 
-    padding: 20px; border: 1px solid #222; border-radius: 8px; margin-bottom: 30px; 
-}
+.lineage-box { padding: 20px; border: 1px solid #222; border-radius: 8px; margin-bottom: 30px; }
 
-/* --- 7. BUTTONS & ACTIONS --- */
+/* Dual Buttons on Profile */
 .btn { 
     background: var(--bacon-gradient); color: white; padding: 18px 30px; 
     text-decoration: none; border-radius: 4px; font-weight: 900; 
@@ -200,32 +254,33 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     text-align: center; border: none; cursor: pointer;
 }
 .btn:hover { transform: scale(1.02); filter: brightness(1.1); }
-
 .mm-btn { background: #1a1a1a !important; border: 1px solid #333 !important; }
-.mm-btn:hover { background: #222 !important; border-color: #444 !important; }
 
-.inquire-btn {
-    display: block; text-align: center; background: transparent; border: 2px solid var(--bacon-red);
-    color: white; text-decoration: none; padding: 12px; font-weight: 800; text-transform: uppercase;
-    transition: 0.3s; margin-top: auto;
-}
-.inquire-btn:hover { background: var(--bacon-red); }
-
-/* --- 8. MOBILE RESPONSIVENESS --- */
+/* --- 8. MOBILE OPTIMIZATION --- */
 @media (max-width: 900px) {
     .animal-profile { flex-direction: column; }
-    .hero h1 { font-size: 3.5rem; letter-spacing: -2px; }
 }
 
 @media (max-width: 768px) {
-    nav { flex-direction: column; gap: 20px; text-align: center; }
-    .nav-links { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-    .nav-links a { margin: 0; font-size: 0.75rem; border: 1px solid #333; padding: 8px 12px; border-radius: 4px; }
+    /* Menu as buttons on mobile */
+    .nav-links { 
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        width: 100%; 
+        gap: 10px; 
+        margin-top: 20px;
+    }
+    .nav-links a { 
+        margin: 0; text-align: center; padding: 12px; 
+        border: 1px solid #222; font-size: 0.75rem;
+    }
     
-    .slider-arrow { display: none; } /* Use swipe on mobile */
-    .thumbnails { -webkit-overflow-scrolling: touch; }
+    .animal-grid { grid-template-columns: 1fr; }
+    .slider-container { height: 260px; } /* Slightly shorter for better vertical flow */
     
-    .animal-grid, .collection-grid { grid-template-columns: 1fr; }
+    .slider-arrow { display: none; } /* Use touch-swipe on mobile */
+    
+    h1 { font-size: 2.2rem !important; }
 }
 
-footer { padding: 60px 0; border-top: 1px solid #111; margin-top: 40px; }
+footer { padding: 60px 0; border-top: 1px solid #111; margin-top: 40px; text-align: center; }
