@@ -9,7 +9,7 @@
     --bacon-gradient: linear-gradient(90deg, #ff002b 0%, #ff9100 100%);
 }
 
-* { box-sizing: border-box; } /* Prevents padding from breaking widths */
+* { box-sizing: border-box; }
 
 body { 
     background-color: var(--bg-deep); 
@@ -44,14 +44,6 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     text-transform: uppercase;
     letter-spacing: -1px;
 }
-.text-gradient {
-    background: var(--bacon-gradient) !important;
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    color: transparent !important; /* Fallback for older browsers */
-    display: inline-block !important; /* Vital for the gradient to calculate correctly */
-}
 
 .nav-links a { 
     text-decoration: none; 
@@ -66,110 +58,23 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 
 .nav-links a:hover { color: var(--bacon-orange); }
 
-/* --- 3. ANIMAL CARDS & SLIDERS --- */
-.animal-grid, .collection-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 30px;
-    padding: 40px 0;
+/* --- 3. BREADCRUMBS --- */
+.breadcrumbs {
+    padding: 20px 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #1a1a1a;
+    margin-bottom: 30px;
 }
 
-.animal-card, .breeder-card {
-    background: var(--bg-card);
-    border: 1px solid #222;
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-}
+.breadcrumbs a { text-decoration: none; color: #666; transition: 0.3s; }
+.breadcrumbs a:hover { color: var(--bacon-orange); }
+.breadcrumbs .sep { margin: 0 10px; color: #333; }
+.breadcrumbs .current { color: var(--text-pure); }
 
-.animal-card:hover { transform: translateY(-5px); border-color: #333; }
-
-/* The "Window" */
-.slider-container { 
-    position: relative; 
-    width: 100%; 
-    height: 320px; 
-    overflow: hidden; 
-    background: #000; 
-}
-
-/* The "Film Strip" */
-.slider { 
-    display: flex; 
-    flex-direction: row; 
-    overflow-x: auto; 
-    scroll-snap-type: x mandatory; 
-    scroll-behavior: smooth; 
-    height: 100%; 
-    scrollbar-width: none; 
-}
-
-.slider::-webkit-scrollbar { display: none; }
-
-.slider img { 
-    flex: 0 0 100%; 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    scroll-snap-align: start; 
-}
-
-/* Desktop Arrows */
-.slider-arrow {
-    position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
-    background: rgba(0,0,0,0.7); color: var(--bacon-orange); border: none; 
-    padding: 15px 10px; cursor: pointer; font-size: 20px; opacity: 0; transition: 0.3s;
-}
-.slider-container:hover .slider-arrow { opacity: 1; }
-.arrow-left { left: 0; border-radius: 0 4px 4px 0; }
-.arrow-right { right: 0; border-radius: 4px 0 0 4px; }
-
-/* Status Badges */
-.status-badge {
-    position: absolute; top: 15px; right: 15px; padding: 5px 12px;
-    font-size: 0.7rem; font-weight: 900; text-transform: uppercase;
-    border-radius: 4px; z-index: 5;
-}
-.available { background: var(--bacon-red); color: white; }
-
-/* --- 4. DESCRIPTION BOXES --- */
-.card-details { padding: 20px; }
-.animal-title { font-size: 1.4rem; font-weight: 900; margin: 0; text-transform: uppercase; }
-.price { color: var(--bacon-orange); font-weight: 800; font-size: 1.1rem; margin-bottom: 10px; }
-
-.card-description {
-    margin: 15px 0; padding: 12px; background: rgba(255, 255, 255, 0.03);
-    border-left: 2px solid var(--bacon-red); font-size: 0.85rem; color: #ccc;
-}
-.inquire-btn {
-    display: block; text-align: center; background: transparent; border: 2px solid var(--bacon-red);
-    color: white; text-decoration: none; padding: 12px; font-weight: 800; text-transform: uppercase;
-    transition: 0.3s; font-size: 0.8rem;
-}
-.inquire-btn:hover { background: var(--bacon-red); }
-
-/* --- 5. CONTACT PAGE & FORMS --- */
-.contact-section { display: flex; gap: 50px; padding: 80px 0; align-items: flex-start; }
-.contact-box { 
-    background: var(--bg-card); padding: 40px; border-radius: 8px; 
-    border: 1px solid var(--bacon-red); flex: 1; 
-}
-
-/* --- 6. MOBILE RESPONSIVENESS (THE GLOBAL FIX) --- */
-@media (max-width: 768px) {
-    nav { flex-direction: column; gap: 20px; text-align: center; }
-    .nav-links { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-    .nav-links a { margin: 0; font-size: 0.7rem; border: 1px solid #333; padding: 6px 10px; border-radius: 4px; }
-    
-    .slider-arrow { display: none; } /* Hide arrows on mobile for swiping */
-    
-    .contact-section { flex-direction: column; text-align: center; }
-    .contact-box { width: 100%; max-width: 100%; }
-    
-    .animal-grid, .collection-grid { grid-template-columns: 1fr; }
-    
-    h1 { font-size: 2.5rem !important; }
-}
+/* --- 4. HERO & GLOBAL TEXT --- */
 .hero { 
     padding: 120px 0; 
     text-align: center; 
@@ -185,7 +90,6 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     text-transform: uppercase;
 }
 
-/* THE GRADIENT CLASS */
 .bacon-text { 
     background: var(--bacon-gradient) !important;
     -webkit-background-clip: text !important;
@@ -195,153 +99,86 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     filter: drop-shadow(0 0 10px rgba(255, 0, 43, 0.3));
 }
 
-.sub-headline { 
-    color: var(--text-pure); 
-    font-size: 1.5rem; 
-    font-weight: 800; 
-    margin: 25px 0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* --- MISSION SECTION --- */
-.mission { 
-    padding: 100px 0; 
-    background: #000; 
-    text-align: center;
-}
-
-.mission-content { max-width: 850px; margin: 0 auto; }
-
-.mission h2 { 
-    color: var(--bacon-orange); 
-    text-transform: uppercase; 
-    letter-spacing: 4px; 
-    font-size: 1rem; 
-    margin-bottom: 30px; 
-}
-
-.mission p { 
-    font-size: 1.8rem; 
-    font-weight: 700; 
-    line-height: 1.4; 
-    color: var(--text-pure); 
-}
-
-/* --- BUTTONS --- */
-.btn { 
-    background: var(--bacon-gradient); 
-    color: white; 
-    padding: 20px 50px; 
-    text-decoration: none; 
-    border-radius: 4px;
-    font-weight: 900; 
-    text-transform: uppercase; 
-    font-size: 1rem;
-    display: inline-block; 
-    transition: 0.3s;
-    box-shadow: 0 10px 30px rgba(255, 0, 43, 0.4);
-}
-.btn:hover { transform: scale(1.03); filter: brightness(1.2); }
-
-/* --- UNIFIED GRID & CARD SYSTEM --- */
-.animal-grid, 
-.collection-grid, 
-.care-grid {
+/* --- 5. UNIFIED CARD GRID SYSTEM --- */
+.animal-grid, .collection-grid, .care-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Uniform card width */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 30px;
     padding: 60px 0;
-    align-items: stretch; /* Makes all cards in a row the same height */
+    align-items: stretch;
 }
 
-.animal-card, 
-.breeder-card, 
-.care-card {
+.animal-card, .breeder-card, .care-card {
     background: var(--bg-card);
     border: 1px solid #222;
-    border-radius: 12px; /* Smoother corners */
+    border-radius: 12px;
     overflow: hidden;
     display: flex;
-    flex-direction: column; /* Stack content vertically */
+    flex-direction: column;
     height: 100%;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.animal-card:hover, 
-.breeder-card:hover, 
-.care-card:hover {
+.animal-card:hover, .breeder-card:hover {
     transform: translateY(-8px);
     border-color: var(--bacon-red);
-    box-shadow: 0 10px 30px rgba(255, 0, 43, 0.1);
 }
 
-/* --- UNIFIED CARD CONTENT --- */
-.card-details, 
-.card-info, 
-.care-card {
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Pushes buttons to the bottom */
-}
+/* Slider inside cards */
+.slider-container { position: relative; width: 100%; height: 320px; overflow: hidden; background: #000; }
+.slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; height: 100%; scrollbar-width: none; }
+.slider::-webkit-scrollbar { display: none; }
+.slider img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; scroll-snap-align: start; }
 
-/* Forces buttons (Inquire/View) to line up perfectly at the bottom */
-.inquire-btn, 
-.view-btn, 
-.btn {
-    margin-top: auto;
-    width: 100%;
-    text-align: center;
-}
-
-/* Keep your unique "Status" elements underneath the unified code */
-.status-dot {
-    height: 8px;
-    width: 8px;
-    background-color: #00ff00;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 5px;
-    box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
-}
-
-.breeder-badge {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background: rgba(0,0,0,0.8);
-    color: var(--bacon-orange);
-    padding: 5px 12px;
-    font-size: 0.7rem;
-    font-weight: 900;
-    border-radius: 4px;
-    border: 1px solid var(--bacon-orange);
-    z-index: 5;
-}
-.slider-container, .card-image img {
-    height: 320px;
-    object-fit: cover; /* Prevents "squished" snake photos */
-}
 .slider-arrow {
-    z-index: 10; /* Ensure arrows are always on top */
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
+    background: rgba(0,0,0,0.7); color: var(--bacon-orange); border: none; 
+    padding: 15px 10px; cursor: pointer; font-size: 20px; opacity: 0; transition: 0.3s;
 }
-/* --- ANIMAL PROFILE PAGE --- */
-.animal-profile {
-    display: flex;
-    gap: 50px;
-    padding: 60px 0;
-}
+.slider-container:hover .slider-arrow { opacity: 1; }
+.arrow-left { left: 0; border-radius: 0 4px 4px 0; }
+.arrow-right { right: 0; border-radius: 4px 0 0 4px; }
 
+/* Badges */
+.status-badge, .breeder-badge {
+    position: absolute; top: 15px; right: 15px; padding: 5px 12px;
+    font-size: 0.7rem; font-weight: 900; text-transform: uppercase;
+    border-radius: 4px; z-index: 5;
+}
+.available { background: var(--bacon-red); color: white; }
+.breeder-badge { left: 15px; right: auto; background: rgba(0,0,0,0.8); color: var(--bacon-orange); border: 1px solid var(--bacon-orange); }
+
+/* --- 6. INDIVIDUAL ANIMAL PROFILE PAGE --- */
+.animal-profile { display: flex; gap: 50px; padding: 60px 0; }
 .profile-gallery { flex: 1.5; }
-.main-photo img { width: 100%; border-radius: 12px; border: 1px solid #222; }
 
-.thumbnails { display: flex; gap: 10px; margin-top: 15px; }
-.thumbnails img { 
-    width: 80px; height: 80px; object-fit: cover; 
-    cursor: pointer; border: 1px solid #222; border-radius: 4px; 
+.main-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid #222;
 }
-.thumbnails img:hover { border-color: var(--bacon-red); }
+
+.main-photo img { 
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: contain; 
+    transition: opacity 0.3s ease-in-out;
+}
+
+.thumbnails { display: flex; gap: 12px; margin-top: 15px; overflow-x: auto; padding-bottom: 10px; }
+.thumbnails img { 
+    width: 100px; height: 100px; object-fit: cover; 
+    cursor: pointer; border: 2px solid #222; border-radius: 6px; 
+    flex-shrink: 0; transition: 0.3s;
+}
+.thumbnails img:hover { border-color: var(--bacon-orange); transform: translateY(-2px); }
 
 .profile-info { flex: 1; }
 .price-large { font-size: 2.5rem; font-weight: 900; color: var(--bacon-orange); margin: 20px 0; }
@@ -351,94 +188,44 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     margin: 30px 0; padding: 20px; background: #111; border-radius: 8px;
 }
 
-.lineage-box { padding: 20px; border: 1px solid #222; margin-bottom: 30px; }
-.lineage-box h3 { margin-top: 0; color: #666; font-size: 0.8rem; text-transform: uppercase; }
+.lineage-box, .description-box { 
+    padding: 20px; border: 1px solid #222; border-radius: 8px; margin-bottom: 30px; 
+}
 
-/* Mobile Fix */
+/* --- 7. BUTTONS & ACTIONS --- */
+.btn { 
+    background: var(--bacon-gradient); color: white; padding: 18px 30px; 
+    text-decoration: none; border-radius: 4px; font-weight: 900; 
+    text-transform: uppercase; display: inline-block; transition: 0.3s;
+    text-align: center; border: none; cursor: pointer;
+}
+.btn:hover { transform: scale(1.02); filter: brightness(1.1); }
+
+.mm-btn { background: #1a1a1a !important; border: 1px solid #333 !important; }
+.mm-btn:hover { background: #222 !important; border-color: #444 !important; }
+
+.inquire-btn {
+    display: block; text-align: center; background: transparent; border: 2px solid var(--bacon-red);
+    color: white; text-decoration: none; padding: 12px; font-weight: 800; text-transform: uppercase;
+    transition: 0.3s; margin-top: auto;
+}
+.inquire-btn:hover { background: var(--bacon-red); }
+
+/* --- 8. MOBILE RESPONSIVENESS --- */
 @media (max-width: 900px) {
     .animal-profile { flex-direction: column; }
-}
-/* Fix for badges on profile pages */
-.profile-info .breeder-badge {
-    position: relative;
-    top: 0;
-    left: 0;
-    margin-bottom: 10px;
-}
-/* --- BREADCRUMBS --- */
-.breadcrumbs {
-    padding: 20px 0;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 1px solid #1a1a1a;
-    margin-bottom: 30px;
+    .hero h1 { font-size: 3.5rem; letter-spacing: -2px; }
 }
 
-.breadcrumbs a {
-    text-decoration: none;
-    color: #666;
-    transition: 0.3s;
+@media (max-width: 768px) {
+    nav { flex-direction: column; gap: 20px; text-align: center; }
+    .nav-links { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .nav-links a { margin: 0; font-size: 0.75rem; border: 1px solid #333; padding: 8px 12px; border-radius: 4px; }
+    
+    .slider-arrow { display: none; } /* Use swipe on mobile */
+    .thumbnails { -webkit-overflow-scrolling: touch; }
+    
+    .animal-grid, .collection-grid { grid-template-columns: 1fr; }
 }
 
-.breadcrumbs a:hover {
-    color: var(--bacon-orange);
-}
-
-.breadcrumbs .sep {
-    margin: 0 10px;
-    color: #333;
-}
-
-.breadcrumbs .current {
-    color: var(--text-pure);
-}
-/* --- PROFILE THUMBNAILS FIX --- */
-.thumbnails {
-    display: flex;
-    gap: 12px;
-    margin-top: 15px;
-    overflow-x: auto; /* Allows swiping on mobile if you have many photos */
-    padding-bottom: 5px;
-}
-
-.thumbnails img {
-    width: 100px;         /* Standard width */
-    height: 100px;        /* Standard height */
-    object-fit: cover;    /* The "Magic" line: crops without stretching */
-    border-radius: 6px;
-    border: 2px solid #222;
-    cursor: pointer;
-    transition: 0.3s ease;
-    flex-shrink: 0;       /* Prevents images from getting crushed */
-}
-
-.thumbnails img:hover {
-    border-color: var(--bacon-orange);
-    transform: translateY(-2px);
-}
-
-/* Optional: Highlight the "active" thumbnail */
-.thumbnails img:active {
-    border-color: var(--bacon-red);
-}
-/* --- DUAL BUTTON STYLING --- */
-.mm-btn {
-    background: #1a1a1a !important;
-    border: 1px solid #333 !important;
-    color: #fff !important;
-    transition: 0.3s;
-}
-
-.mm-btn:hover {
-    background: #252525 !important;
-    border-color: #555 !important;
-    transform: translateY(-2px);
-}
-
-.form-btn:hover {
-    filter: brightness(1.2);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 0, 43, 0.3);
-}
+footer { padding: 60px 0; border-top: 1px solid #111; margin-top: 40px; }
