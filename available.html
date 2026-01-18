@@ -35,8 +35,19 @@
             
             <div class="animal-card">
                 <div class="slider-container">
-                    <button class="slider-arrow arrow-left" onclick="this.nextElementSibling.scrollBy({left: -400, behavior: 'smooth'})">&#10094;</button>
+                    <button class="slider-arrow arrow-left" 
+                    onclick="const s = this.nextElementSibling; if(s.scrollLeft <= 0) { s.scrollTo({left: s.scrollWidth, behavior: 'smooth'}); } else { s.scrollBy({left: -400, behavior: 'smooth'}); }">
+                    &#10094;
+                    </button>
+
                     <div class="slider">
+                    </div>
+
+                    <button class="slider-arrow arrow-right" 
+                    onclick="const s = this.previousElementSibling; if(s.scrollLeft + s.offsetWidth >= s.scrollWidth - 10) { s.scrollTo({left: 0, behavior: 'smooth'}); } else { s.scrollBy({left: 400, behavior: 'smooth'}); }">
+                    &#10095;
+
+                    </button>
                         <img src="ReptilePhotos/GG-ATH-03-1-25-1.jpg" alt="Photo 1">
                         <img src="ReptilePhotos/GG-ATH-03-1-25-2.jpg" alt="Photo 2">
                         <img src="ReptilePhotos/GG-ATH-03-1-25-3.jpg" alt="Photo 3">
