@@ -74,20 +74,56 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 .breadcrumbs .sep { margin: 0 10px; color: #333; }
 .breadcrumbs .current { color: var(--text-pure); }
 
-/* --- 4. HERO & GLOBAL TEXT --- */
+/* --- 4. HERO & MISSION (HOME PAGE FIX) --- */
 .hero { 
-    padding: 120px 0; 
+    padding: clamp(60px, 10vh, 120px) 0; 
     text-align: center; 
     background: radial-gradient(circle at center, #2b0b0b 0%, #0a0a0a 80%);
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero h1 { 
-    font-size: clamp(3.5rem, 10vw, 6rem); 
+    font-size: clamp(2.8rem, 10vw, 6rem); 
     margin: 0; 
     font-weight: 900;
     line-height: 0.85; 
-    letter-spacing: -4px; 
+    letter-spacing: -2px; 
     text-transform: uppercase;
+}
+
+.sub-headline { 
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    margin: 20px 0 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mission { 
+    padding: clamp(40px, 8vh, 100px) 20px; 
+    background: #000; 
+    text-align: center;
+}
+
+.mission-content { max-width: 850px; margin: 0 auto; }
+
+.mission h2 { 
+    color: var(--bacon-orange); 
+    text-transform: uppercase; 
+    letter-spacing: 4px; 
+    font-size: 0.9rem; 
+    margin-bottom: 25px; 
+}
+
+.mission p { 
+    font-size: clamp(1.3rem, 5vw, 1.8rem); 
+    font-weight: 700; 
+    line-height: 1.4; 
+    color: var(--text-pure); 
 }
 
 .bacon-text { 
@@ -104,7 +140,7 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 30px;
     padding: 40px 0;
-    align-items: stretch; /* Ensures cards in a row have equal height */
+    align-items: stretch;
 }
 
 .animal-card, .breeder-card {
@@ -191,7 +227,7 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 .status-dot {
     height: 10px;
     width: 10px;
-    background-color: #00ff00; /* Default green for breeding */
+    background-color: #00ff00;
     border-radius: 50%;
     display: inline-block;
     margin-right: 8px;
@@ -209,7 +245,7 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     font-weight: 800; 
     text-transform: uppercase;
     transition: 0.3s; 
-    margin-top: auto; /* Forces button to bottom of container */
+    margin-top: auto;
     font-size: 0.85rem;
 }
 .inquire-btn:hover { background: var(--bacon-red); }
@@ -243,7 +279,6 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     cursor: pointer; border: 2px solid #222; border-radius: 6px; 
     flex-shrink: 0; transition: 0.3s;
 }
-.thumbnails img:hover { border-color: var(--bacon-orange); transform: translateY(-2px); }
 
 .profile-info { flex: 1; }
 .price-large { font-size: 2.5rem; font-weight: 900; color: var(--bacon-orange); margin: 20px 0; }
@@ -255,15 +290,14 @@ nav { display: flex; justify-content: space-between; align-items: center; }
 
 .lineage-box { padding: 20px; border: 1px solid #222; border-radius: 8px; margin-bottom: 30px; }
 
-/* Dual Buttons on Profile */
+/* Buttons */
 .btn { 
-    background: var(--bacon-gradient); color: white; padding: 18px 30px; 
+    background: var(--bacon-gradient); color: white; padding: 18px 40px; 
     text-decoration: none; border-radius: 4px; font-weight: 900; 
     text-transform: uppercase; display: inline-block; transition: 0.3s;
     text-align: center; border: none; cursor: pointer;
 }
 .btn:hover { transform: scale(1.02); filter: brightness(1.1); }
-.mm-btn { background: #1a1a1a !important; border: 1px solid #333 !important; }
 
 /* --- 8. MOBILE OPTIMIZATION --- */
 @media (max-width: 900px) {
@@ -283,12 +317,13 @@ nav { display: flex; justify-content: space-between; align-items: center; }
         border: 1px solid #222; font-size: 0.75rem;
     }
     
+    .hero { padding: 60px 15px; min-height: 50vh; }
+    .hero h1 { font-size: 2.8rem; }
+    
     .animal-grid, .collection-grid { grid-template-columns: 1fr; }
     .slider-container { height: 260px; } 
     
     .slider-arrow { display: none; } 
-    
-    h1 { font-size: 2.2rem !important; }
 }
 
 footer { padding: 60px 0; border-top: 1px solid #111; margin-top: 40px; text-align: center; }
