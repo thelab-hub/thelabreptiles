@@ -1,33 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-    <nav class="breadcrumbs">
-    <div class="container">
-        <a href="index.html">Home</a> 
-        <span class="sep">/</span> 
-        <a href="available.html">Available</a> 
-        <span class="sep">/</span> 
-        <span class="current">GG-ATH-03-2-25</span>
-    </div>
-</nav>
-</nav>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bacon Quad Strip | The Lab Reptiles</title>
+    <title>Bacon Quad Stripe | GG-ATH-03-2-25 | The Lab Reptiles</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">THE LAB REPTILES</div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="available.html">Available</a>
+                    <a href="collection.html">Collection</a>
+                    <a href="caresheets.html">Care</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="breadcrumbs">
+        <div class="container">
+            <a href="index.html">Home</a> 
+            <span class="sep">/</span> 
+            <a href="available.html">Available</a> 
+            <span class="sep">/</span> 
+            <span class="current">GG-ATH-03-2-25</span>
+        </div>
+    </nav>
+
+    <main class="container">
         <div class="animal-profile">
             <div class="profile-gallery">
                 <div class="main-photo">
-                    <img src="ReptilePhotos/GG-ATH-03-2-25-1.jpg" id="currentView" alt="Bacon Pied">
+                    <img src="ReptilePhotos/GG-ATH-03-2-25-1.jpg" id="currentView" alt="Bacon Quad Stripe">
                 </div>
                 <div class="thumbnails">
-                    <img src="ReptilePhotos/GG-ATH-03-2-25-1.jpg" onclick="document.getElementById('currentView').src=this.src">
-                    <img src="ReptilePhotos/GG-ATH-03-2-25-2.jpg" onclick="document.getElementById('currentView').src=this.src">
-                    <img src="ReptilePhotos/GG-ATH-03-2-25-3.jpg" onclick="document.getElementById('currentView').src=this.src">
+                    <img src="ReptilePhotos/GG-ATH-03-2-25-1.jpg" onclick="document.getElementById('currentView').src=this.src" alt="View 1">
+                    <img src="ReptilePhotos/GG-ATH-03-2-25-2.jpg" onclick="document.getElementById('currentView').src=this.src" alt="View 2">
+                    <img src="ReptilePhotos/GG-ATH-03-2-25-3.jpg" onclick="document.getElementById('currentView').src=this.src" alt="View 3">
                 </div>
             </div>
 
@@ -39,20 +55,29 @@
                 <div class="specs-grid">
                     <div class="spec-item"><strong>Sex:</strong> Unsexed</div>
                     <div class="spec-item"><strong>Weight:</strong> 10g</div>
-                    <div class="spec-item"><strong>Diet:</strong> Repashy</div>
-                    <div class="spec-item"><strong>Hatch Date:</strong>July 17/25</div>
+                    <div class="spec-item"><strong>Diet:</strong> Repashy / Pangea</div>
+                    <div class="spec-item"><strong>Hatch Date:</strong> July 17, 2025</div>
                 </div>
 
                 <div class="lineage-box">
                     <h3>Lineage</h3>
                     <p>Sire: "Tempest"</p>
                     <p>Dam: "Athena"</p>
+                    <p style="margin-top:10px; font-size: 0.85rem; color: #888;">White Base with clean, high-contrast lines.</p>
                 </div>
 
                 <a href="contact.html" class="btn" style="width:100%;">Inquire About This Animal</a>
-                <a href="available.html" style="display:block; text-align:center; margin-top:20px; color:#666; text-decoration:none;">← Back to available</a>
+                <a href="available.html" style="display:block; text-align:center; margin-top:20px; color:#666; text-decoration:none; font-weight:700;">← Back to Available</a>
             </div>
         </div>
-    </div>
+    </main>
+
+    <footer>
+        <div class="container" style="text-align: center; padding: 40px 0;">
+            <div class="logo" style="margin-bottom: 10px;">THE LAB REPTILES</div>
+            <p style="color: #666; font-size: 0.8rem;">&copy; 2026 THE LAB REPTILES | Premium Engineered Genetics</p>
+        </div>
+    </footer>
+
 </body>
 </html>
