@@ -3,39 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gecko Profile | The Lab Reptiles</title>
+    <title>The Lab Reptiles | Gecko Profile</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <main class="container">
-        <div class="animal-profile">
-            <div class="profile-gallery">
-                <div class="main-photo">
-                    <img id="main-img" src="" alt="Gecko Gallery">
-                </div>
-                <div class="thumbnails" id="thumb-container"></div>
+    <header> </header>
+
+    <main class="container" style="padding-top: 20px;">
+        <a href="available.html" style="text-decoration: none; color: #888; font-weight: 700; font-size: 0.9rem; display: inline-block; margin-bottom: 20px;">
+            ← BACK TO INVENTORY
+        </a>
+
+        <div id="profile-content">
             </div>
-
-            <div class="profile-info">
-                <h1 id="gecko-name" class="bacon-text"></h1>
-                <p id="gecko-id" style="color: #666; font-weight: 700; text-transform: uppercase;"></p>
-                <div class="price-large" id="gecko-price"></div>
-                
-                <div class="specs-grid">
-                    <div class="spec-item"><strong>Weight:</strong> <span id="gecko-weight"></span></div>
-                    <div class="spec-item"><strong>Hatch:</strong> <span id="gecko-hatch"></span></div>
-                    <div class="spec-item" style="grid-column: span 2;"><strong>Lineage:</strong> <span id="gecko-lineage"></span></div>
-                </div>
-
-                <div class="lineage-box" style="margin-top: 20px;">
-                    <h3 style="font-size: 0.9rem; color: var(--bacon-orange); text-transform: uppercase;">Breeder Notes</h3>
-                    <p id="gecko-description" style="color: #ccc; line-height: 1.6;"></p>
-                </div>
-
-                <a href="contact.html" class="btn" style="width: 100%; margin-top: 30px;">Inquire via Email</a>
-            </div>
-        </div>
     </main>
 
     <script src="inventory.js"></script>
@@ -45,27 +26,47 @@
         const gecko = inventory.find(g => g.id === geckoId);
 
         if (gecko) {
-            document.title = `${gecko.name} (${gecko.id}) | The Lab Reptiles`;
-            document.getElementById('gecko-name').innerText = gecko.name;
-            document.getElementById('gecko-id').innerText = 'ID: ' + gecko.id;
-            document.getElementById('gecko-price').innerText = gecko.price;
-            document.getElementById('gecko-weight').innerText = gecko.weight;
-            document.getElementById('gecko-hatch').innerText = gecko.hatch;
-            document.getElementById('gecko-lineage').innerText = gecko.lineage;
-            document.getElementById('gecko-description').innerText = gecko.description;
-            
-            const mainImg = document.getElementById('main-img');
-            mainImg.src = gecko.photos[0];
+            document.title = gecko.name + " | " + gecko.id;
+            document.getElementById('profile-content').innerHTML = `
+                <div class="animal-profile">
+                    <div class="profile-gallery">
+                        <div class="main-photo">
+                            <img src="${gecko.photos[0]}" id="currentView" alt="${gecko.name}">
+                        </div>
+                        <div class="thumbnails">
+                            ${gecko.photos.map(p => `<img src="${p}" onclick="document.getElementById('currentView').src=this.src" alt="Thumbnail">`).join('')}
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <h1 class="bacon-text">${gecko.name}</h1>
+                        <p style="font-weight: 700; color: #888;">ID: ${gecko.id}</p>
+                        <div class="price-large">${gecko.price}</div>
+                        
+                        <div class="specs-grid">
+                            <div class="spec-item"><strong>Weight:</strong> ${gecko.weight}</div>
+                            <div class="spec-item"><strong>Hatch:</strong> ${gecko.hatch}</div>
+                            <div class="spec-item" style="grid-column: span 2;"><strong>Lineage:</strong> ${gecko.lineage}</div>
+                        </div>
 
-            const thumbContainer = document.getElementById('thumb-container');
-            gecko.photos.forEach(photo => {
-                const img = document.createElement('img');
-                img.src = photo;
-                img.onclick = () => mainImg.src = photo;
-                thumbContainer.appendChild(img);
-            });
-        } else {
-            document.querySelector('.animal-profile').innerHTML = "<h1>Gecko not found.</h1><a href='available.html'>Return to Inventory</a>";
+                        <div class="lineage-box">
+                            <h3>Breeder Notes</h3>
+                            <p>${gecko.description}</p>
+                        </div>
+
+                        <div style="margin-top: 30px;">
+                            ${gecko.mmLink ? `
+                                <a href="${gecko.mmLink}" target="_blank" class="btn mm-btn" style="display:block; text-align:center; margin-bottom: 12px; text-decoration: none; background: #222; border: 1px solid #444;">
+                                    Inquire via MorphMarket
+                                </a>
+                            ` : ''}
+                            
+                            <a href="contact.html" class="btn" style="display:block; text-align:center; text-decoration: none;">
+                                Direct Inquiry
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
     </script>
 </body>

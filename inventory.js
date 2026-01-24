@@ -7,6 +7,7 @@ const inventory = [
         hatch: "July 14, 2025",
         lineage: "Tempest x Athena",
         description: "This is a really clean example of our Red Stripe project. The orange-red striping is solid and has a nice saturation that stands out well against the darker sides. It’s got that 'Bacon' look we love—consistent patterns from the neck all the way down. This little one is growing well and has a great appetite for Repashy.",
+        mmLink: "https://www.morphmarket.com/ca/c/reptiles/lizards/gargoyle-geckos/3534691",
         sold: false,
         photos: [
             "ReptilePhotos/GG-ATH-03-1-25-1.jpg",
@@ -23,6 +24,7 @@ const inventory = [
         lineage: "Tempest x Athena",
         description: "A solid example of our Red Stripe project with consistent orange-red saturation. This gecko shows the classic 'Bacon' traits with clean patterning from neck to tail. It is growing well, feeding reliably on Repashy, and would make a great project addition or a high-quality pet.",
         sold: false,
+        mmLink: "https://www.morphmarket.com/ca/c/reptiles/lizards/gargoyle-geckos/3534654",
         photos: [
             "ReptilePhotos/GG-ATH-03-2-25-1.jpg",
             "ReptilePhotos/GG-ATH-03-2-25-2.jpg",
