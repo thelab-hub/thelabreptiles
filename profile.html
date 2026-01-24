@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Lab Reptiles | Gecko Profile</title>
     <link rel="stylesheet" href="style.css">
+    
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         /* Visual styling for sold state */
@@ -95,6 +97,7 @@
                         <p style="font-weight: 700; color: #888;">ID: ${gecko.id}</p>
                         
                         <div class="specs-grid">
+                            <div class="spec-item"><strong>Sex:</strong> ${gecko.sex || 'Unsexed'}</div>
                             <div class="spec-item"><strong>Weight:</strong> ${gecko.weight}</div>
                             <div class="spec-item"><strong>Hatch:</strong> ${gecko.hatch}</div>
                             <div class="spec-item" style="grid-column: span 2;"><strong>Lineage:</strong> ${gecko.lineage}</div>
