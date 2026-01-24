@@ -31,40 +31,42 @@
             </h1>
         </div>
 
-        <div class="animal-grid" id="inventory-container">
-    </div>
+        <div class="animal-grid" id="inventory-container"></div>
 
-<script src="inventory.js"></script>
-<script>
-    const container = document.getElementById('inventory-container');
-    
-    inventory.forEach(gecko => {
-        container.innerHTML += `
-            <div class="animal-card">
-                <div class="slider-container">
-                    <button class="slider-arrow arrow-left" onclick="const s = this.nextElementSibling; if(s.scrollLeft <= 0) { s.scrollTo({left: s.scrollWidth, behavior: 'smooth'}); } else { s.scrollBy({left: -400, behavior: 'smooth'}); }">&#10094;</button>
-                    <div class="slider">
-                        ${gecko.photos.map(p => `<img src="${p}" alt="${gecko.name}">`).join('')}
+    </main> <script src="inventory.js"></script>
+    <script>
+        const container = document.getElementById('inventory-container');
+        
+        // Check if inventory exists before running
+        if (typeof inventory !== 'undefined') {
+            inventory.forEach(gecko => {
+                container.innerHTML += `
+                    <div class="animal-card">
+                        <div class="slider-container">
+                            <button class="slider-arrow arrow-left" onclick="const s = this.nextElementSibling; if(s.scrollLeft <= 0) { s.scrollTo({left: s.scrollWidth, behavior: 'smooth'}); } else { s.scrollBy({left: -400, behavior: 'smooth'}); }">&#10094;</button>
+                            <div class="slider">
+                                ${gecko.photos.map(p => `<img src="${p}" alt="${gecko.name} Gargoyle Gecko">`).join('')}
+                            </div>
+                            <button class="slider-arrow arrow-right" onclick="const s = this.previousElementSibling; if(s.scrollLeft + s.offsetWidth >= s.scrollWidth - 10) { s.scrollTo({left: 0, behavior: 'smooth'}); } else { s.scrollBy({left: 400, behavior: 'smooth'}); }">&#10095;</button>
+                            <span class="status-badge available">Available</span>
+                        </div>
+                        <div class="card-details">
+                            <div class="card-header-info">
+                                <h3 class="bacon-text">${gecko.name}</h3>
+                                <div class="price">${gecko.price}</div>
+                            </div>
+                            <div class="card-description">
+                                <p><strong>ID:</strong> ${gecko.id}</p>
+                                <p><strong>Weight:</strong> ${gecko.weight}</p>
+                                <p><strong>Hatch:</strong> ${gecko.hatch}</p>
+                            </div>
+                            <a href="${gecko.link}" class="inquire-btn">View Gecko Details</a>
+                        </div>
                     </div>
-                    <button class="slider-arrow arrow-right" onclick="const s = this.previousElementSibling; if(s.scrollLeft + s.offsetWidth >= s.scrollWidth - 10) { s.scrollTo({left: 0, behavior: 'smooth'}); } else { s.scrollBy({left: 400, behavior: 'smooth'}); }">&#10095;</button>
-                    <span class="status-badge available">Available</span>
-                </div>
-                <div class="card-details">
-                    <div class="card-header-info">
-                        <h3 class="bacon-text">${gecko.name}</h3>
-                        <div class="price">${gecko.price}</div>
-                    </div>
-                    <div class="card-description">
-                        <p><strong>ID:</strong> ${gecko.id}</p>
-                        <p><strong>Weight:</strong> ${gecko.weight}</p>
-                        <p><strong>Hatch:</strong> ${gecko.hatch}</p>
-                    </div>
-                    <a href="${gecko.link}" class="inquire-btn">View Gecko Details</a>
-                </div>
-            </div>
-        `;
-    });
-</script> </main>
+                `;
+            });
+        }
+    </script>
 
     <footer>
         <div class="container" style="text-align: center; padding: 80px 0; border-top: 1px solid #111; margin-top: 60px;">
