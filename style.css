@@ -249,6 +249,11 @@ nav { display: flex; justify-content: space-between; align-items: center; }
     font-size: 0.85rem;
 }
 .inquire-btn:hover { background: var(--bacon-red); }
+/* Fades out the profile slightly if sold */
+.sold-profile { opacity: 0.85; filter: grayscale(0.1); }
+
+/* Makes the main photo more 'muted' on sold items */
+.sold-profile .main-photo img { border: 2px solid #333; }
 
 /* --- 7. INDIVIDUAL PROFILE PAGES --- */
 .animal-profile { display: flex; gap: 50px; padding: 60px 0; }
