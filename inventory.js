@@ -33,6 +33,57 @@ const inventory = [
             "ReptilePhotos/GG-ATH-03-2-25-3.jpg"
         ]
     },
+     {
+        id: "AT-24-01-02",
+        name: "Red Stripe",
+        price: "$200",
+        weight: "16g",
+        sex: "Unsexed",
+        hatch: "Jul 22, 2026",
+        lineage: "Tempest x Athena",
+        description: "This Gargoyle Gecko features a bold, clean Red Stripe. It has great color saturation against a light base, showing off excellent contrast. This individual is healthy, active, and feeding well on Repashy diet. A high-quality choice for anyone looking to add strong red lines to their collection.",
+        sold: false,
+        mmLink: "https://www.morphmarket.com/us/c/all?seller=thelabreptiles&state=for_sale",
+        photos: [
+            "ReptilePhotos/AT-24-01-02-1.jpg",
+            "ReptilePhotos/AT-24-01-02-2.jpg",
+            "ReptilePhotos/AT-24-01-02-3.jpg"
+        ]
+    },
+    {
+        id: "Cer-24-03-02",
+        name: "Bacon Quad Stripe",
+        price: "$200",
+        weight: "11g",
+        sex: "Unsexed",
+        hatch: "Aug 18, 2024",
+        lineage: "Vulcan x Ceres",
+        description: "This Gargoyle Gecko displays a Good colouring along its back. It features a darker, earthy base tone that provides a nice contrast for the orange and red. This individual is healthy, active, and feeding well on Repashy diet. A great animal for anyone.",
+        sold: false,
+        mmLink: "https://www.morphmarket.com/us/c/all?seller=thelabreptiles&state=for_sale",
+        photos: [
+            "ReptilePhotos/CER-24-03-02-1.jpg",
+            "ReptilePhotos/CER-24-03-02-2.jpg",
+            "ReptilePhotos/CER-24-03-02-3.jpg"
+        ]
+    },
+     {
+        id: "TLR-GG-0000-023",
+        name: "Orange Blotch",
+        price: "$275",
+        weight: "40g",
+        sex: "Female",
+        hatch: "2023",
+        lineage: "Triton x Salacia",
+        description: "This Gargoyle Gecko features a nice orange blotch pattern with a white base. It has solid color contrast and good overall structure. This individual is healthy, active, and feeding well on Repashy diet. Great choice for a pet or a future breeding project.",
+        sold: false,
+        mmLink: "https://www.morphmarket.com/us/c/all?seller=thelabreptiles&state=for_sale",
+        photos: [
+            "ReptilePhotos/TRxSE14-1.jpg",
+            "ReptilePhotos/TRxSE14-2.jpg",
+            "ReptilePhotos/TRxSE14-3.jpg"
+        ]
+    }
     {
         id: "GG-VE-01-1-24",
         name: "Orange Stripe",
