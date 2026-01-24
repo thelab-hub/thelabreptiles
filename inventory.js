@@ -83,7 +83,7 @@ const inventory = [
             "ReptilePhotos/TRxSE14-2.jpg",
             "ReptilePhotos/TRxSE14-3.jpg"
         ]
-    }
+    },
     {
         id: "GG-VE-01-1-24",
         name: "Orange Stripe",
