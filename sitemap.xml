@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://thelabreptiles.com/index.html</loc>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://thelabreptiles.com/available.html</loc>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://thelabreptiles.com/collection.html</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://thelabreptiles.com/caresheets.html</loc>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://thelabreptiles.com/contact.html</loc>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://thelabreptiles.com/GG-ATH-03-2-25.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://thelabreptiles.com/GG-ATH-03-1-25.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://thelabreptiles.com/GG-VE-01-1-24.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://thelabreptiles.com/GG-HES-03-1-24.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://thelabreptiles.com/Demeter.html</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://thelabreptiles.com/Artemis.html</loc>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://thelabreptiles.com/Kybele.html</loc>
+    <priority>0.75</priority>
+  </url>
+</urlset>
