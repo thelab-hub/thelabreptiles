@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gecko Profile | The Lab Reptiles</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        <div class="animal-profile">
+            <div class="profile-gallery">
+                <div class="main-photo">
+                    <img id="main-img" src="" alt="Gecko Gallery">
+                </div>
+                <div class="thumbnails" id="thumb-container"></div>
+            </div>
+
+            <div class="profile-info">
+                <h1 id="gecko-name" class="bacon-text"></h1>
+                <p id="gecko-id" style="color: #666; font-weight: 700; text-transform: uppercase;"></p>
+                <div class="price-large" id="gecko-price"></div>
+                
+                <div class="specs-grid">
+                    <div class="spec-item"><strong>Weight:</strong> <span id="gecko-weight"></span></div>
+                    <div class="spec-item"><strong>Hatch:</strong> <span id="gecko-hatch"></span></div>
+                    <div class="spec-item" style="grid-column: span 2;"><strong>Lineage:</strong> <span id="gecko-lineage"></span></div>
+                </div>
+
+                <div class="lineage-box" style="margin-top: 20px;">
+                    <h3 style="font-size: 0.9rem; color: var(--bacon-orange); text-transform: uppercase;">Breeder Notes</h3>
+                    <p id="gecko-description" style="color: #ccc; line-height: 1.6;"></p>
+                </div>
+
+                <a href="contact.html" class="btn" style="width: 100%; margin-top: 30px;">Inquire via Email</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="inventory.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const geckoId = params.get('id');
+        const gecko = inventory.find(g => g.id === geckoId);
+
+        if (gecko) {
+            document.title = `${gecko.name} (${gecko.id}) | The Lab Reptiles`;
+            document.getElementById('gecko-name').innerText = gecko.name;
+            document.getElementById('gecko-id').innerText = 'ID: ' + gecko.id;
+            document.getElementById('gecko-price').innerText = gecko.price;
+            document.getElementById('gecko-weight').innerText = gecko.weight;
+            document.getElementById('gecko-hatch').innerText = gecko.hatch;
+            document.getElementById('gecko-lineage').innerText = gecko.lineage;
+            document.getElementById('gecko-description').innerText = gecko.description;
+            
+            const mainImg = document.getElementById('main-img');
+            mainImg.src = gecko.photos[0];
+
+            const thumbContainer = document.getElementById('thumb-container');
+            gecko.photos.forEach(photo => {
+                const img = document.createElement('img');
+                img.src = photo;
+                img.onclick = () => mainImg.src = photo;
+                thumbContainer.appendChild(img);
+            });
+        } else {
+            document.querySelector('.animal-profile').innerHTML = "<h1>Gecko not found.</h1><a href='available.html'>Return to Inventory</a>";
+        }
+    </script>
+</body>
+</html>
