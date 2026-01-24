@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breeder Profile | The Lab Reptiles</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">THE LAB REPTILES</div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="available.html">Available</a>
+                    <a href="collection.html">Collection</a>
+                    <a href="caresheets.html">Care</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 40px;">
+        <div class="animal-profile" id="breeder-content">
+            </div>
+    </main>
+
+    <script src="collection.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const breederId = params.get('id');
+        const breeder = collection.find(b => b.id === breederId);
+
+        if (breeder) {
+            document.title = breeder.name + " | Breeder Profile | The Lab Reptiles";
+            document.getElementById('breeder-content').innerHTML = `
+                <div class="animal-profile">
+                    <div class="profile-gallery">
+                        <div class="main-photo">
+                            <img src="${breeder.photos[0]}" id="currentView" alt="${breeder.name}">
+                        </div>
+                        <div class="thumbnails">
+                            ${breeder.photos.map(p => `<img src="${p}" onclick="document.getElementById('currentView').src=this.src" alt="Thumbnail">`).join('')}
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <h1 class="bacon-text">${breeder.name}</h1>
+                        <p style="font-weight: 700; color: var(--bacon-orange); text-transform: uppercase; letter-spacing: 1px;">${breeder.morph}</p>
+                        
+                        <div class="specs-grid">
+                            <div class="spec-item"><strong>Sex:</strong> ${breeder.sex}</div>
+                            <div class="spec-item"><strong>Status:</strong> ${breeder.status}</div>
+                            <div class="spec-item" style="grid-column: span 2;"><strong>Lineage:</strong> ${breeder.lineage}</div>
+                        </div>
+                        <div class="lineage-box">
+                            <h3>Breeder History & Notes</h3>
+                            <p>${breeder.description}</p>
+                        </div>
+                        <div style="margin-top: 30px;">
+                            <a href="available.html" class="btn" style="display:block; text-align:center;">View Available Offspring</a>
+                            <a href="collection.html" style="display:block; text-align:center; margin-top:20px; color:#666; text-decoration:none; font-weight:700; font-size: 0.8rem;">← BACK TO COLLECTION</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else {
+            document.getElementById('breeder-content').innerHTML = "<h2>Breeder not found.</h2><a href='collection.html'>Back to Collection</a>";
+        }
+    </script>
+
+    <footer>
+        <div class="container" style="text-align: center; padding: 40px 0;">
+            <div class="logo" style="margin-bottom: 10px;">THE LAB REPTILES</div>
+            <p style="color: #666; font-size: 0.8rem;">&copy; 2026 THE LAB REPTILES | Premium Genetics</p>
+        </div>
+    </footer>
+</body>
+</html>
