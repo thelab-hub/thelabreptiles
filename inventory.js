@@ -39,7 +39,7 @@ const inventory = [
         price: "$200",
         weight: "16g",
         sex: "Unsexed",
-        hatch: "Jul 22, 2026",
+        hatch: "Jul 22, 2024",
         lineage: "Tempest x Athena",
         description: "This Gargoyle Gecko features a bold, clean Red Stripe. It has great color saturation against a light base, showing off excellent contrast. This individual is healthy, active, and feeding well on Repashy diet. A high-quality choice for anyone looking to add strong red lines to their collection.",
         sold: false,
@@ -51,7 +51,7 @@ const inventory = [
         ]
     },
     {
-        id: "Cer-24-03-02",
+        id: "CER-24-03-02",
         name: "Bacon Quad Stripe",
         price: "$200",
         weight: "11g",
