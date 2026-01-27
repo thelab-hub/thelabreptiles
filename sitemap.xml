@@ -1,53 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://thelabreptiles.com/index.html</loc>
-    <priority>1.00</priority>
-  </url>
-  <url>
-    <loc>https://thelabreptiles.com/available.html</loc>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://thelabreptiles.com/collection.html</loc>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://thelabreptiles.com/caresheets.html</loc>
-    <priority>0.70</priority>
-  </url>
-  <url>
-    <loc>https://thelabreptiles.com/contact.html</loc>
-    <priority>0.70</priority>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
-  <url>
-    <loc>https://thelabreptiles.com/GG-ATH-03-2-25.html</loc>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://thelabreptiles.com/GG-ATH-03-1-25.html</loc>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://thelabreptiles.com/GG-VE-01-1-24.html</loc>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://thelabreptiles.com/GG-HES-03-1-24.html</loc>
-    <priority>0.80</priority>
-  </url>
+    <!-- Homepage - Highest Priority -->
+    <url>
+        <loc>https://thelabreptiles.com/</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
 
-  <url>
-    <loc>https://thelabreptiles.com/Demeter.html</loc>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://thelabreptiles.com/Artemis.html</loc>
-    <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://thelabreptiles.com/Kybele.html</loc>
-    <priority>0.75</priority>
-  </url>
+    <!-- Available Inventory - High Priority, Changes Frequently -->
+    <url>
+        <loc>https://thelabreptiles.com/available.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Breeding Collection - High Priority -->
+    <url>
+        <loc>https://thelabreptiles.com/collection.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Contact Page - Important for Conversions -->
+    <url>
+        <loc>https://thelabreptiles.com/contact.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Care Resources - Educational Content -->
+    <url>
+        <loc>https://thelabreptiles.com/caresheets.html</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Individual Animal Profiles -->
+    <url>
+        <loc>https://thelabreptiles.com/profile.html?id=GG-ATH-03-1-25</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://thelabreptiles.com/profile.html?id=GG-ATH-03-2-25</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://thelabreptiles.com/profile.html?id=AT-24-01-02</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://thelabreptiles.com/profile.html?id=CER-24-03-02</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://thelabreptiles.com/profile.html?id=TLR-GG-0000-023</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://thelabreptiles.com/profile.html?id=GG-VE-01-1-24</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://thelabreptiles.com/profile.html?id=GG-HES-03-1-24</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Breeder Profiles -->
+    <url>
+        <loc>https://thelabreptiles.com/breeder-profile.html?id=Demeter</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://thelabreptiles.com/breeder-profile.html?id=Artemis</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://thelabreptiles.com/breeder-profile.html?id=Kybele</loc>
+        <lastmod>2026-01-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
 </urlset>

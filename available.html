@@ -3,20 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Available Inventory | The Lab Reptiles</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Primary Meta Tags -->
+    <title>Available Inventory | The Lab Reptiles - Gargoyle Geckos & Ball Pythons for Sale</title>
+    <meta name="title" content="Available Inventory | The Lab Reptiles">
+    <meta name="description" content="Browse our current selection of premium Gargoyle Geckos and Ball Pythons. High-quality genetics, healthy animals, and the famous Bacon Red Stripe line available now.">
+    <meta name="keywords" content="Gargoyle Geckos for sale, Ball Pythons for sale, Bacon Line Gargoyle Gecko, Red Stripe Gargoyle Gecko for sale, reptiles for sale Canada">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://thelabreptiles.com/available.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thelabreptiles.com/available.html">
+    <meta property="og:title" content="Available Inventory | The Lab Reptiles">
+    <meta property="og:description" content="Browse our current selection of premium Gargoyle Geckos and Ball Pythons for sale.">
+    <meta property="og:image" content="https://thelabreptiles.com/ReptilePhotos/Demeter1.jpg">
+    
+    <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#0a0a0a">
 </head>
 <body>
+    <!-- Skip to main content -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
 
-    <header>
+    <header role="banner">
         <div class="container">
-            <nav>
-                <div class="logo">THE LAB REPTILES</div>
+            <nav role="navigation" aria-label="Main navigation">
+                <div class="logo" aria-label="The Lab Reptiles Home">THE LAB REPTILES</div>
                 <div class="nav-links">
                     <a href="index.html">Home</a>
-                    <a href="available.html">Available</a>
+                    <a href="available.html" aria-current="page">Available</a>
                     <a href="collection.html">Collection</a>
                     <a href="caresheets.html">Care</a>
                     <a href="contact.html">Contact</a>
@@ -25,50 +54,152 @@
         </div>
     </header>
 
-    <main class="container">
-        <div class="page-header" style="padding: 60px 0; text-align: center;">
-            <h1 style="font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 900; text-transform: uppercase; margin: 0;">
+    <main id="main-content" class="container" role="main">
+        <div class="page-header">
+            <h1>
                 Available <span class="bacon-text">Inventory</span>
             </h1>
         </div>
+        
+        <!-- Inventory will be dynamically loaded here -->
+        <div class="animal-grid" id="inventory-container" role="list" aria-label="Available reptiles for sale">
+            <!-- Loading state -->
+            <div class="loading-message" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #666;">
+                Loading available inventory...
+            </div>
+        </div>
+    </main>
 
-        <div class="animal-grid" id="inventory-container"></div>
-
-    </main> <script src="inventory.js"></script>
-<script>
-    const container = document.getElementById('inventory-container');
+    <!-- Load inventory data -->
+    <script src="inventory.js"></script>
     
-    if (typeof inventory !== 'undefined') {
-        inventory.forEach(gecko => {
-            container.innerHTML += `
-                <div class="animal-card">
+    <!-- Render inventory -->
+    <script>
+        (function() {
+            'use strict';
+            
+            const container = document.getElementById('inventory-container');
+            
+            // Remove loading message
+            const loadingMsg = container.querySelector('.loading-message');
+            if (loadingMsg) {
+                loadingMsg.remove();
+            }
+            
+            // Check if inventory data exists
+            if (typeof inventory === 'undefined' || !Array.isArray(inventory)) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <p style="color: #666; font-size: 1.2rem;">No inventory data available.</p>
+                        <p style="color: #999; margin-top: 10px;">Please check back later for updates.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Filter only available animals
+            const availableAnimals = inventory.filter(gecko => !gecko.sold);
+            
+            if (availableAnimals.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <p style="color: #666; font-size: 1.2rem;">No animals currently available.</p>
+                        <p style="color: #999; margin-top: 10px;">Follow us on Instagram for updates on upcoming clutches!</p>
+                        <a href="https://www.instagram.com/thelabreptiles" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 30px; display: inline-block;">
+                            Follow on Instagram
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Render each available animal
+            availableAnimals.forEach(gecko => {
+                const card = document.createElement('article');
+                card.className = 'animal-card';
+                card.setAttribute('role', 'listitem');
+                
+                // Slider HTML
+                const sliderHTML = `
                     <div class="slider-container">
-                        <button class="slider-arrow arrow-left" onclick="const s = this.nextElementSibling; if(s.scrollLeft <= 0) { s.scrollTo({left: s.scrollWidth, behavior: 'smooth'}); } else { s.scrollBy({left: -400, behavior: 'smooth'}); }">&#10094;</button>
-                        <div class="slider">
-                            ${gecko.photos.map(p => `<img src="${p}" alt="${gecko.name} Gargoyle Gecko">`).join('')}
+                        <button class="slider-arrow arrow-left" 
+                                aria-label="Previous image"
+                                onclick="handleSliderNavigation(this, 'prev')">
+                            &#10094;
+                        </button>
+                        <div class="slider" role="region" aria-label="Product images for ${gecko.name}">
+                            ${gecko.photos.map((photo, idx) => `
+                                <img src="${photo}" 
+                                     alt="${gecko.name} Gargoyle Gecko - Image ${idx + 1}"
+                                     loading="lazy">
+                            `).join('')}
                         </div>
-                        <button class="slider-arrow arrow-right" onclick="const s = this.previousElementSibling; if(s.scrollLeft + s.offsetWidth >= s.scrollWidth - 10) { s.scrollTo({left: 0, behavior: 'smooth'}); } else { s.scrollBy({left: 400, behavior: 'smooth'}); }">&#10095;</button>
+                        <button class="slider-arrow arrow-right" 
+                                aria-label="Next image"
+                                onclick="handleSliderNavigation(this, 'next')">
+                            &#10095;
+                        </button>
                         <span class="status-badge available">Available</span>
                     </div>
+                `;
+                
+                // Card content
+                const contentHTML = `
+                    ${sliderHTML}
                     <div class="card-details">
                         <div class="card-header-info">
-                            <h3 class="bacon-text">${gecko.name}</h3>
-                            <div class="price">${gecko.price}</div>
+                            <h3 class="bacon-text">${escapeHtml(gecko.name)}</h3>
+                            <div class="price" aria-label="Price">${escapeHtml(gecko.price)}</div>
                         </div>
                         <div class="card-description">
-                            <p><strong>ID:</strong> ${gecko.id}</p>
-                            <p><strong>Weight:</strong> ${gecko.weight}</p>
-                            <p><strong>Hatch:</strong> ${gecko.hatch}</p>
+                            <p><strong>ID:</strong> ${escapeHtml(gecko.id)}</p>
+                            <p><strong>Weight:</strong> ${escapeHtml(gecko.weight)}</p>
+                            <p><strong>Hatch Date:</strong> ${escapeHtml(gecko.hatch)}</p>
                         </div>
-                        <a href="profile.html?id=${gecko.id}" class="inquire-btn">View Gecko Details</a>
+                        <a href="profile.html?id=${encodeURIComponent(gecko.id)}" 
+                           class="inquire-btn"
+                           aria-label="View details for ${gecko.name}">
+                            View Gecko Details
+                        </a>
                     </div>
-                </div>
-            `;
-        });
-    }
-</script>
+                `;
+                
+                card.innerHTML = contentHTML;
+                container.appendChild(card);
+            });
+            
+            // Helper function to escape HTML
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+            
+            // Slider navigation function
+            window.handleSliderNavigation = function(button, direction) {
+                const slider = button.parentElement.querySelector('.slider');
+                const scrollAmount = 400;
+                
+                if (direction === 'prev') {
+                    if (slider.scrollLeft <= 0) {
+                        // Loop to end
+                        slider.scrollTo({left: slider.scrollWidth, behavior: 'smooth'});
+                    } else {
+                        slider.scrollBy({left: -scrollAmount, behavior: 'smooth'});
+                    }
+                } else if (direction === 'next') {
+                    if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 10) {
+                        // Loop to start
+                        slider.scrollTo({left: 0, behavior: 'smooth'});
+                    } else {
+                        slider.scrollBy({left: scrollAmount, behavior: 'smooth'});
+                    }
+                }
+            };
+        })();
+    </script>
 
-    <footer>
+    <footer role="contentinfo">
         <div class="container" style="text-align: center; padding: 80px 0; border-top: 1px solid #111; margin-top: 60px;">
             <div class="logo" style="margin-bottom: 10px;">THE LAB REPTILES</div>
             <p style="color: #666; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;">

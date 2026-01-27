@@ -3,23 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title will be dynamically set by JavaScript -->
     <title>Breeder Profile | The Lab Reptiles</title>
+    
+    <!-- Meta tags will be enhanced by JavaScript -->
+    <meta name="description" content="View detailed information about this breeding animal from The Lab Reptiles collection.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <script>
-    // This dynamically tells Google that this URL is the "Official" version of this gecko's page
-    const link = document.createElement('link');
-    link.rel = 'canonical';
-    link.href = window.location.href;
-    document.head.appendChild(link);
-</script>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#0a0a0a">
+    
+    <style>
+        .back-link {
+            text-decoration: none;
+            color: #888;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            transition: color var(--transition-normal);
+        }
+        
+        .back-link:hover,
+        .back-link:focus {
+            color: var(--bacon-orange);
+            outline: none;
+        }
+        
+        .spec-item {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 12px;
+            border-radius: 4px;
+        }
+        
+        .spec-item strong {
+            color: var(--text-silver);
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+        }
+        
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <!-- Skip to main content -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+
+    <header role="banner">
         <div class="container">
-            <nav>
-                <div class="logo">THE LAB REPTILES</div>
+            <nav role="navigation" aria-label="Main navigation">
+                <div class="logo" aria-label="The Lab Reptiles Home">THE LAB REPTILES</div>
                 <div class="nav-links">
                     <a href="index.html">Home</a>
                     <a href="available.html">Available</a>
@@ -31,59 +99,181 @@
         </div>
     </header>
 
-    <main class="container" style="padding-top: 40px;">
-        <div class="animal-profile" id="breeder-content">
+    <main id="main-content" class="container" role="main" style="padding-top: 40px;">
+        <a href="collection.html" class="back-link">
+            <span aria-hidden="true">←</span> BACK TO COLLECTION
+        </a>
+
+        <div id="breeder-content" role="article">
+            <!-- Content will be loaded by JavaScript -->
+            <div style="text-align: center; padding: 100px 20px; color: #666;">
+                <p>Loading breeder profile...</p>
             </div>
+        </div>
     </main>
 
+    <!-- Load collection data -->
     <script src="collection.js"></script>
+    
+    <!-- Profile rendering script -->
     <script>
-        const params = new URLSearchParams(window.location.search);
-        const breederId = params.get('id');
-        const breeder = collection.find(b => b.id === breederId);
-
-        if (breeder) {
-            document.title = breeder.name + " | Breeder Profile | The Lab Reptiles";
+        (function() {
+            'use strict';
+            
+            // Get breeder ID from URL
+            const params = new URLSearchParams(window.location.search);
+            const breederId = params.get('id');
+            
+            // Find breeder in collection
+            const breeder = collection ? collection.find(b => b.id === breederId) : null;
+            
+            if (!breeder) {
+                // Breeder not found
+                document.getElementById('breeder-content').innerHTML = `
+                    <div style="text-align: center; padding: 100px 20px;">
+                        <h2 class="bacon-text" style="font-size: 2rem; margin-bottom: 20px;">
+                            BREEDER NOT FOUND
+                        </h2>
+                        <p style="color: #666; margin-bottom: 30px;">
+                            The breeder profile you are looking for could not be found.
+                        </p>
+                        <a href="collection.html" class="btn" style="display: inline-block; text-decoration: none;">
+                            Back to Collection
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Update page title and meta
+            document.title = `${breeder.name} | Breeder Profile | The Lab Reptiles`;
+            
+            // Update meta description
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) {
+                metaDesc.content = `${breeder.name} - ${breeder.morph} breeding animal at The Lab Reptiles. ${breeder.description.substring(0, 120)}...`;
+            }
+            
+            // Add canonical URL
+            const canonical = document.createElement('link');
+            canonical.rel = 'canonical';
+            canonical.href = window.location.href;
+            document.head.appendChild(canonical);
+            
+            // Render profile
             document.getElementById('breeder-content').innerHTML = `
                 <div class="animal-profile">
                     <div class="profile-gallery">
                         <div class="main-photo">
-                            <img src="${breeder.photos[0]}" id="currentView" alt="${breeder.name}">
+                            <img src="${escapeHtml(breeder.photos[0])}" 
+                                 id="currentView" 
+                                 alt="${escapeHtml(breeder.name)} - ${escapeHtml(breeder.morph)} - Main photo">
                         </div>
-                        <div class="thumbnails">
-                            ${breeder.photos.map(p => `<img src="${p}" onclick="document.getElementById('currentView').src=this.src" alt="Thumbnail">`).join('')}
+                        <div class="thumbnails" role="list" aria-label="Additional photos">
+                            ${breeder.photos.map((photo, idx) => `
+                                <img src="${escapeHtml(photo)}" 
+                                     onclick="changeMainPhoto('${escapeHtml(photo)}')"
+                                     onkeypress="if(event.key==='Enter') changeMainPhoto('${escapeHtml(photo)}')"
+                                     alt="View photo ${idx + 1}"
+                                     tabindex="0"
+                                     role="button">
+                            `).join('')}
                         </div>
                     </div>
+                    
                     <div class="profile-info">
-                        <h1 class="bacon-text">${breeder.name}</h1>
-                        <p style="font-weight: 700; color: var(--bacon-orange); text-transform: uppercase; letter-spacing: 1px;">${breeder.morph}</p>
+                        <div style="margin-bottom: 20px;">
+                            <span style="display: inline-block; padding: 6px 14px; background: rgba(255, 145, 0, 0.15); border: 1px solid var(--bacon-orange); border-radius: 4px; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: var(--bacon-orange);">
+                                ${escapeHtml(breeder.badge || 'Breeder')}
+                            </span>
+                        </div>
+                        
+                        <h1 class="bacon-text" style="font-size: 2.5rem; margin-bottom: 10px;">
+                            "${escapeHtml(breeder.name)}"
+                        </h1>
+                        <p style="font-weight: 700; color: var(--bacon-orange); text-transform: uppercase; letter-spacing: 1px; font-size: 1.2rem; margin-bottom: 20px;">
+                            ${escapeHtml(breeder.morph)}
+                        </p>
+                        
+                        <div class="status-indicator" style="background: ${breeder.statusColor ? breeder.statusColor.replace('var(--bacon-orange)', '#ff9100') : '#888'}22; border: 1px solid ${breeder.statusColor || '#888'};">
+                            <span class="status-dot" style="background: ${breeder.statusColor || '#888'};"></span>
+                            ${escapeHtml(breeder.status)}
+                        </div>
                         
                         <div class="specs-grid">
-                            <div class="spec-item"><strong>Sex:</strong> ${breeder.sex}</div>
-                            <div class="spec-item"><strong>Status:</strong> ${breeder.status}</div>
-                            <div class="spec-item" style="grid-column: span 2;"><strong>Lineage:</strong> ${breeder.lineage}</div>
+                            <div class="spec-item">
+                                <strong>Sex</strong>
+                                ${escapeHtml(breeder.sex)}
+                            </div>
+                            <div class="spec-item">
+                                <strong>Status</strong>
+                                ${escapeHtml(breeder.status)}
+                            </div>
+                            <div class="spec-item" style="grid-column: span 2;">
+                                <strong>Lineage</strong>
+                                ${escapeHtml(breeder.lineage)}
+                            </div>
                         </div>
+                        
                         <div class="lineage-box">
-                            <h3>Breeder History & Notes</h3>
-                            <p>${breeder.description}</p>
+                            <h3 style="font-size: 1.2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; color: var(--bacon-orange);">
+                                Breeder History & Notes
+                            </h3>
+                            <p style="line-height: 1.7; color: #ccc;">
+                                ${escapeHtml(breeder.description)}
+                            </p>
                         </div>
-                        <div style="margin-top: 30px;">
-                            <a href="available.html" class="btn" style="display:block; text-align:center;">View Available Offspring</a>
-                            <a href="collection.html" style="display:block; text-align:center; margin-top:20px; color:#666; text-decoration:none; font-weight:700; font-size: 0.8rem;">← BACK TO COLLECTION</a>
+                        
+                        <div class="action-buttons">
+                            <a href="available.html" 
+                               class="btn" 
+                               style="text-decoration: none; text-align: center;"
+                               aria-label="View offspring from ${breeder.name}">
+                                View Available Offspring
+                            </a>
+                            <a href="contact.html" 
+                               class="inquire-btn" 
+                               style="text-decoration: none; text-align: center;"
+                               aria-label="Contact us about ${breeder.name}">
+                                Inquire About This Line
+                            </a>
                         </div>
                     </div>
                 </div>
             `;
-        } else {
-            document.getElementById('breeder-content').innerHTML = "<h2>Breeder not found.</h2><a href='collection.html'>Back to Collection</a>";
-        }
+            
+            // Helper function to change main photo
+            window.changeMainPhoto = function(photoSrc) {
+                const mainImg = document.getElementById('currentView');
+                if (mainImg) {
+                    mainImg.style.opacity = '0';
+                    setTimeout(() => {
+                        mainImg.src = photoSrc;
+                        mainImg.style.opacity = '1';
+                    }, 150);
+                }
+            };
+            
+            // Helper function to escape HTML
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+        })();
     </script>
 
-    <footer>
-        <div class="container" style="text-align: center; padding: 40px 0;">
+    <footer role="contentinfo" style="margin-top: 80px;">
+        <div class="container" style="text-align: center; padding: 60px 0; border-top: 1px solid #111;">
             <div class="logo" style="margin-bottom: 10px;">THE LAB REPTILES</div>
-            <p style="color: #666; font-size: 0.8rem;">&copy; 2026 THE LAB REPTILES | Premium Genetics</p>
+            <p style="color: #666; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;">
+                Premium Genetics &middot; Engineered by Nature
+            </p>
+            <div style="border-top: 1px solid #222; margin-top: 40px; padding-top: 40px; color: #444; font-size: 0.7rem; font-weight: 800;">
+                &copy; 2026 THE LAB REPTILES | Premium Genetics
+            </div>
         </div>
     </footer>
+
 </body>
 </html>

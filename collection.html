@@ -4,27 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Our Breeding Collection | Bacon Line Gargoyles & Red Line Cresteds</title>
+    <!-- Primary Meta Tags -->
+    <title>Our Breeding Collection | The Lab Reptiles - Bacon Line Gargoyles & Premium Genetics</title>
+    <meta name="title" content="Our Breeding Collection | The Lab Reptiles">
     <meta name="description" content="Explore the foundational breeders at The Lab Reptiles. Home of the Bacon Quad Stripe Gargoyle project and high-end Red Line Crested Geckos.">
     <meta name="keywords" content="Bacon Line Gargoyle, Lily White Crested Gecko, Reptile Breeding Projects, Red Line Crested Gecko, The Lab Reptiles Collection">
-
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://thelabreptiles.com/collection.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thelabreptiles.com/collection.html">
     <meta property="og:title" content="The Lab Reptiles | Breeding Collection">
     <meta property="og:description" content="Viewing the foundational genetics behind our high-contrast reptile projects.">
-    <meta property="og:image" content="ReptilePhotos/Demeter1.jpg">
+    <meta property="og:image" content="https://thelabreptiles.com/ReptilePhotos/Demeter1.jpg">
+    
+    <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#0a0a0a">
 </head>
 <body>
+    <!-- Skip to main content -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
 
-    <header>
+    <header role="banner">
         <div class="container">
-            <nav>
-                <div class="logo">THE LAB REPTILES</div>
+            <nav role="navigation" aria-label="Main navigation">
+                <div class="logo" aria-label="The Lab Reptiles Home">THE LAB REPTILES</div>
                 <div class="nav-links">
                     <a href="index.html">Home</a>
                     <a href="available.html">Available</a>
-                    <a href="collection.html">Collection</a>
+                    <a href="collection.html" aria-current="page">Collection</a>
                     <a href="caresheets.html">Care</a>
                     <a href="contact.html">Contact</a>
                 </div>
@@ -32,48 +54,145 @@
         </div>
     </header>
 
-    <main class="container">
-        <div class="page-header" style="padding: 60px 0; text-align: center;">
-            <h1 style="font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 900; text-transform: uppercase; margin: 0;">
+    <main id="main-content" class="container" role="main">
+        <div class="page-header">
+            <h1>
                 The <span class="bacon-text">Collection</span>
             </h1>
-            <p style="color: #888; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-top: 10px;">Foundational Breeding Projects & Genetics</p>
+            <p style="color: #888; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-top: 10px; font-size: 0.9rem;">
+                Foundational Breeding Projects & Genetics
+            </p>
         </div>
 
-        <div class="collection-grid" id="collection-container"></div>
+        <div class="collection-grid" id="collection-container" role="list" aria-label="Breeding collection">
+            <!-- Loading state -->
+            <div class="loading-message" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #666;">
+                Loading breeding collection...
+            </div>
+        </div>
     </main>
 
+    <!-- Load collection data -->
     <script src="collection.js"></script>
+    
+    <!-- Render collection -->
     <script>
-        const colContainer = document.getElementById('collection-container');
-        
-        if (typeof collection !== 'undefined') {
-            collection.forEach(breeder => {
-                colContainer.innerHTML += `
-                    <div class="breeder-card">
-                        <div class="slider-container">
-                            <button class="slider-arrow arrow-left" onclick="const s = this.nextElementSibling; if(s.scrollLeft <= 0) { s.scrollTo({left: s.scrollWidth, behavior: 'smooth'}); } else { s.scrollBy({left: -400, behavior: 'smooth'}); }">&#10094;</button>
-                            <div class="slider">
-                                ${breeder.photos.map(p => `<img src="${p}" alt="${breeder.name} - ${breeder.morph} Breeder">`).join('')}
-                            </div>
-                            <button class="slider-arrow arrow-right" onclick="const s = this.previousElementSibling; if(s.scrollLeft + s.offsetWidth >= s.scrollWidth - 10) { s.scrollTo({left: 0, behavior: 'smooth'}); } else { s.scrollBy({left: 400, behavior: 'smooth'}); }">&#10095;</button>
-                            <span class="breeder-badge">${breeder.badge || 'Breeder'}</span>
-                        </div>
-                        <div class="card-info" style="padding: 25px; display: flex; flex-direction: column; flex-grow: 1;">
-                            <h3 class="bacon-text" style="font-size: 1.5rem; margin: 0;">"${breeder.name}"</h3>
-                            <div style="font-weight: 700; color: #fff; margin: 5px 0;">${breeder.morph}</div>
-                            <div class="project-status" style="font-size: 0.8rem; font-weight: 800; color: #888; margin-top: 10px;">
-                                <span class="status-dot" style="background: ${breeder.statusColor || '#888'};"></span> ${breeder.status}
-                            </div>
-                            <a href="breeder-profile.html?id=${breeder.id}" class="inquire-btn" style="margin-top:auto; padding-top: 20px;">View Genetic Profile</a>
-                        </div>
+        (function() {
+            'use strict';
+            
+            const container = document.getElementById('collection-container');
+            
+            // Remove loading message
+            const loadingMsg = container.querySelector('.loading-message');
+            if (loadingMsg) {
+                loadingMsg.remove();
+            }
+            
+            // Check if collection data exists
+            if (typeof collection === 'undefined' || !Array.isArray(collection)) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <p style="color: #666; font-size: 1.2rem;">Collection data unavailable.</p>
                     </div>
                 `;
+                return;
+            }
+            
+            if (collection.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <p style="color: #666; font-size: 1.2rem;">No breeders in collection yet.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Render each breeder
+            collection.forEach(breeder => {
+                const card = document.createElement('article');
+                card.className = 'breeder-card';
+                card.setAttribute('role', 'listitem');
+                
+                // Slider HTML
+                const sliderHTML = `
+                    <div class="slider-container">
+                        <button class="slider-arrow arrow-left" 
+                                aria-label="Previous image"
+                                onclick="handleSliderNavigation(this, 'prev')">
+                            &#10094;
+                        </button>
+                        <div class="slider" role="region" aria-label="Images of ${breeder.name}">
+                            ${breeder.photos.map((photo, idx) => `
+                                <img src="${photo}" 
+                                     alt="${breeder.name} - ${breeder.morph} Breeder - Image ${idx + 1}"
+                                     loading="lazy">
+                            `).join('')}
+                        </div>
+                        <button class="slider-arrow arrow-right" 
+                                aria-label="Next image"
+                                onclick="handleSliderNavigation(this, 'next')">
+                            &#10095;
+                        </button>
+                        <span class="breeder-badge">${escapeHtml(breeder.badge || 'Breeder')}</span>
+                    </div>
+                `;
+                
+                // Card content
+                const contentHTML = `
+                    ${sliderHTML}
+                    <div class="card-info">
+                        <h3 class="bacon-text" style="font-size: 1.5rem; margin: 0;">
+                            "${escapeHtml(breeder.name)}"
+                        </h3>
+                        <div style="font-weight: 700; color: #fff; margin: 5px 0;">
+                            ${escapeHtml(breeder.morph)}
+                        </div>
+                        <div class="project-status">
+                            <span class="status-dot" style="background: ${breeder.statusColor || '#888'};"></span> 
+                            ${escapeHtml(breeder.status)}
+                        </div>
+                        <a href="breeder-profile.html?id=${encodeURIComponent(breeder.id)}" 
+                           class="inquire-btn"
+                           aria-label="View genetic profile for ${breeder.name}">
+                            View Genetic Profile
+                        </a>
+                    </div>
+                `;
+                
+                card.innerHTML = contentHTML;
+                container.appendChild(card);
             });
-        }
+            
+            // Helper function to escape HTML
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+            
+            // Slider navigation function
+            window.handleSliderNavigation = function(button, direction) {
+                const slider = button.parentElement.querySelector('.slider');
+                const scrollAmount = 400;
+                
+                if (direction === 'prev') {
+                    if (slider.scrollLeft <= 0) {
+                        slider.scrollTo({left: slider.scrollWidth, behavior: 'smooth'});
+                    } else {
+                        slider.scrollBy({left: -scrollAmount, behavior: 'smooth'});
+                    }
+                } else if (direction === 'next') {
+                    if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 10) {
+                        slider.scrollTo({left: 0, behavior: 'smooth'});
+                    } else {
+                        slider.scrollBy({left: scrollAmount, behavior: 'smooth'});
+                    }
+                }
+            };
+        })();
     </script>
 
-    <footer>
+    <footer role="contentinfo">
         <div class="container" style="text-align: center; padding: 80px 0; border-top: 1px solid #111; margin-top: 60px;">
             <div class="logo" style="margin-bottom: 10px;">THE LAB REPTILES</div>
             <p style="color: #666; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;">

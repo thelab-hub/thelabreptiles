@@ -3,124 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Lab Reptiles | Gecko Profile</title>
-    <link rel="stylesheet" href="style.css">
     
+    <!-- Title will be dynamically set by JavaScript -->
+    <title>Gecko Profile | The Lab Reptiles</title>
+    
+    <!-- Meta tags will be enhanced by JavaScript -->
+    <meta name="description" content="View detailed information about this Gargoyle Gecko from The Lab Reptiles breeding program.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#0a0a0a">
+    
     <style>
-        /* Visual styling for sold state */
-        .sold-profile { opacity: 0.85; }
+        /* Sold state styling */
+        .sold-profile { 
+            opacity: 0.85; 
+        }
+        
         .sold-banner {
             background: #111;
             border: 1px solid #333;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
             border-radius: 8px;
-            margin-top: 20px;
+            margin-top: 30px;
         }
+        
+        .sold-banner h3 {
+            color: #666;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+        }
+        
+        .sold-banner p {
+            color: #444;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+        
         .sold-overlay {
             position: absolute;
             top: 15px;
             right: 15px;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.85);
             color: #888;
-            padding: 8px 20px;
+            padding: 10px 20px;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 2px;
             border: 1px solid #444;
             pointer-events: none;
+            z-index: 10;
+            border-radius: 4px;
+        }
+        
+        .back-link {
+            text-decoration: none;
+            color: #888;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            transition: color var(--transition-normal);
+        }
+        
+        .back-link:hover,
+        .back-link:focus {
+            color: var(--bacon-orange);
+            outline: none;
+        }
+        
+        .spec-item {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 12px;
+            border-radius: 4px;
+        }
+        
+        .spec-item strong {
+            color: var(--text-silver);
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+        }
+        
+        .mm-btn {
+            background: #222 !important;
+            border: 1px solid #444 !important;
+        }
+        
+        .mm-btn:hover,
+        .mm-btn:focus {
+            background: #333 !important;
+            border-color: var(--bacon-orange) !important;
         }
     </style>
 </head>
 <body>
-    <header>
-        </header>
+    <!-- Skip to main content -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
 
-    <main class="container" style="padding-top: 20px;">
-        <a href="available.html" style="text-decoration: none; color: #888; font-weight: 700; font-size: 0.9rem; display: inline-block; margin-bottom: 20px;">
-            ← BACK TO INVENTORY
+    <header role="banner">
+        <div class="container">
+            <nav role="navigation" aria-label="Main navigation">
+                <div class="logo" aria-label="The Lab Reptiles Home">THE LAB REPTILES</div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="available.html">Available</a>
+                    <a href="collection.html">Collection</a>
+                    <a href="caresheets.html">Care</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="container" role="main" style="padding-top: 40px;">
+        <a href="available.html" class="back-link">
+            <span aria-hidden="true">←</span> BACK TO INVENTORY
         </a>
 
-        <div id="profile-content"></div>
+        <div id="profile-content" role="article">
+            <!-- Content will be loaded by JavaScript -->
+            <div style="text-align: center; padding: 100px 20px; color: #666;">
+                <p>Loading gecko profile...</p>
+            </div>
+        </div>
     </main>
 
+    <!-- Load inventory data -->
     <script src="inventory.js"></script>
+    
+    <!-- Profile rendering script -->
     <script>
-        const params = new URLSearchParams(window.location.search);
-        const geckoId = params.get('id');
-        const gecko = inventory.find(g => g.id === geckoId);
-
-        if (gecko) {
-            document.title = gecko.name + " | " + gecko.id;
+        (function() {
+            'use strict';
             
-            // Build the Action Area based on Sold status
+            // Get gecko ID from URL
+            const params = new URLSearchParams(window.location.search);
+            const geckoId = params.get('id');
+            
+            // Find gecko in inventory
+            const gecko = inventory ? inventory.find(g => g.id === geckoId) : null;
+            
+            if (!gecko) {
+                // Gecko not found
+                document.getElementById('profile-content').innerHTML = `
+                    <div style="text-align: center; padding: 100px 20px;">
+                        <h2 class="bacon-text" style="font-size: 2rem; margin-bottom: 20px;">
+                            GECKO NOT FOUND
+                        </h2>
+                        <p style="color: #666; margin-bottom: 30px;">
+                            The animal you are looking for may have been sold or the link is incorrect.
+                        </p>
+                        <a href="available.html" class="btn" style="display: inline-block; text-decoration: none;">
+                            Back to Inventory
+                        </a>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Update page title and meta
+            document.title = `${gecko.name} (${gecko.id}) | The Lab Reptiles`;
+            
+            // Update meta description
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) {
+                metaDesc.content = `${gecko.name} - ${gecko.morph || 'Gargoyle Gecko'} from The Lab Reptiles. ${gecko.description.substring(0, 120)}...`;
+            }
+            
+            // Add canonical URL
+            const canonical = document.createElement('link');
+            canonical.rel = 'canonical';
+            canonical.href = window.location.href;
+            document.head.appendChild(canonical);
+            
+            // Build action buttons/banner
             let actionHtml = "";
             if (gecko.sold) {
                 actionHtml = `
-                    <div class="sold-banner">
-                        <h3 style="color: #666; margin: 0; text-transform: uppercase; letter-spacing: 2px;">SOLD</h3>
-                        <p style="color: #444; font-size: 0.85rem; margin-top: 5px;">This animal is no longer available.</p>
+                    <div class="sold-banner" role="status" aria-live="polite">
+                        <h3>SOLD</h3>
+                        <p>This animal is no longer available for purchase.</p>
                     </div>
                 `;
             } else {
                 actionHtml = `
-                    <div class="price-large">${gecko.price}</div>
-                    <div style="margin-top: 30px;">
+                    <div class="price-large" aria-label="Price">${escapeHtml(gecko.price)}</div>
+                    <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 12px;">
                         ${gecko.mmLink ? `
-                            <a href="${gecko.mmLink}" target="_blank" class="btn mm-btn" style="display:block; text-align:center; margin-bottom: 12px; text-decoration: none; background: #222; border: 1px solid #444;">
+                            <a href="${escapeHtml(gecko.mmLink)}" 
+                               target="_blank" 
+                               rel="noopener noreferrer"
+                               class="btn mm-btn" 
+                               style="text-decoration: none;"
+                               aria-label="Inquire about ${gecko.name} via MorphMarket (opens in new tab)">
                                 Inquire via MorphMarket
                             </a>
                         ` : ''}
-                        <a href="contact.html" class="btn" style="display:block; text-align:center; text-decoration: none;">
+                        <a href="contact.html" 
+                           class="btn" 
+                           style="text-decoration: none;"
+                           aria-label="Contact us directly about ${gecko.name}">
                             Direct Inquiry
                         </a>
                     </div>
                 `;
             }
-
+            
+            // Render profile
             document.getElementById('profile-content').innerHTML = `
                 <div class="animal-profile ${gecko.sold ? 'sold-profile' : ''}">
                     <div class="profile-gallery">
                         <div class="main-photo" style="position: relative;">
-                            <img src="${gecko.photos[0]}" id="currentView" alt="${gecko.name}">
+                            <img src="${escapeHtml(gecko.photos[0])}" 
+                                 id="currentView" 
+                                 alt="${escapeHtml(gecko.name)} - Main photo">
                             ${gecko.sold ? '<div class="sold-overlay">SOLD</div>' : ''}
                         </div>
-                        <div class="thumbnails">
-                            ${gecko.photos.map(p => `<img src="${p}" onclick="document.getElementById('currentView').src=this.src" alt="Thumbnail">`).join('')}
+                        <div class="thumbnails" role="list" aria-label="Additional photos">
+                            ${gecko.photos.map((photo, idx) => `
+                                <img src="${escapeHtml(photo)}" 
+                                     onclick="changeMainPhoto('${escapeHtml(photo)}')"
+                                     onkeypress="if(event.key==='Enter') changeMainPhoto('${escapeHtml(photo)}')"
+                                     alt="View photo ${idx + 1}"
+                                     tabindex="0"
+                                     role="button">
+                            `).join('')}
                         </div>
                     </div>
+                    
                     <div class="profile-info">
-                        <h1 class="bacon-text">${gecko.name}</h1>
-                        <p style="font-weight: 700; color: #888;">ID: ${gecko.id}</p>
+                        <h1 class="bacon-text" style="font-size: 2.5rem; margin-bottom: 10px;">
+                            ${escapeHtml(gecko.name)}
+                        </h1>
+                        <p style="font-weight: 700; color: #888; font-size: 1.1rem;">
+                            ID: ${escapeHtml(gecko.id)}
+                        </p>
                         
                         <div class="specs-grid">
-                            <div class="spec-item"><strong>Sex:</strong> ${gecko.sex || 'Unsexed'}</div>
-                            <div class="spec-item"><strong>Weight:</strong> ${gecko.weight}</div>
-                            <div class="spec-item"><strong>Hatch:</strong> ${gecko.hatch}</div>
-                            <div class="spec-item" style="grid-column: span 2;"><strong>Lineage:</strong> ${gecko.lineage}</div>
+                            <div class="spec-item">
+                                <strong>Sex</strong>
+                                ${escapeHtml(gecko.sex || 'Unsexed')}
+                            </div>
+                            <div class="spec-item">
+                                <strong>Weight</strong>
+                                ${escapeHtml(gecko.weight)}
+                            </div>
+                            <div class="spec-item">
+                                <strong>Hatch Date</strong>
+                                ${escapeHtml(gecko.hatch)}
+                            </div>
+                            <div class="spec-item" style="grid-column: span 2;">
+                                <strong>Lineage</strong>
+                                ${escapeHtml(gecko.lineage)}
+                            </div>
                         </div>
 
                         <div class="lineage-box">
-                            <h3>Breeder Notes</h3>
-                            <p>${gecko.description}</p>
+                            <h3 style="font-size: 1.2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 15px; color: var(--bacon-orange);">
+                                Breeder Notes
+                            </h3>
+                            <p style="line-height: 1.7; color: #ccc;">
+                                ${escapeHtml(gecko.description)}
+                            </p>
                         </div>
 
                         ${actionHtml}
                     </div>
                 </div>
             `;
-        } else {
-            document.getElementById('profile-content').innerHTML = `
-                <div style="text-align:center; padding: 100px 0;">
-                    <h2 class="bacon-text">GECKO NOT FOUND</h2>
-                    <p style="color:#666;">The lizard you are looking for has escaped or the link is broken.</p>
-                    <a href="available.html" class="btn" style="display:inline-block; margin-top:20px; text-decoration:none;">Back to Inventory</a>
-                </div>
-            `;
-        }
+            
+            // Helper function to change main photo
+            window.changeMainPhoto = function(photoSrc) {
+                const mainImg = document.getElementById('currentView');
+                if (mainImg) {
+                    mainImg.style.opacity = '0';
+                    setTimeout(() => {
+                        mainImg.src = photoSrc;
+                        mainImg.style.opacity = '1';
+                    }, 150);
+                }
+            };
+            
+            // Helper function to escape HTML
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+        })();
     </script>
+
+    <footer role="contentinfo" style="margin-top: 80px;">
+        <div class="container" style="text-align: center; padding: 60px 0; border-top: 1px solid #111;">
+            <div class="logo" style="margin-bottom: 10px;">THE LAB REPTILES</div>
+            <p style="color: #666; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;">
+                Premium Genetics &middot; Engineered by Nature
+            </p>
+            <div style="border-top: 1px solid #222; margin-top: 40px; padding-top: 40px; color: #444; font-size: 0.7rem; font-weight: 800;">
+                &copy; 2026 THE LAB REPTILES
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>

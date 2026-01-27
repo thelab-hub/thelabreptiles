@@ -3,54 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Care Resources | The Lab Reptiles</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Primary Meta Tags -->
+    <title>Care Resources | The Lab Reptiles - Gargoyle Gecko & Ball Python Care Guides</title>
+    <meta name="title" content="Care Resources | The Lab Reptiles">
+    <meta name="description" content="Expert care guides for Gargoyle Geckos and Ball Pythons. Learn proper husbandry, nutrition, and habitat setup from experienced breeders.">
+    <meta name="keywords" content="Gargoyle Gecko care, Ball Python care, reptile husbandry, gecko care guide, python care sheet">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://thelabreptiles.com/caresheets.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thelabreptiles.com/caresheets.html">
+    <meta property="og:title" content="Care Resources | The Lab Reptiles">
+    <meta property="og:description" content="Expert care guides for Gargoyle Geckos and Ball Pythons from experienced breeders.">
+    <meta property="og:image" content="https://thelabreptiles.com/ReptilePhotos/Demeter1.jpg">
+    
+    <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#0a0a0a">
+    
+    <style>
+        .care-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+            gap: 30px;
+            padding: 60px 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .care-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            transition: transform var(--transition-normal), border-color var(--transition-normal);
+        }
+        
+        .care-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--bacon-red);
+        }
+        
+        .care-card h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+        }
+        
+        .care-card p {
+            color: #ccc;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .view-btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: transparent;
+            border: 2px solid var(--bacon-red);
+            color: white;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: background var(--transition-normal);
+            border-radius: 4px;
+        }
+        
+        .view-btn:hover,
+        .view-btn:focus {
+            background: var(--bacon-red);
+            outline: none;
+        }
+        
+        .view-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            border-color: #444;
+        }
+    </style>
 </head>
 <body>
+    <!-- Skip to main content -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
 
-    <header>
+    <header role="banner">
         <div class="container">
-            <nav>
-                <div class="logo">THE LAB REPTILES</div>
+            <nav role="navigation" aria-label="Main navigation">
+                <div class="logo" aria-label="The Lab Reptiles Home">THE LAB REPTILES</div>
                 <div class="nav-links">
                     <a href="index.html">Home</a>
                     <a href="available.html">Available</a>
                     <a href="collection.html">Collection</a>
-                    <a href="caresheets.html">Care</a>
+                    <a href="caresheets.html" aria-current="page">Care</a>
                     <a href="contact.html">Contact</a>
                 </div>
             </nav>
         </div>
     </header>
 
-    <div class="container">
+    <main id="main-content" class="container" role="main">
         <div class="page-header" style="padding-top: 60px; text-align: center;">
-            <h1 style="font-size: 3.5rem; font-weight: 900; text-transform: uppercase;">
+            <h1 style="font-size: clamp(2.5rem, 8vw, 3.5rem); font-weight: 900; text-transform: uppercase; margin: 0;">
                 Care <span class="bacon-text">Resources</span>
             </h1>
-            <p style="color: #888; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Setting the Standard for Captive Care</p>
+            <p style="color: #888; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-top: 15px; font-size: 0.9rem;">
+                Setting the Standard for Captive Care
+            </p>
         </div>
-
+        
         <div class="care-grid">
-            
-            <div class="care-card">
+            <article class="care-card">
                 <h2 class="bacon-text">Ball Pythons</h2>
-                <p>A guide to <span class="bacon-text">temperature</span> and <span class="bacon-text">enclosure</span> needs.</p>
-                <a href="#" class="view-btn">Coming Soon</a>
-            </div>
-
-            <div class="care-card">
+                <p>A comprehensive guide to <span class="bacon-text">temperature</span> regulation, proper <span class="bacon-text">enclosure</span> setup, and essential husbandry practices for healthy Ball Pythons.</p>
+                <a href="#" class="view-btn" aria-label="Ball Python care guide - Coming Soon" disabled>Coming Soon</a>
+            </article>
+            
+            <article class="care-card">
                 <h2 class="bacon-text">Gargoyle Geckos</h2>
-                <p>A guide to understanding <span class="bacon-text">arboreal life</span>, nutrition, and <span class="bacon-text">hydration</span> for a healthy Gargoyle Gecko..</p>
-                <a href="#" class="view-btn">Coming Soon</a>
-            </div>
-
+                <p>Expert guidance on understanding <span class="bacon-text">arboreal life</span>, proper nutrition, and maintaining optimal <span class="bacon-text">hydration</span> for thriving Gargoyle Geckos.</p>
+                <a href="#" class="view-btn" aria-label="Gargoyle Gecko care guide - Coming Soon" disabled>Coming Soon</a>
+            </article>
         </div>
-    </div>
+        
+        <section style="max-width: 800px; margin: 60px auto; padding: 40px; background: #111; border-radius: 12px; border: 1px solid #222; text-align: center;">
+            <h2 style="color: var(--bacon-orange); font-size: 1.2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 20px;">
+                Need Immediate Help?
+            </h2>
+            <p style="color: #ccc; margin-bottom: 30px; line-height: 1.6;">
+                While our comprehensive care guides are being developed, we're always available to answer questions about caring for your new reptile. Don't hesitate to reach out!
+            </p>
+            <a href="contact.html" class="btn" style="text-decoration: none;">
+                Contact Us for Care Advice
+            </a>
+        </section>
+    </main>
 
-    <footer style="margin-top: 100px;">
+    <footer role="contentinfo" style="margin-top: 100px;">
         <div class="container" style="text-align: center;">
             <div class="logo" style="margin-bottom: 10px;">THE LAB REPTILES</div>
             <p style="color: #666; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;">
@@ -58,10 +164,8 @@
             </p>
             <div style="border-top: 1px solid #222; margin-top: 40px; padding-top: 40px; color: #444; font-size: 0.7rem; font-weight: 800;">
                 &copy; 2026 THE LAB REPTILES
-            
             </div>
         </div>
     </footer>
-
 </body>
 </html>

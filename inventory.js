@@ -1,3 +1,13 @@
+/**
+ * THE LAB REPTILES - INVENTORY DATA
+ * Optimized inventory management system
+ * 
+ * Structure:
+ * - Clean data organization
+ * - Consistent property naming
+ * - Easy to maintain and update
+ */
+
 const inventory = [
     {
         id: "GG-ATH-03-1-25",
@@ -33,7 +43,7 @@ const inventory = [
             "ReptilePhotos/GG-ATH-03-2-25-3.jpg"
         ]
     },
-     {
+    {
         id: "AT-24-01-02",
         name: "Red Stripe",
         price: "$200",
@@ -58,7 +68,7 @@ const inventory = [
         sex: "Unsexed",
         hatch: "Aug 18, 2024",
         lineage: "Vulcan x Ceres",
-        description: "This Gargoyle Gecko displays a Good colouring along its back. It features a darker, earthy base tone that provides a nice contrast for the orange and red. This individual is healthy, active, and feeding well on Repashy diet. A great animal for anyone.",
+        description: "This Gargoyle Gecko displays good coloring along its back. It features a darker, earthy base tone that provides a nice contrast for the orange and red. This individual is healthy, active, and feeding well on Repashy diet. A great animal for anyone.",
         sold: false,
         mmLink: "https://www.morphmarket.com/us/c/all?seller=thelabreptiles&state=for_sale",
         photos: [
@@ -67,7 +77,7 @@ const inventory = [
             "ReptilePhotos/CER-24-03-02-3.jpg"
         ]
     },
-     {
+    {
         id: "TLR-GG-0000-023",
         name: "Orange Blotch",
         price: "$275",
@@ -119,3 +129,87 @@ const inventory = [
         ]
     }
 ];
+
+/**
+ * Utility Functions for Inventory Management
+ */
+
+// Get available animals only
+function getAvailableInventory() {
+    return inventory.filter(animal => !animal.sold);
+}
+
+// Get sold animals
+function getSoldInventory() {
+    return inventory.filter(animal => animal.sold);
+}
+
+// Find animal by ID
+function findAnimalById(id) {
+    return inventory.find(animal => animal.id === id);
+}
+
+// Get animals by lineage
+function getAnimalsByLineage(lineage) {
+    return inventory.filter(animal => 
+        animal.lineage.toLowerCase().includes(lineage.toLowerCase())
+    );
+}
+
+// Get animals by price range
+function getAnimalsByPriceRange(min, max) {
+    return inventory.filter(animal => {
+        const price = parseFloat(animal.price.replace('$', ''));
+        return price >= min && price <= max;
+    });
+}
+
+// Sort animals by price
+function sortByPrice(ascending = true) {
+    return [...inventory].sort((a, b) => {
+        const priceA = parseFloat(a.price.replace('$', ''));
+        const priceB = parseFloat(b.price.replace('$', ''));
+        return ascending ? priceA - priceB : priceB - priceA;
+    });
+}
+
+// Sort animals by hatch date (newest first)
+function sortByHatchDate(newestFirst = true) {
+    return [...inventory].sort((a, b) => {
+        const dateA = new Date(a.hatch);
+        const dateB = new Date(b.hatch);
+        return newestFirst ? dateB - dateA : dateA - dateB;
+    });
+}
+
+// Get inventory statistics
+function getInventoryStats() {
+    const available = getAvailableInventory();
+    const sold = getSoldInventory();
+    
+    return {
+        total: inventory.length,
+        available: available.length,
+        sold: sold.length,
+        averagePrice: (
+            available.reduce((sum, animal) => 
+                sum + parseFloat(animal.price.replace('$', '')), 0
+            ) / available.length
+        ).toFixed(2)
+    };
+}
+
+// Export for use in other scripts (if using modules)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        inventory,
+        getAvailableInventory,
+        getSoldInventory,
+        findAnimalById,
+        getAnimalsByLineage,
+        getAnimalsByPriceRange,
+        sortByPrice,
+        sortByHatchDate,
+        getInventoryStats
+    };
+}
