@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Primary Meta Tags -->
     <title>Our Breeding Collection | The Lab Reptiles - Bacon Line Gargoyles & Premium Genetics</title>
     <meta name="title" content="Our Breeding Collection | The Lab Reptiles">
@@ -11,29 +11,234 @@
     <meta name="keywords" content="Bacon Line Gargoyle, Lily White Crested Gecko, Reptile Breeding Projects, Red Line Crested Gecko, The Lab Reptiles Collection">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://thelabreptiles.com/collection.html">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://thelabreptiles.com/collection.html">
     <meta property="og:title" content="The Lab Reptiles | Breeding Collection">
     <meta property="og:description" content="Viewing the foundational genetics behind our high-contrast reptile projects.">
     <meta property="og:image" content="https://thelabreptiles.com/ReptilePhotos/Demeter1.jpg">
-    
+
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
+
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    
+
     <!-- Theme color -->
     <meta name="theme-color" content="#0a0a0a">
+
+    <!-- Pairings Section Styles -->
+    <style>
+        /* Pairings Section */
+        .pairings-section {
+            margin-top: 80px;
+            padding-top: 60px;
+            border-top: 1px solid #222;
+        }
+
+        .pairings-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .pairings-header h2 {
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 0 0 15px;
+        }
+
+        .pairings-header p {
+            color: #888;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        .pairings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(450px, 100%), 1fr));
+            gap: 30px;
+        }
+
+        .pairing-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .pairing-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--bacon-red);
+        }
+
+        .pairing-photos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            background: #000;
+        }
+
+        .pairing-photo {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+
+        .pairing-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pairing-photo-label {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 5px 12px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+
+        .pairing-photo-label.male {
+            color: #4dabf7;
+        }
+
+        .pairing-photo-label.female {
+            color: #f783ac;
+        }
+
+        .pairing-content {
+            padding: 25px;
+        }
+
+        .pairing-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .pairing-title h3 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin: 0;
+        }
+
+        .pairing-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .pairing-pair {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 15px;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #0a0a0a;
+            border-radius: 8px;
+        }
+
+        .pair-animal {
+            text-align: center;
+        }
+
+        .pair-animal .name {
+            font-weight: 900;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .pair-animal .morph {
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        .pair-x {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--bacon-orange);
+        }
+
+        .pairing-outcome {
+            border-top: 1px solid #222;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .pairing-outcome h4 {
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--bacon-orange);
+            margin: 0 0 10px;
+        }
+
+        .pairing-outcome p {
+            color: #999;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .year-tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .year-tab {
+            background: transparent;
+            border: 1px solid #333;
+            color: #888;
+            padding: 12px 30px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .year-tab:hover {
+            border-color: var(--bacon-orange);
+            color: var(--bacon-orange);
+        }
+
+        .year-tab.active {
+            background: var(--bacon-gradient);
+            border-color: transparent;
+            color: white;
+        }
+
+        .no-pairings {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
     <!-- Skip to main content -->
@@ -70,24 +275,49 @@
                 Loading breeding collection...
             </div>
         </div>
+
+        <!-- Pairings Section -->
+        <section class="pairings-section" id="pairings-section" aria-labelledby="pairings-heading">
+            <div class="pairings-header">
+                <h2 id="pairings-heading">
+                    <span class="bacon-text">Breeding</span> Pairings
+                </h2>
+                <p>Current & Planned Projects</p>
+            </div>
+
+            <!-- Year Tabs -->
+            <div class="year-tabs" id="year-tabs" role="tablist">
+                <!-- Tabs will be dynamically inserted -->
+            </div>
+
+            <!-- Pairings Grid -->
+            <div class="pairings-grid" id="pairings-container" role="list" aria-label="Breeding pairings">
+                <!-- Pairings will be dynamically loaded here -->
+            </div>
+        </section>
     </main>
 
-    <!-- Load collection data -->
+    <!-- Load data files -->
     <script src="collection.js"></script>
-    
-    <!-- Render collection -->
+    <script src="pairings.js"></script>
+    <script src="analytics.js"></script>
+
+    <!-- Render collection and pairings -->
     <script>
         (function() {
             'use strict';
-            
+
+            // ====================
+            // COLLECTION RENDERING
+            // ====================
             const container = document.getElementById('collection-container');
-            
+
             // Remove loading message
             const loadingMsg = container.querySelector('.loading-message');
             if (loadingMsg) {
                 loadingMsg.remove();
             }
-            
+
             // Check if collection data exists
             if (typeof collection === 'undefined' || !Array.isArray(collection)) {
                 container.innerHTML = `
@@ -95,86 +325,193 @@
                         <p style="color: #666; font-size: 1.2rem;">Collection data unavailable.</p>
                     </div>
                 `;
-                return;
-            }
-            
-            if (collection.length === 0) {
+            } else if (collection.length === 0) {
                 container.innerHTML = `
                     <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
                         <p style="color: #666; font-size: 1.2rem;">No breeders in collection yet.</p>
                     </div>
                 `;
-                return;
+            } else {
+                // Render each breeder
+                collection.forEach(breeder => {
+                    const card = document.createElement('article');
+                    card.className = 'breeder-card';
+                    card.setAttribute('role', 'listitem');
+
+                    // Slider HTML
+                    const sliderHTML = `
+                        <div class="slider-container">
+                            <button class="slider-arrow arrow-left"
+                                    aria-label="Previous image"
+                                    onclick="handleSliderNavigation(this, 'prev')">
+                                &#10094;
+                            </button>
+                            <div class="slider" role="region" aria-label="Images of ${breeder.name}">
+                                ${breeder.photos.map((photo, idx) => `
+                                    <img src="${photo}"
+                                         alt="${breeder.name} - ${breeder.morph} Breeder - Image ${idx + 1}"
+                                         loading="lazy">
+                                `).join('')}
+                            </div>
+                            <button class="slider-arrow arrow-right"
+                                    aria-label="Next image"
+                                    onclick="handleSliderNavigation(this, 'next')">
+                                &#10095;
+                            </button>
+                            <span class="breeder-badge">${escapeHtml(breeder.badge || 'Breeder')}</span>
+                        </div>
+                    `;
+
+                    // Card content
+                    const contentHTML = `
+                        ${sliderHTML}
+                        <div class="card-info">
+                            <h3 class="bacon-text" style="font-size: 1.5rem; margin: 0;">
+                                "${escapeHtml(breeder.name)}"
+                            </h3>
+                            <div style="font-weight: 700; color: #fff; margin: 5px 0;">
+                                ${escapeHtml(breeder.morph)}
+                            </div>
+                            <div class="project-status">
+                                <span class="status-dot" style="background: ${breeder.statusColor || '#888'};"></span>
+                                ${escapeHtml(breeder.status)}
+                            </div>
+                            <a href="breeder-profile.html?id=${encodeURIComponent(breeder.id)}"
+                               class="inquire-btn"
+                               aria-label="View genetic profile for ${breeder.name}">
+                                View Genetic Profile
+                            </a>
+                        </div>
+                    `;
+
+                    card.innerHTML = contentHTML;
+                    container.appendChild(card);
+                });
             }
-            
-            // Render each breeder
-            collection.forEach(breeder => {
-                const card = document.createElement('article');
-                card.className = 'breeder-card';
-                card.setAttribute('role', 'listitem');
-                
-                // Slider HTML
-                const sliderHTML = `
-                    <div class="slider-container">
-                        <button class="slider-arrow arrow-left" 
-                                aria-label="Previous image"
-                                onclick="handleSliderNavigation(this, 'prev')">
-                            &#10094;
-                        </button>
-                        <div class="slider" role="region" aria-label="Images of ${breeder.name}">
-                            ${breeder.photos.map((photo, idx) => `
-                                <img src="${photo}" 
-                                     alt="${breeder.name} - ${breeder.morph} Breeder - Image ${idx + 1}"
-                                     loading="lazy">
-                            `).join('')}
-                        </div>
-                        <button class="slider-arrow arrow-right" 
-                                aria-label="Next image"
-                                onclick="handleSliderNavigation(this, 'next')">
-                            &#10095;
-                        </button>
-                        <span class="breeder-badge">${escapeHtml(breeder.badge || 'Breeder')}</span>
+
+            // ====================
+            // PAIRINGS RENDERING
+            // ====================
+            const pairingsContainer = document.getElementById('pairings-container');
+            const yearTabsContainer = document.getElementById('year-tabs');
+
+            // Check if pairings data exists
+            if (typeof breedingPairings === 'undefined') {
+                pairingsContainer.innerHTML = `
+                    <div class="no-pairings" style="grid-column: 1 / -1;">
+                        <p>Pairings information coming soon.</p>
                     </div>
                 `;
-                
-                // Card content
-                const contentHTML = `
-                    ${sliderHTML}
-                    <div class="card-info">
-                        <h3 class="bacon-text" style="font-size: 1.5rem; margin: 0;">
-                            "${escapeHtml(breeder.name)}"
-                        </h3>
-                        <div style="font-weight: 700; color: #fff; margin: 5px 0;">
-                            ${escapeHtml(breeder.morph)}
+            } else {
+                // Get available years
+                const years = Object.keys(breedingPairings).map(Number).sort((a, b) => a - b);
+                const currentYear = new Date().getFullYear();
+
+                // Create year tabs
+                years.forEach(year => {
+                    const tab = document.createElement('button');
+                    tab.className = `year-tab ${year === currentYear || (year === years[0] && !years.includes(currentYear)) ? 'active' : ''}`;
+                    tab.setAttribute('role', 'tab');
+                    tab.setAttribute('aria-selected', year === currentYear || (year === years[0] && !years.includes(currentYear)));
+                    tab.textContent = year;
+                    tab.onclick = () => selectYear(year);
+                    yearTabsContainer.appendChild(tab);
+                });
+
+                // Initial render
+                const initialYear = years.includes(currentYear) ? currentYear : years[0];
+                renderPairings(initialYear);
+            }
+
+            // Select year tab
+            window.selectYear = function(year) {
+                // Update tab states
+                document.querySelectorAll('.year-tab').forEach(tab => {
+                    const isActive = parseInt(tab.textContent) === year;
+                    tab.classList.toggle('active', isActive);
+                    tab.setAttribute('aria-selected', isActive);
+                });
+
+                renderPairings(year);
+            };
+
+            // Render pairings for a specific year
+            function renderPairings(year) {
+                const pairings = breedingPairings[year] || [];
+                pairingsContainer.innerHTML = '';
+
+                if (pairings.length === 0) {
+                    pairingsContainer.innerHTML = `
+                        <div class="no-pairings" style="grid-column: 1 / -1;">
+                            <p>No pairings scheduled for ${year}.</p>
                         </div>
-                        <div class="project-status">
-                            <span class="status-dot" style="background: ${breeder.statusColor || '#888'};"></span> 
-                            ${escapeHtml(breeder.status)}
+                    `;
+                    return;
+                }
+
+                pairings.forEach(pairing => {
+                    const card = document.createElement('article');
+                    card.className = 'pairing-card';
+                    card.setAttribute('role', 'listitem');
+
+                    const malePhoto = pairing.male.photo || 'ReptilePhotos/Demeter1.jpg';
+                    const femalePhoto = pairing.female.photo || 'ReptilePhotos/Demeter1.jpg';
+
+                    card.innerHTML = `
+                        <div class="pairing-photos">
+                            <div class="pairing-photo">
+                                <img src="${escapeHtml(malePhoto)}" alt="${escapeHtml(pairing.male.name)}" loading="lazy">
+                                <span class="pairing-photo-label male">Male</span>
+                            </div>
+                            <div class="pairing-photo">
+                                <img src="${escapeHtml(femalePhoto)}" alt="${escapeHtml(pairing.female.name)}" loading="lazy">
+                                <span class="pairing-photo-label female">Female</span>
+                            </div>
                         </div>
-                        <a href="breeder-profile.html?id=${encodeURIComponent(breeder.id)}" 
-                           class="inquire-btn"
-                           aria-label="View genetic profile for ${breeder.name}">
-                            View Genetic Profile
-                        </a>
-                    </div>
-                `;
-                
-                card.innerHTML = contentHTML;
-                container.appendChild(card);
-            });
-            
+                        <div class="pairing-content">
+                            <div class="pairing-title">
+                                <h3 class="bacon-text">${escapeHtml(pairing.project)}</h3>
+                                <div class="pairing-status">
+                                    <span class="status-dot" style="background: ${pairing.statusColor};"></span>
+                                    ${escapeHtml(pairing.status)}
+                                </div>
+                            </div>
+
+                            <div class="pairing-pair">
+                                <div class="pair-animal">
+                                    <div class="name">${escapeHtml(pairing.male.name)}</div>
+                                    <div class="morph">${escapeHtml(pairing.male.morph)}</div>
+                                </div>
+                                <div class="pair-x">x</div>
+                                <div class="pair-animal">
+                                    <div class="name">${escapeHtml(pairing.female.name)}</div>
+                                    <div class="morph">${escapeHtml(pairing.female.morph)}</div>
+                                </div>
+                            </div>
+
+                            <div class="pairing-outcome">
+                                <h4>Expected Outcome</h4>
+                                <p>${escapeHtml(pairing.expectedOutcome)}</p>
+                            </div>
+                        </div>
+                    `;
+
+                    pairingsContainer.appendChild(card);
+                });
+            }
+
             // Helper function to escape HTML
             function escapeHtml(text) {
                 const div = document.createElement('div');
                 div.textContent = text;
                 return div.innerHTML;
             }
-            
+
             // Slider navigation function
             window.handleSliderNavigation = function(button, direction) {
                 const slider = button.parentElement.querySelector('.slider');
                 const scrollAmount = 400;
-                
+
                 if (direction === 'prev') {
                     if (slider.scrollLeft <= 0) {
                         slider.scrollTo({left: slider.scrollWidth, behavior: 'smooth'});

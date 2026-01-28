@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Primary Meta Tags -->
     <title>Contact Us | The Lab Reptiles - Gargoyle Gecko & Ball Python Inquiries</title>
     <meta name="title" content="Contact Us | The Lab Reptiles">
@@ -11,29 +11,223 @@
     <meta name="keywords" content="contact reptile breeder, Gargoyle Gecko questions, Ball Python inquiries, reptile shipping quotes">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://thelabreptiles.com/contact.html">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://thelabreptiles.com/contact.html">
     <meta property="og:title" content="Contact Us | The Lab Reptiles">
     <meta property="og:description" content="Get in touch for shipping quotes, genetics inquiries, or questions about our breeding projects.">
     <meta property="og:image" content="https://thelabreptiles.com/ReptilePhotos/Demeter1.jpg">
-    
+
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
+
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    
+
     <!-- Theme color -->
     <meta name="theme-color" content="#0a0a0a">
+
+    <style>
+        /* FAQ Accordion Styles */
+        .faq-section {
+            max-width: 900px;
+            margin: 80px auto 0;
+            padding: 50px;
+            background: #0d0d0d;
+            border-radius: 12px;
+            border: 1px solid #1a1a1a;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .faq-header h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 0 0 10px;
+        }
+
+        .faq-header p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .faq-categories {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .faq-category-btn {
+            background: transparent;
+            border: 1px solid #333;
+            color: #888;
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .faq-category-btn:hover {
+            border-color: var(--bacon-orange);
+            color: var(--bacon-orange);
+        }
+
+        .faq-category-btn.active {
+            background: var(--bacon-gradient);
+            border-color: transparent;
+            color: white;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-item {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: border-color 0.2s ease;
+        }
+
+        .faq-item:hover {
+            border-color: #333;
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            color: #fff;
+            padding: 20px 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: inherit;
+            transition: color 0.2s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--bacon-orange);
+        }
+
+        .faq-question .icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            color: var(--bacon-orange);
+        }
+
+        .faq-item.open .faq-question .icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-content {
+            padding: 0 25px 20px;
+            color: #999;
+            line-height: 1.7;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+        }
+
+        /* Contact Methods Grid */
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 60px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-method {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .contact-method:hover {
+            border-color: var(--bacon-orange);
+            transform: translateY(-5px);
+        }
+
+        .contact-method-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, rgba(255, 0, 43, 0.1), rgba(255, 145, 0, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-method-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--bacon-orange);
+        }
+
+        .contact-method h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin: 0 0 10px;
+        }
+
+        .contact-method p {
+            color: #888;
+            font-size: 0.85rem;
+            margin: 0 0 15px;
+        }
+
+        .contact-method a {
+            color: var(--bacon-orange);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: color 0.2s ease;
+        }
+
+        .contact-method a:hover {
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
     <!-- Skip to main content -->
@@ -56,7 +250,7 @@
 
     <main id="main-content" class="container" role="main">
         <div class="contact-section" style="padding: 100px 0;">
-            
+
             <div class="contact-text" style="flex: 1; max-width: 500px;">
                 <h1 style="font-size: clamp(2.5rem, 8vw, 3.5rem); font-weight: 900; line-height: 1; margin: 0;">
                     HAVE A <br><span class="bacon-text">QUESTION?</span>
@@ -69,7 +263,7 @@
                         Response Time: <span class="bacon-text">Under 24 Hours</span>
                     </p>
                 </div>
-                
+
                 <div style="margin-top: 40px; padding: 25px; background: #111; border-radius: 8px; border: 1px solid #222;">
                     <h2 style="font-size: 1rem; font-weight: 900; text-transform: uppercase; margin: 0 0 15px 0; color: var(--bacon-orange);">
                         What to Include
@@ -82,7 +276,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="contact-box" style="flex: 1; max-width: 450px; background: #111; padding: 50px; border-radius: 8px; border: 1px solid #222; text-align: center;">
                 <h2 style="font-weight: 900; text-transform: uppercase; margin-bottom: 30px; letter-spacing: -1px; font-size: 1.5rem;">
                     Direct Inquiry Form
@@ -90,23 +284,23 @@
                 <p style="color: #666; margin-bottom: 30px; font-size: 0.9rem; line-height: 1.6;">
                     Please use our secure Google Form to provide details about your inquiry. We'll respond within 24 hours.
                 </p>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf5neG3J8ZTdDoHCVViYCvep7QiPmUvr19xtfenX7FX-SEebg/viewform?usp=header" 
-                   target="_blank" 
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSf5neG3J8ZTdDoHCVViYCvep7QiPmUvr19xtfenX7FX-SEebg/viewform?usp=header"
+                   target="_blank"
                    rel="noopener noreferrer"
-                   class="btn" 
+                   class="btn"
                    style="width: 100%; text-align: center; text-decoration: none;"
                    aria-label="Open secure contact form (opens in new tab)">
                     Open Secure Form
                 </a>
-                
+
                 <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid #222;">
                     <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;">
                         Prefer social media?
                     </p>
-                    <a href="https://www.instagram.com/thelabreptiles" 
-                       target="_blank" 
+                    <a href="https://www.instagram.com/thelabreptiles"
+                       target="_blank"
                        rel="noopener noreferrer"
-                       class="inquire-btn" 
+                       class="inquire-btn"
                        style="display: inline-block; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-size: 0.8rem;"
                        aria-label="Message us on Instagram (opens in new tab)">
                         DM on Instagram
@@ -114,51 +308,272 @@
                 </div>
             </div>
         </div>
-        
+
+        <!-- Contact Methods -->
+        <div class="contact-methods">
+            <div class="contact-method">
+                <div class="contact-method-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                </div>
+                <h3>Location</h3>
+                <p>Canada-based breeder serving North America</p>
+                <span style="color: #666; font-size: 0.85rem;">Local pickup available by appointment</span>
+            </div>
+
+            <div class="contact-method">
+                <div class="contact-method-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                    </svg>
+                </div>
+                <h3>Instagram</h3>
+                <p>Follow for updates and behind-the-scenes content</p>
+                <a href="https://www.instagram.com/thelabreptiles" target="_blank" rel="noopener noreferrer">@thelabreptiles</a>
+            </div>
+
+            <div class="contact-method">
+                <div class="contact-method-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                </div>
+                <h3>MorphMarket</h3>
+                <p>View our complete inventory listings</p>
+                <a href="https://www.morphmarket.com/us/c/all?seller=thelabreptiles&state=for_sale" target="_blank" rel="noopener noreferrer">Visit Store</a>
+            </div>
+        </div>
+
         <!-- FAQ Section -->
-        <section style="max-width: 900px; margin: 80px auto 0; padding: 50px; background: #0d0d0d; border-radius: 12px; border: 1px solid #1a1a1a;">
-            <h2 style="text-align: center; font-size: 2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 40px;">
-                Common <span class="bacon-text">Questions</span>
-            </h2>
-            
-            <div style="display: grid; gap: 30px;">
-                <div>
-                    <h3 style="color: var(--bacon-orange); font-size: 1.1rem; font-weight: 900; margin-bottom: 10px;">
+        <section class="faq-section" aria-labelledby="faq-heading">
+            <div class="faq-header">
+                <h2 id="faq-heading">Frequently Asked <span class="bacon-text">Questions</span></h2>
+                <p>Find quick answers to common questions</p>
+            </div>
+
+            <!-- FAQ Categories -->
+            <div class="faq-categories" role="tablist">
+                <button class="faq-category-btn active" onclick="filterFAQ('all')" role="tab">All</button>
+                <button class="faq-category-btn" onclick="filterFAQ('shipping')" role="tab">Shipping</button>
+                <button class="faq-category-btn" onclick="filterFAQ('purchase')" role="tab">Purchasing</button>
+                <button class="faq-category-btn" onclick="filterFAQ('care')" role="tab">Care</button>
+                <button class="faq-category-btn" onclick="filterFAQ('breeding')" role="tab">Breeding</button>
+            </div>
+
+            <!-- FAQ List -->
+            <div class="faq-list" id="faq-list">
+                <!-- Shipping -->
+                <div class="faq-item" data-category="shipping">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
                         Do you ship internationally?
-                    </h3>
-                    <p style="color: #999; line-height: 1.6; margin: 0;">
-                        We primarily ship within Canada and to the United States. International shipping may be available on a case-by-case basis. Contact us for specific details.
-                    </p>
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We primarily ship within Canada and to the United States. International shipping may be available on a case-by-case basis depending on destination country regulations. Contact us for specific details about your location.
+                        </div>
+                    </div>
                 </div>
-                
-                <div>
-                    <h3 style="color: var(--bacon-orange); font-size: 1.1rem; font-weight: 900; margin-bottom: 10px;">
+
+                <div class="faq-item" data-category="shipping">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        How much does shipping cost?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Shipping costs vary by location and time of year. Within Canada, overnight shipping typically ranges from $45-$85 CAD. US shipping ranges from $60-$120 USD. We use professional reptile shipping services to ensure safe, temperature-controlled transport. Contact us with your location for an exact quote.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="shipping">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        What's included in shipping?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            All shipments include professional insulated packaging, heat or cold packs as needed, and overnight delivery. Animals are packaged in secure, breathable containers with appropriate moisture. You'll receive tracking information and we coordinate delivery times to ensure someone is available to receive the package.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Purchasing -->
+                <div class="faq-item" data-category="purchase">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
                         What's included with purchase?
-                    </h3>
-                    <p style="color: #999; line-height: 1.6; margin: 0;">
-                        All animals come with complete lineage information, care instructions, and our health guarantee. Shipping includes professional packaging and overnight delivery.
-                    </p>
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            All animals come with complete lineage information, a care guide specific to the species, feeding records, and our live arrival guarantee. We're also available for ongoing support and questions after your purchase.
+                        </div>
+                    </div>
                 </div>
-                
-                <div>
-                    <h3 style="color: var(--bacon-orange); font-size: 1.1rem; font-weight: 900; margin-bottom: 10px;">
+
+                <div class="faq-item" data-category="purchase">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Do you offer payment plans?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We can arrange payment plans for animals over $300 on a case-by-case basis. Typically, a 50% non-refundable deposit is required to hold an animal, with the balance due before shipping. Contact us to discuss options.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="purchase">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
                         Can I visit in person?
-                    </h3>
-                    <p style="color: #999; line-height: 1.6; margin: 0;">
-                        Local pickup may be available by appointment. Contact us to discuss scheduling and location details.
-                    </p>
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Local pickup may be available by appointment for serious buyers. We're located in Canada. Contact us to discuss scheduling and location details.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="purchase">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        What is your health guarantee?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We guarantee live arrival for all shipped animals. If an issue occurs during transit, you must notify us within 2 hours of delivery with photographic evidence. We also offer a 7-day health guarantee covering any pre-existing conditions. Animals must be housed according to our care guidelines for the guarantee to be valid.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Care -->
+                <div class="faq-item" data-category="care">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        What do Gargoyle Geckos eat?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Our Gargoyle Geckos are raised on Repashy Crested Gecko Diet and Pangea as their primary food source. They're also offered appropriately-sized insects (crickets, dubia roaches) as supplemental protein. We feed our geckos every other day and ensure fresh water is always available.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="care">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        What temperature and humidity do they need?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Gargoyle Geckos thrive at room temperature (68-78°F / 20-26°C) with no special heating required in most homes. Humidity should be maintained at 50-70%, achieved through daily misting and a moisture-retaining substrate. They don't require UVB lighting but benefit from a natural day/night cycle.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="care">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Are Gargoyle Geckos good for beginners?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! Gargoyle Geckos are excellent beginner reptiles. They have simple care requirements, tolerate handling well once acclimated, and have long lifespans (15-20 years). Their room-temperature requirements mean no complex heating setups. We provide a comprehensive care guide with every purchase.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Breeding -->
+                <div class="faq-item" data-category="breeding">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        What is the "Bacon Line"?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            The "Bacon Line" is our signature Gargoyle Gecko breeding project focusing on high-contrast red and orange striping. Named for the resemblance to crispy bacon, these geckos feature bold, saturated colors with strong structural patterns. We've been selectively breeding this line for several generations to consistently produce exceptional offspring.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="breeding">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Do you sell breeding pairs?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We occasionally have proven or compatible pairs available. Contact us with your breeding goals and we can help match animals that complement each other genetically. We're happy to share lineage information to help you make informed breeding decisions.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-category="breeding">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        When will hatchlings be available?
+                        <span class="icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Our breeding season typically runs from spring through fall. Hatchlings are usually available from late spring through early winter. Follow us on Instagram for updates on clutches and expected hatch dates. You can also join our email list to be notified when new animals become available.
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-    
+
+    <script>
+        // Toggle FAQ item
+        function toggleFAQ(button) {
+            const item = button.parentElement;
+            const wasOpen = item.classList.contains('open');
+
+            // Close all items
+            document.querySelectorAll('.faq-item').forEach(i => {
+                i.classList.remove('open');
+            });
+
+            // Open clicked item if it wasn't already open
+            if (!wasOpen) {
+                item.classList.add('open');
+            }
+        }
+
+        // Filter FAQ by category
+        function filterFAQ(category) {
+            // Update button states
+            document.querySelectorAll('.faq-category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Close all items when filtering
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('open');
+            });
+        }
+    </script>
+
     <footer role="contentinfo" style="margin-top: 80px;">
         <div class="container" style="text-align: center;">
             <div style="margin-bottom: 40px;">
-                <a href="https://www.instagram.com/thelabreptiles" 
-                   target="_blank" 
+                <a href="https://www.instagram.com/thelabreptiles"
+                   target="_blank"
                    rel="noopener noreferrer"
-                   class="inquire-btn" 
+                   class="inquire-btn"
                    style="display: inline-block; padding: 12px 30px; border-radius: 50px; text-decoration: none;"
                    aria-label="Follow The Lab Reptiles on Instagram (opens in new tab)">
                     Follow us on Instagram

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Primary Meta Tags -->
     <title>The Lab Reptiles | Premium Gargoyle Geckos & Ball Pythons</title>
     <meta name="title" content="The Lab Reptiles | Premium Gargoyle Geckos & Ball Pythons">
@@ -12,7 +12,7 @@
     <meta name="author" content="The Lab Reptiles">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://thelabreptiles.com/">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://thelabreptiles.com/">
@@ -20,7 +20,7 @@
     <meta property="og:description" content="Refining reptile genetics one generation at a time. Specializing in the Bacon Red Stripe Gargoyle line.">
     <meta property="og:image" content="https://thelabreptiles.com/ReptilePhotos/Demeter1.jpg">
     <meta property="og:site_name" content="The Lab Reptiles">
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://thelabreptiles.com/">
@@ -52,23 +52,139 @@
       }
     }
     </script>
-    
+
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.ico">
-    
+
     <!-- Preconnect to improve performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    
+
     <!-- Theme color for mobile browsers -->
     <meta name="theme-color" content="#0a0a0a">
+
+    <!-- Page-specific styles -->
+    <style>
+        .instagram-section {
+            padding: 80px 0;
+            background: #000;
+            text-align: center;
+        }
+
+        .instagram-header {
+            margin-bottom: 40px;
+        }
+
+        .instagram-header h2 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 0 0 15px;
+        }
+
+        .instagram-header p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 4px;
+            max-width: 1000px;
+            margin: 0 auto 40px;
+        }
+
+        .instagram-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: #111;
+        }
+
+        .instagram-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .instagram-item:hover img {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+
+        .instagram-follow-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 35px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            border-radius: 50px;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .instagram-follow-btn:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .instagram-follow-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            padding: 40px 0;
+            border-top: 1px solid #111;
+            border-bottom: 1px solid #111;
+            margin: 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--bacon-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .stats-bar {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Skip to main content for accessibility -->
@@ -96,11 +212,11 @@
                     THE <span class="bacon-text">LAB</span><br>
                     <span class="bacon-text">REPTILES</span>
                 </h1>
-                
+
                 <p class="sub-headline">
                     Refining our <span class="bacon-text">craft</span>, one <span class="bacon-text">generation</span> at a time.
                 </p>
-                
+
                 <div style="margin-top: 40px;">
                     <a href="available.html" class="btn" aria-label="View our available reptile inventory">
                         View Available Inventory
@@ -119,21 +235,60 @@
                 </div>
             </div>
         </section>
-    </main>
 
-    <section aria-labelledby="social-heading" style="padding: 40px 0; border-top: 1px solid #111; margin-top: 60px; text-align: center;">
-        <h2 id="social-heading" style="color: #666; font-size: 0.9rem; margin-bottom: 20px; font-weight: 400;">
-            Stay updated on our latest hatches
-        </h2>
-        <a href="https://www.instagram.com/thelabreptiles" 
-           target="_blank" 
-           rel="noopener noreferrer"
-           class="inquire-btn" 
-           style="border-radius: 50px; padding: 10px 30px; text-decoration: none; display: inline-block; max-width: 300px;"
-           aria-label="Follow The Lab Reptiles on Instagram (opens in new tab)">
-            Follow @TheLabReptiles on Instagram
-        </a>
-    </section>
+        <!-- Stats Bar -->
+        <div class="stats-bar" role="region" aria-label="Breeding statistics">
+            <div class="stat-item">
+                <div class="stat-number" id="stat-available">7</div>
+                <div class="stat-label">Available Now</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Breeding Projects</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Healthy Arrivals</div>
+            </div>
+        </div>
+
+        <!-- Instagram Section -->
+        <section class="instagram-section" aria-labelledby="instagram-heading">
+            <div class="container">
+                <div class="instagram-header">
+                    <h2 id="instagram-heading">Follow Us on <span class="bacon-text">Instagram</span></h2>
+                    <p>Behind-the-scenes, new hatches, and updates from the breeding room</p>
+                </div>
+
+                <!-- Instagram Preview Grid -->
+                <div class="instagram-grid">
+                    <div class="instagram-item">
+                        <img src="ReptilePhotos/Demeter1.jpg" alt="Demeter - Bacon Quad Stripe Gargoyle" loading="lazy">
+                    </div>
+                    <div class="instagram-item">
+                        <img src="ReptilePhotos/Artemis1.jpg" alt="Artemis - Red Bicolour Crested Gecko" loading="lazy">
+                    </div>
+                    <div class="instagram-item">
+                        <img src="ReptilePhotos/Kybele1.jpg" alt="Kybele - Deep Red Lily White" loading="lazy">
+                    </div>
+                    <div class="instagram-item">
+                        <img src="ReptilePhotos/GG-ATH-03-1-25-1.jpg" alt="Bacon Quad Stripe Hatchling" loading="lazy">
+                    </div>
+                </div>
+
+                <a href="https://www.instagram.com/thelabreptiles"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="instagram-follow-btn"
+                   aria-label="Follow The Lab Reptiles on Instagram (opens in new tab)">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                    </svg>
+                    Follow @thelabreptiles
+                </a>
+            </div>
+        </section>
+    </main>
 
     <footer role="contentinfo">
         <div class="container">
@@ -148,6 +303,20 @@
             </div>
         </div>
     </footer>
+
+    <!-- Analytics Scripts -->
+    <script src="analytics.js"></script>
+    <script src="inventory.js"></script>
+    <script>
+        // Update available count dynamically
+        if (typeof inventory !== 'undefined') {
+            const availableCount = inventory.filter(a => !a.sold).length;
+            const statEl = document.getElementById('stat-available');
+            if (statEl) {
+                statEl.textContent = availableCount;
+            }
+        }
+    </script>
 
 </body>
 </html>

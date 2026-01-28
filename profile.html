@@ -147,9 +147,11 @@
         </div>
     </main>
 
-    <!-- Load inventory data -->
+    <!-- Load inventory data and scripts -->
     <script src="inventory.js"></script>
-    
+    <script src="mailerlite.js"></script>
+    <script src="analytics.js"></script>
+
     <!-- Profile rendering script -->
     <script>
         (function() {
@@ -208,22 +210,23 @@
                 actionHtml = `
                     <div class="price-large" aria-label="Price">${escapeHtml(gecko.price)}</div>
                     <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 12px;">
+                        <button onclick="openInquiryModal('${escapeHtml(gecko.id)}', '${escapeHtml(gecko.name)}', '${escapeHtml(gecko.price)}')"
+                           class="btn"
+                           style="cursor: pointer;"
+                           aria-label="Inquire about ${gecko.name}">
+                            Inquire About This Gecko
+                        </button>
                         ${gecko.mmLink ? `
-                            <a href="${escapeHtml(gecko.mmLink)}" 
-                               target="_blank" 
+                            <a href="${escapeHtml(gecko.mmLink)}"
+                               target="_blank"
                                rel="noopener noreferrer"
-                               class="btn mm-btn" 
+                               class="btn mm-btn"
                                style="text-decoration: none;"
-                               aria-label="Inquire about ${gecko.name} via MorphMarket (opens in new tab)">
-                                Inquire via MorphMarket
+                               onclick="trackMorphMarketClick('${escapeHtml(gecko.id)}', '${escapeHtml(gecko.name)}')"
+                               aria-label="View on MorphMarket (opens in new tab)">
+                                View on MorphMarket
                             </a>
                         ` : ''}
-                        <a href="contact.html" 
-                           class="btn" 
-                           style="text-decoration: none;"
-                           aria-label="Contact us directly about ${gecko.name}">
-                            Direct Inquiry
-                        </a>
                     </div>
                 `;
             }
@@ -309,7 +312,34 @@
                 div.textContent = text;
                 return div.innerHTML;
             }
+
+            // Track animal view for analytics
+            if (typeof Analytics !== 'undefined') {
+                Analytics.viewAnimal(gecko.id, gecko.name, gecko.price);
+            }
         })();
+
+        // Open inquiry modal
+        function openInquiryModal(animalId, animalName, price) {
+            if (typeof EmailModal !== 'undefined') {
+                EmailModal.openInquiryModal(animalId, animalName, price);
+
+                // Track analytics
+                if (typeof Analytics !== 'undefined') {
+                    Analytics.trackInquiry(animalId, animalName, price);
+                }
+            } else {
+                // Fallback to contact page
+                window.location.href = 'contact.html';
+            }
+        }
+
+        // Track MorphMarket click
+        function trackMorphMarketClick(animalId, animalName) {
+            if (typeof Analytics !== 'undefined') {
+                Analytics.trackMorphMarketClick(animalId, animalName);
+            }
+        }
     </script>
 
     <footer role="contentinfo" style="margin-top: 80px;">
