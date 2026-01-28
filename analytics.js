@@ -7,8 +7,8 @@
  */
 
 const AnalyticsConfig = {
-    // Google Analytics 4 Measurement ID (format: G-XXXXXXXXXX)
-    GA4_MEASUREMENT_ID: 'YOUR_GA4_MEASUREMENT_ID_HERE',
+    // Google Analytics 4 Measurement ID
+    GA4_MEASUREMENT_ID: 'G-45TTT09VBL',
 
     // Meta (Facebook) Pixel ID
     META_PIXEL_ID: 'YOUR_META_PIXEL_ID_HERE',
