@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Primary Meta Tags -->
     <title>Available Inventory | The Lab Reptiles - Gargoyle Geckos & Ball Pythons for Sale</title>
     <meta name="title" content="Available Inventory | The Lab Reptiles">
@@ -11,29 +11,208 @@
     <meta name="keywords" content="Gargoyle Geckos for sale, Ball Pythons for sale, Bacon Line Gargoyle Gecko, Red Stripe Gargoyle Gecko for sale, reptiles for sale Canada">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://thelabreptiles.com/available.html">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://thelabreptiles.com/available.html">
     <meta property="og:title" content="Available Inventory | The Lab Reptiles">
     <meta property="og:description" content="Browse our current selection of premium Gargoyle Geckos and Ball Pythons for sale.">
     <meta property="og:image" content="https://thelabreptiles.com/ReptilePhotos/Demeter1.jpg">
-    
+
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
+
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    
+
     <!-- Theme color -->
     <meta name="theme-color" content="#0a0a0a">
+
+    <!-- Filter & Card Styles -->
+    <style>
+        /* Filter Controls */
+        .filter-section {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .filter-header h2 {
+            font-size: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+            color: #888;
+        }
+
+        .filter-reset {
+            background: none;
+            border: 1px solid #444;
+            color: #888;
+            padding: 8px 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .filter-reset:hover {
+            border-color: var(--bacon-orange);
+            color: var(--bacon-orange);
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-group label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #666;
+            letter-spacing: 1px;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 12px 15px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+        }
+
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: var(--bacon-orange);
+        }
+
+        .filter-group select option {
+            background: #0a0a0a;
+        }
+
+        .results-count {
+            text-align: center;
+            padding: 15px;
+            color: #666;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .results-count span {
+            color: var(--bacon-orange);
+        }
+
+        /* Enhanced Card Buttons */
+        .card-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-row > * {
+            flex: 1;
+        }
+
+        .mm-btn {
+            background: #1a1a1a !important;
+            border: 1px solid #444 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 20px;
+            font-size: 0.75rem;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .mm-btn:hover {
+            background: #222 !important;
+            border-color: var(--bacon-orange) !important;
+        }
+
+        .mm-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .inquiry-btn {
+            background: transparent;
+            border: 2px solid var(--bacon-red);
+            color: #fff;
+            padding: 14px 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .inquiry-btn:hover {
+            background: var(--bacon-red);
+        }
+
+        /* No results message */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .no-results h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .no-results p {
+            color: #666;
+        }
+    </style>
 </head>
 <body>
     <!-- Skip to main content -->
@@ -60,7 +239,54 @@
                 Available <span class="bacon-text">Inventory</span>
             </h1>
         </div>
-        
+
+        <!-- Filter Section -->
+        <section class="filter-section" aria-label="Filter inventory">
+            <div class="filter-header">
+                <h2>Filter Animals</h2>
+                <button class="filter-reset" onclick="resetFilters()">Reset Filters</button>
+            </div>
+            <div class="filter-grid">
+                <div class="filter-group">
+                    <label for="filter-morph">Morph</label>
+                    <select id="filter-morph" onchange="applyFilters()">
+                        <option value="">All Morphs</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-sex">Sex</label>
+                    <select id="filter-sex" onchange="applyFilters()">
+                        <option value="">All</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Unsexed">Unsexed</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-price">Price Range</label>
+                    <select id="filter-price" onchange="applyFilters()">
+                        <option value="">Any Price</option>
+                        <option value="0-200">Under $200</option>
+                        <option value="200-300">$200 - $300</option>
+                        <option value="300-400">$300 - $400</option>
+                        <option value="400+">$400+</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-sort">Sort By</label>
+                    <select id="filter-sort" onchange="applyFilters()">
+                        <option value="newest">Newest First</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="name">Name A-Z</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Count -->
+        <div class="results-count" id="results-count"></div>
+
         <!-- Inventory will be dynamically loaded here -->
         <div class="animal-grid" id="inventory-container" role="list" aria-label="Available reptiles for sale">
             <!-- Loading state -->
@@ -70,22 +296,29 @@
         </div>
     </main>
 
-    <!-- Load inventory data -->
+    <!-- Load scripts -->
     <script src="inventory.js"></script>
-    
-    <!-- Render inventory -->
+    <script src="mailerlite.js"></script>
+    <script src="analytics.js"></script>
+
+    <!-- Render inventory with filtering -->
     <script>
         (function() {
             'use strict';
-            
+
             const container = document.getElementById('inventory-container');
-            
+            const morphSelect = document.getElementById('filter-morph');
+            const resultsCount = document.getElementById('results-count');
+
+            // Get available animals
+            let availableAnimals = [];
+
             // Remove loading message
             const loadingMsg = container.querySelector('.loading-message');
             if (loadingMsg) {
                 loadingMsg.remove();
             }
-            
+
             // Check if inventory data exists
             if (typeof inventory === 'undefined' || !Array.isArray(inventory)) {
                 container.innerHTML = `
@@ -96,10 +329,10 @@
                 `;
                 return;
             }
-            
+
             // Filter only available animals
-            const availableAnimals = inventory.filter(gecko => !gecko.sold);
-            
+            availableAnimals = inventory.filter(gecko => !gecko.sold);
+
             if (availableAnimals.length === 0) {
                 container.innerHTML = `
                     <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
@@ -112,88 +345,222 @@
                 `;
                 return;
             }
-            
-            // Render each available animal
-            availableAnimals.forEach(gecko => {
-                const card = document.createElement('article');
-                card.className = 'animal-card';
-                card.setAttribute('role', 'listitem');
-                
-                // Slider HTML
-                const sliderHTML = `
-                    <div class="slider-container">
-                        <button class="slider-arrow arrow-left" 
-                                aria-label="Previous image"
-                                onclick="handleSliderNavigation(this, 'prev')">
-                            &#10094;
-                        </button>
-                        <div class="slider" role="region" aria-label="Product images for ${gecko.name}">
-                            ${gecko.photos.map((photo, idx) => `
-                                <img src="${photo}" 
-                                     alt="${gecko.name} Gargoyle Gecko - Image ${idx + 1}"
-                                     loading="lazy">
-                            `).join('')}
-                        </div>
-                        <button class="slider-arrow arrow-right" 
-                                aria-label="Next image"
-                                onclick="handleSliderNavigation(this, 'next')">
-                            &#10095;
-                        </button>
-                        <span class="status-badge available">Available</span>
-                    </div>
-                `;
-                
-                // Card content
-                const contentHTML = `
-                    ${sliderHTML}
-                    <div class="card-details">
-                        <div class="card-header-info">
-                            <h3 class="bacon-text">${escapeHtml(gecko.name)}</h3>
-                            <div class="price" aria-label="Price">${escapeHtml(gecko.price)}</div>
-                        </div>
-                        <div class="card-description">
-                            <p><strong>ID:</strong> ${escapeHtml(gecko.id)}</p>
-                            <p><strong>Weight:</strong> ${escapeHtml(gecko.weight)}</p>
-                            <p><strong>Hatch Date:</strong> ${escapeHtml(gecko.hatch)}</p>
-                        </div>
-                        <a href="profile.html?id=${encodeURIComponent(gecko.id)}" 
-                           class="inquire-btn"
-                           aria-label="View details for ${gecko.name}">
-                            View Gecko Details
-                        </a>
-                    </div>
-                `;
-                
-                card.innerHTML = contentHTML;
-                container.appendChild(card);
+
+            // Populate morph filter options
+            const morphs = [...new Set(availableAnimals.map(a => a.name))].sort();
+            morphs.forEach(morph => {
+                const option = document.createElement('option');
+                option.value = morph;
+                option.textContent = morph;
+                morphSelect.appendChild(option);
             });
-            
+
+            // Initial render
+            renderAnimals(availableAnimals);
+
+            // Filter and sort functions
+            window.applyFilters = function() {
+                const morphFilter = document.getElementById('filter-morph').value;
+                const sexFilter = document.getElementById('filter-sex').value;
+                const priceFilter = document.getElementById('filter-price').value;
+                const sortBy = document.getElementById('filter-sort').value;
+
+                let filtered = [...availableAnimals];
+
+                // Apply morph filter
+                if (morphFilter) {
+                    filtered = filtered.filter(a => a.name === morphFilter);
+                }
+
+                // Apply sex filter
+                if (sexFilter) {
+                    filtered = filtered.filter(a => a.sex === sexFilter);
+                }
+
+                // Apply price filter
+                if (priceFilter) {
+                    filtered = filtered.filter(a => {
+                        const price = parseFloat(a.price.replace('$', ''));
+                        if (priceFilter === '0-200') return price < 200;
+                        if (priceFilter === '200-300') return price >= 200 && price < 300;
+                        if (priceFilter === '300-400') return price >= 300 && price < 400;
+                        if (priceFilter === '400+') return price >= 400;
+                        return true;
+                    });
+                }
+
+                // Apply sorting
+                filtered.sort((a, b) => {
+                    const priceA = parseFloat(a.price.replace('$', ''));
+                    const priceB = parseFloat(b.price.replace('$', ''));
+
+                    switch (sortBy) {
+                        case 'price-low':
+                            return priceA - priceB;
+                        case 'price-high':
+                            return priceB - priceA;
+                        case 'name':
+                            return a.name.localeCompare(b.name);
+                        case 'newest':
+                        default:
+                            return new Date(b.hatch) - new Date(a.hatch);
+                    }
+                });
+
+                renderAnimals(filtered);
+            };
+
+            window.resetFilters = function() {
+                document.getElementById('filter-morph').value = '';
+                document.getElementById('filter-sex').value = '';
+                document.getElementById('filter-price').value = '';
+                document.getElementById('filter-sort').value = 'newest';
+                renderAnimals(availableAnimals);
+            };
+
+            // Render animals function
+            function renderAnimals(animals) {
+                container.innerHTML = '';
+
+                // Update results count
+                resultsCount.innerHTML = `Showing <span>${animals.length}</span> of <span>${availableAnimals.length}</span> available`;
+
+                if (animals.length === 0) {
+                    container.innerHTML = `
+                        <div class="no-results">
+                            <h3 class="bacon-text">No Matches Found</h3>
+                            <p>Try adjusting your filters to see more animals.</p>
+                            <button onclick="resetFilters()" class="btn" style="margin-top: 20px;">Reset Filters</button>
+                        </div>
+                    `;
+                    return;
+                }
+
+                animals.forEach(gecko => {
+                    const card = document.createElement('article');
+                    card.className = 'animal-card';
+                    card.setAttribute('role', 'listitem');
+
+                    // Slider HTML
+                    const sliderHTML = `
+                        <div class="slider-container">
+                            <button class="slider-arrow arrow-left"
+                                    aria-label="Previous image"
+                                    onclick="handleSliderNavigation(this, 'prev')">
+                                &#10094;
+                            </button>
+                            <div class="slider" role="region" aria-label="Product images for ${gecko.name}">
+                                ${gecko.photos.map((photo, idx) => `
+                                    <img src="${photo}"
+                                         alt="${gecko.name} Gargoyle Gecko - Image ${idx + 1}"
+                                         loading="lazy">
+                                `).join('')}
+                            </div>
+                            <button class="slider-arrow arrow-right"
+                                    aria-label="Next image"
+                                    onclick="handleSliderNavigation(this, 'next')">
+                                &#10095;
+                            </button>
+                            <span class="status-badge available">Available</span>
+                        </div>
+                    `;
+
+                    // Card content with enhanced buttons
+                    const contentHTML = `
+                        ${sliderHTML}
+                        <div class="card-details">
+                            <div class="card-header-info">
+                                <h3 class="bacon-text">${escapeHtml(gecko.name)}</h3>
+                                <div class="price" aria-label="Price">${escapeHtml(gecko.price)}</div>
+                            </div>
+                            <div class="card-description">
+                                <p><strong>ID:</strong> ${escapeHtml(gecko.id)}</p>
+                                <p><strong>Sex:</strong> ${escapeHtml(gecko.sex)}</p>
+                                <p><strong>Weight:</strong> ${escapeHtml(gecko.weight)}</p>
+                                <p><strong>Hatch Date:</strong> ${escapeHtml(gecko.hatch)}</p>
+                            </div>
+                            <div class="card-buttons">
+                                <a href="profile.html?id=${encodeURIComponent(gecko.id)}"
+                                   class="inquire-btn"
+                                   style="text-align: center; text-decoration: none;"
+                                   aria-label="View details for ${gecko.name}">
+                                    View Details
+                                </a>
+                                <div class="btn-row">
+                                    ${gecko.mmLink ? `
+                                        <a href="${escapeHtml(gecko.mmLink)}"
+                                           target="_blank"
+                                           rel="noopener noreferrer"
+                                           class="mm-btn"
+                                           onclick="trackMorphMarketClick('${escapeHtml(gecko.id)}', '${escapeHtml(gecko.name)}')"
+                                           aria-label="View on MorphMarket (opens in new tab)">
+                                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V11H19V6.413L11.2071 14.2071L9.79289 12.7929L17.585 5H13V3H21Z"/>
+                                            </svg>
+                                            MorphMarket
+                                        </a>
+                                    ` : ''}
+                                    <button class="inquiry-btn"
+                                            onclick="openInquiry('${escapeHtml(gecko.id)}', '${escapeHtml(gecko.name)}', '${escapeHtml(gecko.price)}')"
+                                            aria-label="Inquire about ${gecko.name}">
+                                        Inquire
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                    card.innerHTML = contentHTML;
+                    container.appendChild(card);
+                });
+            }
+
             // Helper function to escape HTML
             function escapeHtml(text) {
                 const div = document.createElement('div');
                 div.textContent = text;
                 return div.innerHTML;
             }
-            
+
             // Slider navigation function
             window.handleSliderNavigation = function(button, direction) {
                 const slider = button.parentElement.querySelector('.slider');
                 const scrollAmount = 400;
-                
+
                 if (direction === 'prev') {
                     if (slider.scrollLeft <= 0) {
-                        // Loop to end
                         slider.scrollTo({left: slider.scrollWidth, behavior: 'smooth'});
                     } else {
                         slider.scrollBy({left: -scrollAmount, behavior: 'smooth'});
                     }
                 } else if (direction === 'next') {
                     if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 10) {
-                        // Loop to start
                         slider.scrollTo({left: 0, behavior: 'smooth'});
                     } else {
                         slider.scrollBy({left: scrollAmount, behavior: 'smooth'});
                     }
+                }
+            };
+
+            // Open inquiry modal
+            window.openInquiry = function(animalId, animalName, price) {
+                if (typeof EmailModal !== 'undefined') {
+                    EmailModal.openInquiryModal(animalId, animalName, price);
+
+                    // Track analytics
+                    if (typeof Analytics !== 'undefined') {
+                        Analytics.trackInquiry(animalId, animalName, price);
+                    }
+                } else {
+                    // Fallback to contact page
+                    window.location.href = 'contact.html';
+                }
+            };
+
+            // Track MorphMarket click
+            window.trackMorphMarketClick = function(animalId, animalName) {
+                if (typeof Analytics !== 'undefined') {
+                    Analytics.trackMorphMarketClick(animalId, animalName);
                 }
             };
         })();

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Primary Meta Tags -->
     <title>Care Resources | The Lab Reptiles - Gargoyle Gecko & Ball Python Care Guides</title>
     <meta name="title" content="Care Resources | The Lab Reptiles">
@@ -11,30 +11,30 @@
     <meta name="keywords" content="Gargoyle Gecko care, Ball Python care, reptile husbandry, gecko care guide, python care sheet">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://thelabreptiles.com/caresheets.html">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://thelabreptiles.com/caresheets.html">
     <meta property="og:title" content="Care Resources | The Lab Reptiles">
     <meta property="og:description" content="Expert care guides for Gargoyle Geckos and Ball Pythons from experienced breeders.">
     <meta property="og:image" content="https://thelabreptiles.com/ReptilePhotos/Demeter1.jpg">
-    
+
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    
+
     <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    
+
     <!-- Theme color -->
     <meta name="theme-color" content="#0a0a0a">
-    
+
     <style>
         .care-grid {
             display: grid;
@@ -44,7 +44,7 @@
             max-width: 900px;
             margin: 0 auto;
         }
-        
+
         .care-card {
             background: var(--bg-card);
             border: 1px solid var(--border-card);
@@ -52,55 +52,236 @@
             padding: 40px;
             text-align: center;
             transition: transform var(--transition-normal), border-color var(--transition-normal);
+            position: relative;
+            overflow: hidden;
         }
-        
+
         .care-card:hover {
             transform: translateY(-8px);
             border-color: var(--bacon-red);
         }
-        
+
+        .care-card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, rgba(255, 0, 43, 0.1), rgba(255, 145, 0, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .care-card-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: url(#bacon-gradient);
+        }
+
         .care-card h2 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 900;
-            margin: 0 0 20px 0;
+            margin: 0 0 15px 0;
             text-transform: uppercase;
         }
-        
+
+        .care-card .species {
+            color: #888;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
         .care-card p {
             color: #ccc;
             font-size: 1rem;
             line-height: 1.6;
             margin-bottom: 30px;
         }
-        
-        .view-btn {
+
+        .care-card ul {
+            text-align: left;
+            color: #999;
+            font-size: 0.9rem;
+            line-height: 2;
+            padding-left: 20px;
+            margin-bottom: 30px;
+        }
+
+        .care-card ul li::marker {
+            color: var(--bacon-orange);
+        }
+
+        .download-btn {
             display: inline-block;
-            padding: 14px 30px;
-            background: transparent;
-            border: 2px solid var(--bacon-red);
+            padding: 16px 35px;
+            background: var(--bacon-gradient);
             color: white;
             text-decoration: none;
             font-weight: 800;
             text-transform: uppercase;
             font-size: 0.85rem;
-            transition: background var(--transition-normal);
+            transition: transform 0.2s ease, filter 0.2s ease;
             border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
         }
-        
-        .view-btn:hover,
-        .view-btn:focus {
-            background: var(--bacon-red);
+
+        .download-btn:hover,
+        .download-btn:focus {
+            transform: scale(1.02);
+            filter: brightness(1.1);
             outline: none;
         }
-        
-        .view-btn:disabled {
+
+        .download-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-            border-color: #444;
+            transform: none;
+            filter: none;
+        }
+
+        .coming-soon-badge {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: #333;
+            color: #888;
+            padding: 8px 40px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            transform: rotate(45deg);
+        }
+
+        .care-topics {
+            max-width: 900px;
+            margin: 60px auto 0;
+            padding: 50px;
+            background: #111;
+            border-radius: 12px;
+            border: 1px solid #222;
+        }
+
+        .care-topics h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .topic-item {
+            background: #0a0a0a;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #222;
+        }
+
+        .topic-item h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            margin: 0 0 10px;
+            color: var(--bacon-orange);
+        }
+
+        .topic-item p {
+            font-size: 0.85rem;
+            color: #888;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .email-signup-section {
+            max-width: 600px;
+            margin: 80px auto 0;
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(255, 0, 43, 0.05), rgba(255, 145, 0, 0.05));
+            border: 1px solid #333;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .email-signup-section h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 0 0 15px;
+        }
+
+        .email-signup-section p {
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .email-form input {
+            flex: 1;
+            padding: 14px 20px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .email-form input:focus {
+            outline: none;
+            border-color: var(--bacon-orange);
+        }
+
+        .email-form button {
+            padding: 14px 25px;
+            background: var(--bacon-gradient);
+            border: none;
+            color: white;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: inherit;
+            transition: filter 0.2s ease;
+        }
+
+        .email-form button:hover {
+            filter: brightness(1.1);
+        }
+
+        @media (max-width: 500px) {
+            .email-form {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- SVG Gradient Definition -->
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <linearGradient id="bacon-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#ff002b"/>
+                <stop offset="100%" style="stop-color:#ff9100"/>
+            </linearGradient>
+        </defs>
+    </svg>
+
     <!-- Skip to main content -->
     <a href="#main-content" class="skip-to-main">Skip to main content</a>
 
@@ -125,36 +306,173 @@
                 Care <span class="bacon-text">Resources</span>
             </h1>
             <p style="color: #888; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-top: 15px; font-size: 0.9rem;">
-                Setting the Standard for Captive Care
+                Free Care Guides from Experienced Breeders
             </p>
         </div>
-        
+
         <div class="care-grid">
+            <!-- Gargoyle Gecko Care Guide -->
             <article class="care-card">
-                <h2 class="bacon-text">Ball Pythons</h2>
-                <p>A comprehensive guide to <span class="bacon-text">temperature</span> regulation, proper <span class="bacon-text">enclosure</span> setup, and essential husbandry practices for healthy Ball Pythons.</p>
-                <a href="#" class="view-btn" aria-label="Ball Python care guide - Coming Soon" disabled>Coming Soon</a>
-            </article>
-            
-            <article class="care-card">
+                <div class="care-card-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="url(#bacon-gradient)"/>
+                    </svg>
+                </div>
                 <h2 class="bacon-text">Gargoyle Geckos</h2>
-                <p>Expert guidance on understanding <span class="bacon-text">arboreal life</span>, proper nutrition, and maintaining optimal <span class="bacon-text">hydration</span> for thriving Gargoyle Geckos.</p>
-                <a href="#" class="view-btn" aria-label="Gargoyle Gecko care guide - Coming Soon" disabled>Coming Soon</a>
+                <p class="species">Rhacodactylus auriculatus</p>
+                <p>Comprehensive guide covering everything you need to know about keeping healthy, thriving Gargoyle Geckos.</p>
+                <ul>
+                    <li>Enclosure setup & size requirements</li>
+                    <li>Temperature & humidity ranges</li>
+                    <li>Diet & nutrition guidelines</li>
+                    <li>Handling & socialization tips</li>
+                    <li>Common health issues & prevention</li>
+                </ul>
+                <button class="download-btn" onclick="openCaresheetModal('gargoyle_gecko', 'Gargoyle Gecko Care Guide')">
+                    Get Free Care Guide
+                </button>
+            </article>
+
+            <!-- Ball Python Care Guide -->
+            <article class="care-card">
+                <span class="coming-soon-badge">Coming Soon</span>
+                <div class="care-card-icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="url(#bacon-gradient)"/>
+                    </svg>
+                </div>
+                <h2 class="bacon-text">Ball Pythons</h2>
+                <p class="species">Python regius</p>
+                <p>Expert guidance on providing optimal care for your Ball Python, from hatchling to adult.</p>
+                <ul>
+                    <li>Tub vs. tank enclosure options</li>
+                    <li>Temperature gradient setup</li>
+                    <li>Feeding schedules & prey size</li>
+                    <li>Shedding & hydration</li>
+                    <li>Breeding considerations</li>
+                </ul>
+                <button class="download-btn" disabled>
+                    Coming Soon
+                </button>
             </article>
         </div>
-        
+
+        <!-- What's Covered Section -->
+        <section class="care-topics">
+            <h2>What Our Guides <span class="bacon-text">Cover</span></h2>
+            <div class="topics-grid">
+                <div class="topic-item">
+                    <h3>Enclosure Setup</h3>
+                    <p>Proper sizing, substrate choices, and decoration for natural behavior.</p>
+                </div>
+                <div class="topic-item">
+                    <h3>Climate Control</h3>
+                    <p>Temperature gradients, humidity levels, and lighting requirements.</p>
+                </div>
+                <div class="topic-item">
+                    <h3>Nutrition</h3>
+                    <p>Diet recommendations, feeding schedules, and supplementation.</p>
+                </div>
+                <div class="topic-item">
+                    <h3>Health & Wellness</h3>
+                    <p>Signs of illness, preventive care, and when to see a vet.</p>
+                </div>
+                <div class="topic-item">
+                    <h3>Handling</h3>
+                    <p>Safe handling techniques and building trust with your reptile.</p>
+                </div>
+                <div class="topic-item">
+                    <h3>Breeding Basics</h3>
+                    <p>Introduction to breeding for those interested in producing offspring.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Email Signup Section -->
+        <section class="email-signup-section">
+            <h2>Get <span class="bacon-text">Updates</span></h2>
+            <p>Be the first to know when new care guides and resources are released.</p>
+            <form class="email-form" id="newsletter-form" onsubmit="handleNewsletterSignup(event)">
+                <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+            <p id="newsletter-message" style="margin-top: 15px; display: none;"></p>
+        </section>
+
+        <!-- Contact Section -->
         <section style="max-width: 800px; margin: 60px auto; padding: 40px; background: #111; border-radius: 12px; border: 1px solid #222; text-align: center;">
             <h2 style="color: var(--bacon-orange); font-size: 1.2rem; font-weight: 900; text-transform: uppercase; margin-bottom: 20px;">
                 Need Immediate Help?
             </h2>
             <p style="color: #ccc; margin-bottom: 30px; line-height: 1.6;">
-                While our comprehensive care guides are being developed, we're always available to answer questions about caring for your new reptile. Don't hesitate to reach out!
+                Have a specific question about caring for your reptile? We're happy to help with personalized advice.
             </p>
             <a href="contact.html" class="btn" style="text-decoration: none;">
                 Contact Us for Care Advice
             </a>
         </section>
     </main>
+
+    <!-- Load scripts -->
+    <script src="mailerlite.js"></script>
+    <script src="analytics.js"></script>
+
+    <script>
+        // Open caresheet modal
+        function openCaresheetModal(caresheetType, caresheetTitle) {
+            if (typeof EmailModal !== 'undefined') {
+                EmailModal.openCaresheetModal(caresheetType, caresheetTitle);
+
+                // Track analytics
+                if (typeof Analytics !== 'undefined') {
+                    Analytics.trackCaresheetDownload(caresheetType);
+                }
+            } else {
+                // Fallback - show alert
+                alert('Care guide download is being set up. Please check back soon or contact us directly!');
+            }
+        }
+
+        // Handle newsletter signup
+        async function handleNewsletterSignup(event) {
+            event.preventDefault();
+
+            const emailInput = document.getElementById('newsletter-email');
+            const messageEl = document.getElementById('newsletter-message');
+            const email = emailInput.value;
+
+            if (!email) return;
+
+            // Show loading
+            messageEl.style.display = 'block';
+            messageEl.style.color = '#888';
+            messageEl.textContent = 'Subscribing...';
+
+            try {
+                if (typeof MailerLiteService !== 'undefined') {
+                    const result = await MailerLiteService.subscribeForCaresheet(email, 'newsletter');
+
+                    if (result.success) {
+                        messageEl.style.color = '#00ff00';
+                        messageEl.textContent = 'Successfully subscribed! Check your email for updates.';
+                        emailInput.value = '';
+
+                        // Track analytics
+                        if (typeof Analytics !== 'undefined') {
+                            Analytics.trackEmailSignup('newsletter');
+                        }
+                    } else {
+                        throw new Error(result.error);
+                    }
+                } else {
+                    throw new Error('Subscription service unavailable');
+                }
+            } catch (error) {
+                messageEl.style.color = '#ff002b';
+                messageEl.textContent = 'Something went wrong. Please try again later.';
+            }
+        }
+    </script>
 
     <footer role="contentinfo" style="margin-top: 100px;">
         <div class="container" style="text-align: center;">
