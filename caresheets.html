@@ -357,6 +357,91 @@
             </article>
         </div>
 
+        <!-- New Owner Resources Section -->
+        <section class="new-owner-resources" style="max-width: 900px; margin: 40px auto 0;">
+            <h2 style="text-align: center; font-size: 1.8rem; font-weight: 900; text-transform: uppercase; margin-bottom: 15px;">
+                New Owner <span class="bacon-text">Resources</span>
+            </h2>
+            <p style="text-align: center; color: #888; margin-bottom: 40px; font-size: 0.95rem;">
+                Helpful documents to ensure a smooth transition for your new reptile
+            </p>
+
+            <div class="resources-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <!-- Transition Guide -->
+                <div class="resource-card" style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 25px; display: flex; align-items: flex-start; gap: 15px; transition: border-color 0.3s ease;">
+                    <div class="resource-icon" style="width: 45px; height: 45px; background: linear-gradient(135deg, rgba(255, 0, 43, 0.15), rgba(255, 145, 0, 0.15)); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM9 17H7V10H9V17ZM13 17H11V7H13V17ZM17 17H15V13H17V17Z" fill="url(#bacon-gradient)"/>
+                        </svg>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="font-size: 1rem; font-weight: 800; margin: 0 0 8px; color: #fff;">Transition Guide</h3>
+                        <p style="font-size: 0.85rem; color: #888; margin: 0 0 15px; line-height: 1.5;">Step-by-step guide for bringing your new reptile home safely.</p>
+                        <a href="documents/new-owner/transition-guide.pdf"
+                           class="resource-download-btn"
+                           download
+                           onclick="trackDocDownload('transition_guide')"
+                           style="display: inline-flex; align-items: center; gap: 6px; color: var(--bacon-orange); font-size: 0.8rem; font-weight: 700; text-decoration: none; text-transform: uppercase;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Feeding Schedule -->
+                <div class="resource-card" style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 25px; display: flex; align-items: flex-start; gap: 15px; transition: border-color 0.3s ease;">
+                    <div class="resource-icon" style="width: 45px; height: 45px; background: linear-gradient(135deg, rgba(255, 0, 43, 0.15), rgba(255, 145, 0, 0.15)); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 3H14.82C14.4 1.84 13.3 1 12 1C10.7 1 9.6 1.84 9.18 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM12 3C12.55 3 13 3.45 13 4C13 4.55 12.55 5 12 5C11.45 5 11 4.55 11 4C11 3.45 11.45 3 12 3ZM10 17L6 13L7.41 11.59L10 14.17L16.59 7.58L18 9L10 17Z" fill="url(#bacon-gradient)"/>
+                        </svg>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="font-size: 1rem; font-weight: 800; margin: 0 0 8px; color: #fff;">Feeding Schedule</h3>
+                        <p style="font-size: 0.85rem; color: #888; margin: 0 0 15px; line-height: 1.5;">Printable feeding schedule template to track meals.</p>
+                        <a href="documents/new-owner/feeding-schedule.pdf"
+                           class="resource-download-btn"
+                           download
+                           onclick="trackDocDownload('feeding_schedule')"
+                           style="display: inline-flex; align-items: center; gap: 6px; color: var(--bacon-orange); font-size: 0.8rem; font-weight: 700; text-decoration: none; text-transform: uppercase;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Health Checklist -->
+                <div class="resource-card" style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 25px; display: flex; align-items: flex-start; gap: 15px; transition: border-color 0.3s ease;">
+                    <div class="resource-icon" style="width: 45px; height: 45px; background: linear-gradient(135deg, rgba(255, 0, 43, 0.15), rgba(255, 145, 0, 0.15)); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z" fill="url(#bacon-gradient)"/>
+                        </svg>
+                    </div>
+                    <div style="flex: 1;">
+                        <h3 style="font-size: 1rem; font-weight: 800; margin: 0 0 8px; color: #fff;">Health Checklist</h3>
+                        <p style="font-size: 0.85rem; color: #888; margin: 0 0 15px; line-height: 1.5;">Weekly health monitoring checklist for your reptile.</p>
+                        <a href="documents/new-owner/health-checklist.pdf"
+                           class="resource-download-btn"
+                           download
+                           onclick="trackDocDownload('health_checklist')"
+                           style="display: inline-flex; align-items: center; gap: 6px; color: var(--bacon-orange); font-size: 0.8rem; font-weight: 700; text-decoration: none; text-transform: uppercase;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                            </svg>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: #555; font-size: 0.8rem; margin-top: 25px; font-style: italic;">
+                Note: PDF documents will be available for download once uploaded to the documents folder.
+            </p>
+        </section>
+
         <!-- What's Covered Section -->
         <section class="care-topics">
             <h2>What Our Guides <span class="bacon-text">Cover</span></h2>
@@ -470,6 +555,17 @@
             } catch (error) {
                 messageEl.style.color = '#ff002b';
                 messageEl.textContent = 'Something went wrong. Please try again later.';
+            }
+        }
+
+        // Track document downloads
+        function trackDocDownload(docType) {
+            if (typeof Analytics !== 'undefined') {
+                Analytics.customEvent('file_download', {
+                    file_name: docType,
+                    file_extension: 'pdf',
+                    content_type: 'new_owner_resource'
+                });
             }
         }
     </script>

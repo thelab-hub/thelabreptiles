@@ -37,102 +37,175 @@
 
     <!-- Filter & Card Styles -->
     <style>
-        /* Filter Controls */
+        /* Filter Controls - Improved Design */
         .filter-section {
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 12px;
-            padding: 25px;
+            background: linear-gradient(135deg, rgba(255, 0, 43, 0.03), rgba(255, 145, 0, 0.03));
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 20px 25px;
             margin-bottom: 30px;
         }
 
-        .filter-header {
+        .filter-top-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        .filter-header h2 {
-            font-size: 1rem;
-            font-weight: 900;
+        .filter-top-row h2 {
+            font-size: 0.85rem;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             margin: 0;
-            color: #888;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-top-row h2::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--bacon-gradient);
+            border-radius: 50%;
         }
 
         .filter-reset {
-            background: none;
-            border: 1px solid #444;
+            background: transparent;
+            border: none;
+            color: #555;
+            padding: 6px 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            font-family: inherit;
+        }
+
+        .filter-reset:hover {
+            color: var(--bacon-orange);
+        }
+
+        /* Quick Filter Pills */
+        .filter-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .filter-pill {
+            background: #0d0d0d;
+            border: 1px solid #222;
             color: #888;
             padding: 8px 16px;
             font-size: 0.75rem;
             font-weight: 700;
             text-transform: uppercase;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 20px;
             transition: all 0.2s ease;
+            font-family: inherit;
         }
 
-        .filter-reset:hover {
-            border-color: var(--bacon-orange);
-            color: var(--bacon-orange);
+        .filter-pill:hover {
+            border-color: #444;
+            color: #fff;
         }
 
-        .filter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+        .filter-pill.active {
+            background: var(--bacon-gradient);
+            border-color: transparent;
+            color: white;
         }
 
-        .filter-group {
+        /* Dropdown Filters */
+        .filter-dropdowns {
             display: flex;
-            flex-direction: column;
-            gap: 8px;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
         }
 
-        .filter-group label {
-            font-size: 0.8rem;
+        .filter-dropdown {
+            position: relative;
+            flex: 1;
+            min-width: 140px;
+            max-width: 200px;
+        }
+
+        .filter-dropdown label {
+            position: absolute;
+            top: -8px;
+            left: 12px;
+            background: #0a0a0a;
+            padding: 0 6px;
+            font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
-            color: #666;
-            letter-spacing: 1px;
+            color: #555;
+            letter-spacing: 0.5px;
+            z-index: 1;
         }
 
-        .filter-group select,
-        .filter-group input {
+        .filter-dropdown select {
+            width: 100%;
             background: #0a0a0a;
-            border: 1px solid #333;
+            border: 1px solid #222;
             color: #fff;
-            padding: 12px 15px;
-            font-size: 0.9rem;
+            padding: 12px 35px 12px 14px;
+            font-size: 0.85rem;
             font-family: inherit;
-            border-radius: 6px;
+            font-weight: 600;
+            border-radius: 8px;
             cursor: pointer;
             transition: border-color 0.2s ease;
+            appearance: none;
+            -webkit-appearance: none;
         }
 
-        .filter-group select:focus,
-        .filter-group input:focus {
+        .filter-dropdown::after {
+            content: '';
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #666;
+            pointer-events: none;
+        }
+
+        .filter-dropdown select:focus {
             outline: none;
             border-color: var(--bacon-orange);
         }
 
-        .filter-group select option {
+        .filter-dropdown select option {
             background: #0a0a0a;
+            padding: 10px;
         }
 
         .results-count {
             text-align: center;
-            padding: 15px;
-            color: #666;
-            font-size: 0.85rem;
-            font-weight: 700;
+            padding: 12px;
+            color: #555;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
         .results-count span {
             color: var(--bacon-orange);
+            font-weight: 800;
         }
 
         /* Enhanced Card Buttons */
@@ -154,41 +227,42 @@
 
         .mm-btn {
             background: #1a1a1a !important;
-            border: 1px solid #444 !important;
+            border: 1px solid #333 !important;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 14px 20px;
-            font-size: 0.75rem;
+            padding: 12px 16px;
+            font-size: 0.7rem;
             text-decoration: none;
-            color: #fff;
+            color: #999;
             font-weight: 800;
             text-transform: uppercase;
-            border-radius: 4px;
+            border-radius: 6px;
             transition: all 0.2s ease;
         }
 
         .mm-btn:hover {
             background: #222 !important;
             border-color: var(--bacon-orange) !important;
+            color: #fff;
         }
 
         .mm-btn svg {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
         }
 
         .inquiry-btn {
             background: transparent;
             border: 2px solid var(--bacon-red);
             color: #fff;
-            padding: 14px 20px;
-            font-size: 0.8rem;
+            padding: 12px 16px;
+            font-size: 0.75rem;
             font-weight: 800;
             text-transform: uppercase;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 6px;
             transition: all 0.2s ease;
             font-family: inherit;
         }
@@ -211,6 +285,15 @@
 
         .no-results p {
             color: #666;
+        }
+
+        @media (max-width: 600px) {
+            .filter-dropdowns {
+                flex-direction: column;
+            }
+            .filter-dropdown {
+                max-width: none;
+            }
         }
     </style>
 </head>
@@ -242,18 +325,29 @@
 
         <!-- Filter Section -->
         <section class="filter-section" aria-label="Filter inventory">
-            <div class="filter-header">
-                <h2>Filter Animals</h2>
-                <button class="filter-reset" onclick="resetFilters()">Reset Filters</button>
+            <div class="filter-top-row">
+                <h2>Filter</h2>
+                <button class="filter-reset" onclick="resetFilters()">Clear All</button>
             </div>
-            <div class="filter-grid">
-                <div class="filter-group">
+
+            <!-- Quick Filter Pills -->
+            <div class="filter-pills" id="filter-pills">
+                <button class="filter-pill active" data-filter="all" onclick="quickFilter('all')">All</button>
+                <button class="filter-pill" data-filter="male" onclick="quickFilter('male')">Males</button>
+                <button class="filter-pill" data-filter="female" onclick="quickFilter('female')">Females</button>
+                <button class="filter-pill" data-filter="unsexed" onclick="quickFilter('unsexed')">Unsexed</button>
+                <button class="filter-pill" data-filter="under300" onclick="quickFilter('under300')">Under $300</button>
+            </div>
+
+            <!-- Dropdown Filters -->
+            <div class="filter-dropdowns">
+                <div class="filter-dropdown">
                     <label for="filter-morph">Morph</label>
                     <select id="filter-morph" onchange="applyFilters()">
                         <option value="">All Morphs</option>
                     </select>
                 </div>
-                <div class="filter-group">
+                <div class="filter-dropdown">
                     <label for="filter-sex">Sex</label>
                     <select id="filter-sex" onchange="applyFilters()">
                         <option value="">All</option>
@@ -262,22 +356,22 @@
                         <option value="Unsexed">Unsexed</option>
                     </select>
                 </div>
-                <div class="filter-group">
-                    <label for="filter-price">Price Range</label>
+                <div class="filter-dropdown">
+                    <label for="filter-price">Price</label>
                     <select id="filter-price" onchange="applyFilters()">
-                        <option value="">Any Price</option>
+                        <option value="">Any</option>
                         <option value="0-200">Under $200</option>
                         <option value="200-300">$200 - $300</option>
                         <option value="300-400">$300 - $400</option>
                         <option value="400+">$400+</option>
                     </select>
                 </div>
-                <div class="filter-group">
-                    <label for="filter-sort">Sort By</label>
+                <div class="filter-dropdown">
+                    <label for="filter-sort">Sort</label>
                     <select id="filter-sort" onchange="applyFilters()">
-                        <option value="newest">Newest First</option>
-                        <option value="price-low">Price: Low to High</option>
-                        <option value="price-high">Price: High to Low</option>
+                        <option value="newest">Newest</option>
+                        <option value="price-low">Price: Low-High</option>
+                        <option value="price-high">Price: High-Low</option>
                         <option value="name">Name A-Z</option>
                     </select>
                 </div>
@@ -415,7 +509,48 @@
                 document.getElementById('filter-sex').value = '';
                 document.getElementById('filter-price').value = '';
                 document.getElementById('filter-sort').value = 'newest';
+                // Reset pills
+                document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+                document.querySelector('.filter-pill[data-filter="all"]').classList.add('active');
                 renderAnimals(availableAnimals);
+            };
+
+            // Quick filter function for pills
+            window.quickFilter = function(filter) {
+                // Update pill states
+                document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+                document.querySelector(`.filter-pill[data-filter="${filter}"]`).classList.add('active');
+
+                // Reset dropdowns
+                document.getElementById('filter-morph').value = '';
+                document.getElementById('filter-price').value = '';
+                document.getElementById('filter-sex').value = '';
+
+                // Apply quick filter
+                let filtered = [...availableAnimals];
+
+                switch(filter) {
+                    case 'male':
+                        document.getElementById('filter-sex').value = 'Male';
+                        filtered = filtered.filter(a => a.sex === 'Male');
+                        break;
+                    case 'female':
+                        document.getElementById('filter-sex').value = 'Female';
+                        filtered = filtered.filter(a => a.sex === 'Female');
+                        break;
+                    case 'unsexed':
+                        document.getElementById('filter-sex').value = 'Unsexed';
+                        filtered = filtered.filter(a => a.sex === 'Unsexed');
+                        break;
+                    case 'under300':
+                        filtered = filtered.filter(a => parseFloat(a.price.replace('$', '')) < 300);
+                        break;
+                    case 'all':
+                    default:
+                        break;
+                }
+
+                renderAnimals(filtered);
             };
 
             // Render animals function
