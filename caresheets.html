@@ -34,242 +34,6 @@
 
     <!-- Theme color -->
     <meta name="theme-color" content="#0a0a0a">
-
-    <style>
-        .care-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
-            gap: 30px;
-            padding: 60px 0;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .care-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-card);
-            border-radius: 12px;
-            padding: 40px;
-            text-align: center;
-            transition: transform var(--transition-normal), border-color var(--transition-normal);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .care-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--bacon-red);
-        }
-
-        .care-card-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 25px;
-            background: linear-gradient(135deg, rgba(255, 0, 43, 0.1), rgba(255, 145, 0, 0.1));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .care-card-icon svg {
-            width: 40px;
-            height: 40px;
-            fill: url(#bacon-gradient);
-        }
-
-        .care-card h2 {
-            font-size: 1.8rem;
-            font-weight: 900;
-            margin: 0 0 15px 0;
-            text-transform: uppercase;
-        }
-
-        .care-card .species {
-            color: #888;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-
-        .care-card p {
-            color: #ccc;
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .care-card ul {
-            text-align: left;
-            color: #999;
-            font-size: 0.9rem;
-            line-height: 2;
-            padding-left: 20px;
-            margin-bottom: 30px;
-        }
-
-        .care-card ul li::marker {
-            color: var(--bacon-orange);
-        }
-
-        .download-btn {
-            display: inline-block;
-            padding: 16px 35px;
-            background: var(--bacon-gradient);
-            color: white;
-            text-decoration: none;
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            transition: transform 0.2s ease, filter 0.2s ease;
-            border-radius: 4px;
-            border: none;
-            cursor: pointer;
-            font-family: inherit;
-        }
-
-        .download-btn:hover,
-        .download-btn:focus {
-            transform: scale(1.02);
-            filter: brightness(1.1);
-            outline: none;
-        }
-
-        .download-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-            filter: none;
-        }
-
-        .coming-soon-badge {
-            position: absolute;
-            top: 20px;
-            right: -35px;
-            background: #333;
-            color: #888;
-            padding: 8px 40px;
-            font-size: 0.7rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            transform: rotate(45deg);
-        }
-
-        .care-topics {
-            max-width: 900px;
-            margin: 60px auto 0;
-            padding: 50px;
-            background: #111;
-            border-radius: 12px;
-            border: 1px solid #222;
-        }
-
-        .care-topics h2 {
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 40px;
-        }
-
-        .topics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 25px;
-        }
-
-        .topic-item {
-            background: #0a0a0a;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #222;
-        }
-
-        .topic-item h3 {
-            font-size: 1rem;
-            font-weight: 800;
-            margin: 0 0 10px;
-            color: var(--bacon-orange);
-        }
-
-        .topic-item p {
-            font-size: 0.85rem;
-            color: #888;
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        .email-signup-section {
-            max-width: 600px;
-            margin: 80px auto 0;
-            padding: 50px;
-            background: linear-gradient(135deg, rgba(255, 0, 43, 0.05), rgba(255, 145, 0, 0.05));
-            border: 1px solid #333;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .email-signup-section h2 {
-            font-size: 1.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin: 0 0 15px;
-        }
-
-        .email-signup-section p {
-            color: #888;
-            margin-bottom: 30px;
-        }
-
-        .email-form {
-            display: flex;
-            gap: 10px;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .email-form input {
-            flex: 1;
-            padding: 14px 20px;
-            background: #0a0a0a;
-            border: 1px solid #333;
-            border-radius: 4px;
-            color: #fff;
-            font-size: 1rem;
-            font-family: inherit;
-        }
-
-        .email-form input:focus {
-            outline: none;
-            border-color: var(--bacon-orange);
-        }
-
-        .email-form button {
-            padding: 14px 25px;
-            background: var(--bacon-gradient);
-            border: none;
-            color: white;
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            cursor: pointer;
-            border-radius: 4px;
-            font-family: inherit;
-            transition: filter 0.2s ease;
-        }
-
-        .email-form button:hover {
-            filter: brightness(1.1);
-        }
-
-        @media (max-width: 500px) {
-            .email-form {
-                flex-direction: column;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- SVG Gradient Definition -->
@@ -358,30 +122,22 @@
         </div>
 
         <!-- New Owner Resources Section -->
-        <section class="new-owner-resources" style="max-width: 900px; margin: 40px auto 0;">
-            <h2 style="text-align: center; font-size: 1.8rem; font-weight: 900; text-transform: uppercase; margin-bottom: 15px;">
-                New Owner <span class="bacon-text">Resources</span>
-            </h2>
-            <p style="text-align: center; color: #888; margin-bottom: 40px; font-size: 0.95rem;">
-                Helpful documents to ensure a smooth transition for your new reptile
-            </p>
+        <section class="new-owner-resources">
+            <h2>New Owner <span class="bacon-text">Resources</span></h2>
+            <p class="section-subtitle">Helpful documents to ensure a smooth transition for your new reptile</p>
 
-            <div class="resources-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            <div class="resources-grid">
                 <!-- Transition Guide -->
-                <div class="resource-card" style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 25px; display: flex; align-items: flex-start; gap: 15px; transition: border-color 0.3s ease;">
-                    <div class="resource-icon" style="width: 45px; height: 45px; background: linear-gradient(135deg, rgba(255, 0, 43, 0.15), rgba(255, 145, 0, 0.15)); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <div class="resource-card">
+                    <div class="resource-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM9 17H7V10H9V17ZM13 17H11V7H13V17ZM17 17H15V13H17V17Z" fill="url(#bacon-gradient)"/>
                         </svg>
                     </div>
-                    <div style="flex: 1;">
-                        <h3 style="font-size: 1rem; font-weight: 800; margin: 0 0 8px; color: #fff;">Transition Guide</h3>
-                        <p style="font-size: 0.85rem; color: #888; margin: 0 0 15px; line-height: 1.5;">Step-by-step guide for bringing your new reptile home safely.</p>
-                        <a href="documents/new-owner/transition-guide.pdf"
-                           class="resource-download-btn"
-                           download
-                           onclick="trackDocDownload('transition_guide')"
-                           style="display: inline-flex; align-items: center; gap: 6px; color: var(--bacon-orange); font-size: 0.8rem; font-weight: 700; text-decoration: none; text-transform: uppercase;">
+                    <div class="resource-content">
+                        <h3>Transition Guide</h3>
+                        <p>Step-by-step guide for bringing your new reptile home safely.</p>
+                        <a href="documents/new-owner/transition-guide.pdf" class="resource-download-btn" download onclick="trackDocDownload('transition_guide')">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -391,20 +147,16 @@
                 </div>
 
                 <!-- Feeding Schedule -->
-                <div class="resource-card" style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 25px; display: flex; align-items: flex-start; gap: 15px; transition: border-color 0.3s ease;">
-                    <div class="resource-icon" style="width: 45px; height: 45px; background: linear-gradient(135deg, rgba(255, 0, 43, 0.15), rgba(255, 145, 0, 0.15)); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <div class="resource-card">
+                    <div class="resource-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M19 3H14.82C14.4 1.84 13.3 1 12 1C10.7 1 9.6 1.84 9.18 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM12 3C12.55 3 13 3.45 13 4C13 4.55 12.55 5 12 5C11.45 5 11 4.55 11 4C11 3.45 11.45 3 12 3ZM10 17L6 13L7.41 11.59L10 14.17L16.59 7.58L18 9L10 17Z" fill="url(#bacon-gradient)"/>
                         </svg>
                     </div>
-                    <div style="flex: 1;">
-                        <h3 style="font-size: 1rem; font-weight: 800; margin: 0 0 8px; color: #fff;">Feeding Schedule</h3>
-                        <p style="font-size: 0.85rem; color: #888; margin: 0 0 15px; line-height: 1.5;">Printable feeding schedule template to track meals.</p>
-                        <a href="documents/new-owner/feeding-schedule.pdf"
-                           class="resource-download-btn"
-                           download
-                           onclick="trackDocDownload('feeding_schedule')"
-                           style="display: inline-flex; align-items: center; gap: 6px; color: var(--bacon-orange); font-size: 0.8rem; font-weight: 700; text-decoration: none; text-transform: uppercase;">
+                    <div class="resource-content">
+                        <h3>Feeding Schedule</h3>
+                        <p>Printable feeding schedule template to track meals.</p>
+                        <a href="documents/new-owner/feeding-schedule.pdf" class="resource-download-btn" download onclick="trackDocDownload('feeding_schedule')">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -414,20 +166,16 @@
                 </div>
 
                 <!-- Health Checklist -->
-                <div class="resource-card" style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 25px; display: flex; align-items: flex-start; gap: 15px; transition: border-color 0.3s ease;">
-                    <div class="resource-icon" style="width: 45px; height: 45px; background: linear-gradient(135deg, rgba(255, 0, 43, 0.15), rgba(255, 145, 0, 0.15)); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <div class="resource-card">
+                    <div class="resource-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z" fill="url(#bacon-gradient)"/>
                         </svg>
                     </div>
-                    <div style="flex: 1;">
-                        <h3 style="font-size: 1rem; font-weight: 800; margin: 0 0 8px; color: #fff;">Health Checklist</h3>
-                        <p style="font-size: 0.85rem; color: #888; margin: 0 0 15px; line-height: 1.5;">Weekly health monitoring checklist for your reptile.</p>
-                        <a href="documents/new-owner/health-checklist.pdf"
-                           class="resource-download-btn"
-                           download
-                           onclick="trackDocDownload('health_checklist')"
-                           style="display: inline-flex; align-items: center; gap: 6px; color: var(--bacon-orange); font-size: 0.8rem; font-weight: 700; text-decoration: none; text-transform: uppercase;">
+                    <div class="resource-content">
+                        <h3>Health Checklist</h3>
+                        <p>Weekly health monitoring checklist for your reptile.</p>
+                        <a href="documents/new-owner/health-checklist.pdf" class="resource-download-btn" download onclick="trackDocDownload('health_checklist')">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                             </svg>
@@ -437,9 +185,7 @@
                 </div>
             </div>
 
-            <p style="text-align: center; color: #555; font-size: 0.8rem; margin-top: 25px; font-style: italic;">
-                Note: PDF documents will be available for download once uploaded to the documents folder.
-            </p>
+            <p class="resources-note">Note: PDF documents will be available for download once uploaded to the documents folder.</p>
         </section>
 
         <!-- What's Covered Section -->
