@@ -740,3 +740,822 @@ footer {
     opacity: 0.6;
     pointer-events: none;
 }
+
+/* ==============================================
+   18. FILTER SECTION (Available Page)
+   ============================================== */
+.filter-section {
+    background: linear-gradient(135deg, rgba(255, 0, 43, 0.03), rgba(255, 145, 0, 0.03));
+    border: 1px solid #1a1a1a;
+    border-radius: 16px;
+    padding: 20px 25px;
+    margin-bottom: 30px;
+}
+
+.filter-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.filter-top-row h2 {
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-top-row h2::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--bacon-gradient);
+    border-radius: 50%;
+}
+
+.filter-reset {
+    background: transparent;
+    border: none;
+    color: #555;
+    padding: 6px 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    font-family: inherit;
+}
+
+.filter-reset:hover {
+    color: var(--bacon-orange);
+}
+
+/* Quick Filter Pills */
+.filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.filter-pill {
+    background: #0d0d0d;
+    border: 1px solid #222;
+    color: #888;
+    padding: 8px 16px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.filter-pill:hover {
+    border-color: #444;
+    color: #fff;
+}
+
+.filter-pill.active {
+    background: var(--bacon-gradient);
+    border-color: transparent;
+    color: white;
+}
+
+/* Dropdown Filters */
+.filter-dropdowns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.filter-dropdown {
+    position: relative;
+    flex: 1;
+    min-width: 140px;
+    max-width: 200px;
+}
+
+.filter-dropdown label {
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    background: #0a0a0a;
+    padding: 0 6px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #555;
+    letter-spacing: 0.5px;
+    z-index: 1;
+}
+
+.filter-dropdown select {
+    width: 100%;
+    background: #0a0a0a;
+    border: 1px solid #222;
+    color: #fff;
+    padding: 12px 35px 12px 14px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.filter-dropdown::after {
+    content: '';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #666;
+    pointer-events: none;
+}
+
+.filter-dropdown select:focus {
+    outline: none;
+    border-color: var(--bacon-orange);
+}
+
+.filter-dropdown select option {
+    background: #0a0a0a;
+    padding: 10px;
+}
+
+.results-count {
+    text-align: center;
+    padding: 12px;
+    color: #555;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.results-count span {
+    color: var(--bacon-orange);
+    font-weight: 800;
+}
+
+/* Enhanced Card Buttons */
+.card-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.btn-row {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-row > * {
+    flex: 1;
+}
+
+.mm-btn {
+    background: #1a1a1a !important;
+    border: 1px solid #333 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 16px;
+    font-size: 0.7rem;
+    text-decoration: none;
+    color: #999;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.mm-btn:hover {
+    background: #222 !important;
+    border-color: var(--bacon-orange) !important;
+    color: #fff;
+}
+
+.mm-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+.inquiry-btn {
+    background: transparent;
+    border: 2px solid var(--bacon-red);
+    color: #fff;
+    padding: 12px 16px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.inquiry-btn:hover {
+    background: var(--bacon-red);
+}
+
+/* No results message */
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.no-results h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.no-results p {
+    color: #666;
+}
+
+@media (max-width: 600px) {
+    .filter-dropdowns {
+        flex-direction: column;
+    }
+    .filter-dropdown {
+        max-width: none;
+    }
+}
+
+/* ==============================================
+   19. CARE PAGE STYLES
+   ============================================== */
+.care-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+    gap: 30px;
+    padding: 60px 0;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.care-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-card);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    transition: transform var(--transition-normal), border-color var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.care-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--bacon-red);
+}
+
+.care-card-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 25px;
+    background: linear-gradient(135deg, rgba(255, 0, 43, 0.1), rgba(255, 145, 0, 0.1));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.care-card-icon svg {
+    width: 40px;
+    height: 40px;
+    fill: url(#bacon-gradient);
+}
+
+.care-card h2 {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin: 0 0 15px 0;
+    text-transform: uppercase;
+}
+
+.care-card .species {
+    color: #888;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.care-card p {
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.care-card ul {
+    text-align: left;
+    color: #999;
+    font-size: 0.9rem;
+    line-height: 2;
+    padding-left: 20px;
+    margin-bottom: 30px;
+}
+
+.care-card ul li::marker {
+    color: var(--bacon-orange);
+}
+
+.download-btn {
+    display: inline-block;
+    padding: 16px 35px;
+    background: var(--bacon-gradient);
+    color: white;
+    text-decoration: none;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    transition: transform 0.2s ease, filter 0.2s ease;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.download-btn:hover,
+.download-btn:focus {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+    outline: none;
+}
+
+.download-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    filter: none;
+}
+
+.coming-soon-badge {
+    position: absolute;
+    top: 20px;
+    right: -35px;
+    background: #333;
+    color: #888;
+    padding: 8px 40px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    transform: rotate(45deg);
+}
+
+/* Care Topics Section */
+.care-topics {
+    max-width: 900px;
+    margin: 60px auto 0;
+    padding: 50px;
+    background: #111;
+    border-radius: 12px;
+    border: 1px solid #222;
+}
+
+.care-topics h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+
+.topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.topic-item {
+    background: #0a0a0a;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #222;
+}
+
+.topic-item h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    margin: 0 0 10px;
+    color: var(--bacon-orange);
+}
+
+.topic-item p {
+    font-size: 0.85rem;
+    color: #888;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Email Signup Section */
+.email-signup-section {
+    max-width: 600px;
+    margin: 80px auto 0;
+    padding: 50px;
+    background: linear-gradient(135deg, rgba(255, 0, 43, 0.05), rgba(255, 145, 0, 0.05));
+    border: 1px solid #333;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.email-signup-section h2 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0 0 15px;
+}
+
+.email-signup-section p {
+    color: #888;
+    margin-bottom: 30px;
+}
+
+.email-form {
+    display: flex;
+    gap: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.email-form input {
+    flex: 1;
+    padding: 14px 20px;
+    background: #0a0a0a;
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.email-form input:focus {
+    outline: none;
+    border-color: var(--bacon-orange);
+}
+
+.email-form button {
+    padding: 14px 25px;
+    background: var(--bacon-gradient);
+    border: none;
+    color: white;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-family: inherit;
+    transition: filter 0.2s ease;
+}
+
+.email-form button:hover {
+    filter: brightness(1.1);
+}
+
+@media (max-width: 500px) {
+    .email-form {
+        flex-direction: column;
+    }
+}
+
+/* ==============================================
+   20. FAQ SECTION (Contact Page)
+   ============================================== */
+.faq-section {
+    max-width: 900px;
+    margin: 80px auto 0;
+    padding: 50px;
+    background: #0d0d0d;
+    border-radius: 12px;
+    border: 1px solid #1a1a1a;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.faq-header h2 {
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+}
+
+.faq-header p {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.faq-categories {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.faq-category-btn {
+    background: transparent;
+    border: 1px solid #333;
+    color: #888;
+    padding: 10px 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.faq-category-btn:hover {
+    border-color: var(--bacon-orange);
+    color: var(--bacon-orange);
+}
+
+.faq-category-btn.active {
+    background: var(--bacon-gradient);
+    border-color: transparent;
+    color: white;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+.faq-item:hover {
+    border-color: #333;
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #fff;
+    padding: 20px 25px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: inherit;
+    transition: color 0.2s ease;
+}
+
+.faq-question:hover {
+    color: var(--bacon-orange);
+}
+
+.faq-question .icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    color: var(--bacon-orange);
+}
+
+.faq-item.open .faq-question .icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.faq-answer-content {
+    padding: 0 25px 20px;
+    color: #999;
+    line-height: 1.7;
+}
+
+.faq-item.open .faq-answer {
+    max-height: 500px;
+}
+
+/* Contact Methods Grid */
+.contact-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 60px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-method {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.contact-method:hover {
+    border-color: var(--bacon-orange);
+    transform: translateY(-5px);
+}
+
+.contact-method-icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 15px;
+    background: linear-gradient(135deg, rgba(255, 0, 43, 0.1), rgba(255, 145, 0, 0.1));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-method-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--bacon-orange);
+}
+
+.contact-method h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+}
+
+.contact-method p {
+    color: #888;
+    font-size: 0.85rem;
+    margin: 0 0 15px;
+}
+
+.contact-method a {
+    color: var(--bacon-orange);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+}
+
+.contact-method a:hover {
+    color: #fff;
+}
+
+/* ==============================================
+   21. NEW OWNER RESOURCES
+   ============================================== */
+.new-owner-resources {
+    max-width: 900px;
+    margin: 40px auto 0;
+}
+
+.new-owner-resources h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.resource-card {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 25px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    transition: border-color 0.3s ease;
+}
+
+.resource-card:hover {
+    border-color: #333;
+}
+
+.resource-icon {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, rgba(255, 0, 43, 0.15), rgba(255, 145, 0, 0.15));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.resource-card h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    margin: 0 0 8px;
+    color: #fff;
+}
+
+.resource-card p {
+    font-size: 0.85rem;
+    color: #888;
+    margin: 0 0 15px;
+    line-height: 1.5;
+}
+
+.resource-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--bacon-orange);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+.resource-download-btn:hover {
+    color: #fff;
+}
+
+.resource-content {
+    flex: 1;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #888;
+    margin-bottom: 40px;
+    font-size: 0.95rem;
+}
+
+.resources-note {
+    text-align: center;
+    color: #555;
+    font-size: 0.8rem;
+    margin-top: 25px;
+    font-style: italic;
+}
+
+/* ==============================================
+   22. COMMON PAGE ELEMENTS
+   ============================================== */
+/* Footer common styles */
+.footer-content {
+    text-align: center;
+    padding: 80px 0;
+    border-top: 1px solid #111;
+    margin-top: 60px;
+}
+
+.footer-tagline {
+    color: #666;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.footer-copyright {
+    border-top: 1px solid #222;
+    margin-top: 40px;
+    padding-top: 40px;
+    color: #444;
+    font-size: 0.7rem;
+    font-weight: 800;
+}
