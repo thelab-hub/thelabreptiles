@@ -5,15 +5,8 @@
 User-agent: *
 Allow: /
 
-# Block template and admin files from indexing
-Disallow: /Animaltemplate.html
-Disallow: /Collectiontemplate.html
+# Block admin files from indexing
 Disallow: /admin-data.html
-
-# Block old individual animal pages (now using profile.html with query params)
-Disallow: /Artemis.html
-Disallow: /Demeter.html
-Disallow: /Kybele.html
 
 # Sitemap location
 Sitemap: https://thelabreptiles.com/sitemap.xml
