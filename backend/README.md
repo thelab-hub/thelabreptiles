@@ -32,12 +32,50 @@ cp .env.example .env
 
 ### 3. Set Up Google Sheets (Production)
 
+You have multiple options for authenticating with Google Sheets:
+
+#### Option A: Workload Identity Federation (Recommended for Railway)
+
+WIF allows keyless authentication - no JSON credentials file needed!
+
+1. Create a Google Cloud Project and enable Google Sheets API
+2. Create a Workload Identity Pool:
+   ```bash
+   gcloud iam workload-identity-pools create "railway-pool" \
+     --location="global" \
+     --display-name="Railway Pool"
+   ```
+3. Create a provider for Railway:
+   ```bash
+   gcloud iam workload-identity-pools providers create-oidc "railway-provider" \
+     --location="global" \
+     --workload-identity-pool="railway-pool" \
+     --issuer-uri="https://railway.app" \
+     --attribute-mapping="google.subject=assertion.sub"
+   ```
+4. Create a service account and grant access:
+   ```bash
+   gcloud iam service-accounts create sheets-access
+
+   gcloud iam service-accounts add-iam-policy-binding \
+     sheets-access@YOUR_PROJECT.iam.gserviceaccount.com \
+     --role="roles/iam.workloadIdentityUser" \
+     --member="principalSet://iam.googleapis.com/projects/YOUR_PROJECT_NUMBER/locations/global/workloadIdentityPools/railway-pool/*"
+   ```
+5. Share your Google Sheet with the service account email
+6. Set the `GOOGLE_WIF_CONFIG` environment variable with your WIF configuration JSON
+
+#### Option B: Service Account JSON (Simpler Setup)
+
 1. Create a Google Cloud Project
 2. Enable Google Sheets API
 3. Create a service account and download credentials.json
 4. Upload your spreadsheet to Google Drive
 5. Share with service account email (as editor)
 6. Add Sheet ID to .env
+7. Either:
+   - Set `GOOGLE_CREDENTIALS_JSON` env var with the full JSON content, OR
+   - Place credentials.json file in the backend directory
 
 ### 4. Run Locally
 

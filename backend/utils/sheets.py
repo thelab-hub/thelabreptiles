@@ -2,6 +2,12 @@
 Google Sheets Integration Utility
 Handles all database operations via Google Sheets API
 Falls back to local Excel file for development
+
+Supports multiple authentication methods:
+1. Workload Identity Federation (recommended for production)
+2. Service Account JSON file
+3. Service Account JSON in environment variable
+4. Application Default Credentials (ADC)
 """
 
 import os
@@ -12,10 +18,18 @@ from pathlib import Path
 # Try to import Google Sheets libraries
 try:
     import gspread
-    from google.oauth2.service_account import Credentials
+    from google.oauth2.service_account import Credentials as ServiceAccountCredentials
+    from google.auth import default as google_auth_default
     GSPREAD_AVAILABLE = True
 except ImportError:
     GSPREAD_AVAILABLE = False
+
+# Try to import Workload Identity Federation support
+try:
+    from google.auth import identity_pool
+    WIF_AVAILABLE = True
+except ImportError:
+    WIF_AVAILABLE = False
 
 # Try to import pandas for Excel handling
 try:
@@ -52,25 +66,77 @@ class SheetsDB:
             self._load_local_data()
 
     def _connect_google_sheets(self):
-        """Connect to Google Sheets using service account"""
+        """
+        Connect to Google Sheets using various authentication methods.
+
+        Priority order:
+        1. Workload Identity Federation (GOOGLE_WIF_CONFIG env var)
+        2. Service Account JSON in env var (GOOGLE_CREDENTIALS_JSON)
+        3. Service Account file (credentials.json)
+        4. Application Default Credentials (ADC)
+        """
         scopes = [
             'https://www.googleapis.com/auth/spreadsheets',
             'https://www.googleapis.com/auth/drive'
         ]
 
-        # Check for credentials file or environment variable
-        creds_path = os.environ.get('GOOGLE_CREDENTIALS_PATH', 'credentials.json')
-        creds_json = os.environ.get('GOOGLE_CREDENTIALS_JSON')
+        credentials = None
+        auth_method = "unknown"
 
-        if creds_json:
-            # Use credentials from environment variable (for Railway)
-            creds_dict = json.loads(creds_json)
-            credentials = Credentials.from_service_account_info(creds_dict, scopes=scopes)
-        elif os.path.exists(creds_path):
-            # Use credentials file
-            credentials = Credentials.from_service_account_file(creds_path, scopes=scopes)
-        else:
-            raise FileNotFoundError("Google credentials not found")
+        # Method 1: Workload Identity Federation
+        wif_config = os.environ.get('GOOGLE_WIF_CONFIG')
+        if wif_config and WIF_AVAILABLE:
+            try:
+                wif_config_dict = json.loads(wif_config)
+                credentials = identity_pool.Credentials.from_info(
+                    wif_config_dict,
+                    scopes=scopes
+                )
+                auth_method = "Workload Identity Federation"
+                print(f"✓ Authenticated via {auth_method}")
+            except Exception as e:
+                print(f"WIF authentication failed: {e}")
+
+        # Method 2: Service Account JSON in environment variable
+        if not credentials:
+            creds_json = os.environ.get('GOOGLE_CREDENTIALS_JSON')
+            if creds_json:
+                try:
+                    creds_dict = json.loads(creds_json)
+                    credentials = ServiceAccountCredentials.from_service_account_info(
+                        creds_dict,
+                        scopes=scopes
+                    )
+                    auth_method = "Service Account (env var)"
+                    print(f"✓ Authenticated via {auth_method}")
+                except Exception as e:
+                    print(f"Service account JSON auth failed: {e}")
+
+        # Method 3: Service Account file
+        if not credentials:
+            creds_path = os.environ.get('GOOGLE_CREDENTIALS_PATH', 'credentials.json')
+            if os.path.exists(creds_path):
+                try:
+                    credentials = ServiceAccountCredentials.from_service_account_file(
+                        creds_path,
+                        scopes=scopes
+                    )
+                    auth_method = "Service Account (file)"
+                    print(f"✓ Authenticated via {auth_method}")
+                except Exception as e:
+                    print(f"Service account file auth failed: {e}")
+
+        # Method 4: Application Default Credentials (ADC)
+        if not credentials:
+            try:
+                credentials, project = google_auth_default(scopes=scopes)
+                auth_method = "Application Default Credentials"
+                print(f"✓ Authenticated via {auth_method}")
+            except Exception as e:
+                print(f"ADC auth failed: {e}")
+
+        if not credentials:
+            raise RuntimeError("No valid Google credentials found. See README for setup options.")
 
         self.client = gspread.authorize(credentials)
         self.spreadsheet = self.client.open_by_key(os.environ['GOOGLE_SHEET_ID'])
