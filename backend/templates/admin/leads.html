@@ -1,0 +1,87 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Leads{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <h1 class="text-3xl font-black">Sales Pipeline</h1>
+    <p class="text-gray-400 mt-1">Track and manage your leads</p>
+</div>
+
+<!-- Status Legend -->
+<div class="flex flex-wrap gap-4 mb-6">
+    <span class="px-3 py-1 text-sm rounded bg-blue-900 text-blue-300">New Lead</span>
+    <span class="px-3 py-1 text-sm rounded bg-yellow-900 text-yellow-300">Contacted</span>
+    <span class="px-3 py-1 text-sm rounded bg-orange-900 text-orange-300">Negotiating</span>
+    <span class="px-3 py-1 text-sm rounded bg-green-900 text-green-300">Won - Sold</span>
+    <span class="px-3 py-1 text-sm rounded bg-red-900 text-red-300">Lost</span>
+</div>
+
+<!-- Leads Table -->
+<div class="bg-dark-card border border-dark-border rounded-xl overflow-hidden">
+    <table class="w-full">
+        <thead class="bg-dark-border">
+            <tr>
+                <th class="text-left px-6 py-3 text-sm font-bold text-gray-400">Lead ID</th>
+                <th class="text-left px-6 py-3 text-sm font-bold text-gray-400">Date</th>
+                <th class="text-left px-6 py-3 text-sm font-bold text-gray-400">Customer</th>
+                <th class="text-left px-6 py-3 text-sm font-bold text-gray-400">Interest</th>
+                <th class="text-left px-6 py-3 text-sm font-bold text-gray-400">Source</th>
+                <th class="text-left px-6 py-3 text-sm font-bold text-gray-400">Status</th>
+                <th class="text-right px-6 py-3 text-sm font-bold text-gray-400">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-dark-border">
+            {% for lead in leads %}
+            <tr class="hover:bg-dark">
+                <td class="px-6 py-4 font-mono text-sm">{{ lead.Lead_ID }}</td>
+                <td class="px-6 py-4">{{ lead.Date_Received }}</td>
+                <td class="px-6 py-4">
+                    <p class="font-medium">{{ lead.Customer_Name or 'Unknown' }}</p>
+                    <p class="text-sm text-gray-400">{{ lead.Contact_Info or '' }}</p>
+                </td>
+                <td class="px-6 py-4">{{ lead.Animal_Interested_In or 'General' }}</td>
+                <td class="px-6 py-4">
+                    <span class="px-2 py-1 text-xs bg-dark-border rounded">{{ lead.Source or 'Unknown' }}</span>
+                </td>
+                <td class="px-6 py-4">
+                    <span class="px-2 py-1 text-xs rounded
+                        {% if lead.Status == 'New Lead' %}bg-blue-900 text-blue-300
+                        {% elif lead.Status == 'Contacted' %}bg-yellow-900 text-yellow-300
+                        {% elif lead.Status == 'Negotiating' %}bg-orange-900 text-orange-300
+                        {% elif lead.Status == 'Won - Sold' %}bg-green-900 text-green-300
+                        {% elif lead.Status == 'Lost' %}bg-red-900 text-red-300
+                        {% else %}bg-gray-800 text-gray-400{% endif %}">
+                        {{ lead.Status or 'Unknown' }}
+                    </span>
+                </td>
+                <td class="px-6 py-4 text-right">
+                    <div class="flex justify-end gap-2">
+                        {% if lead.Status not in ['Won - Sold', 'Lost'] %}
+                            <form method="POST" action="{{ url_for('admin.lead_update_status', lead_id=lead.Lead_ID) }}" class="inline">
+                                <input type="hidden" name="status" value="Contacted">
+                                <button type="submit" class="px-2 py-1 text-xs bg-yellow-900 text-yellow-300 rounded hover:bg-yellow-800">Mark Contacted</button>
+                            </form>
+                            <form method="POST" action="{{ url_for('admin.lead_update_status', lead_id=lead.Lead_ID) }}" class="inline">
+                                <input type="hidden" name="status" value="Won - Sold">
+                                <button type="submit" class="px-2 py-1 text-xs bg-green-900 text-green-300 rounded hover:bg-green-800">Won</button>
+                            </form>
+                            <form method="POST" action="{{ url_for('admin.lead_update_status', lead_id=lead.Lead_ID) }}" class="inline">
+                                <input type="hidden" name="status" value="Lost">
+                                <button type="submit" class="px-2 py-1 text-xs bg-red-900 text-red-300 rounded hover:bg-red-800">Lost</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="7" class="px-6 py-12 text-center text-gray-500">
+                    No leads yet. Leads will appear here when customers submit inquiry forms.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

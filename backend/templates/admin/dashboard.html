@@ -1,0 +1,106 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <h1 class="text-3xl font-black">Dashboard</h1>
+    <p class="text-gray-400 mt-1">Welcome back! Here's your business overview.</p>
+</div>
+
+<!-- Quick Stats -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+    <div class="bg-dark-card border border-dark-border rounded-xl p-6">
+        <p class="text-gray-400 text-sm font-medium">Animals in Stock</p>
+        <p class="text-3xl font-black mt-2">{{ metrics.total_animals }}</p>
+    </div>
+    <div class="bg-dark-card border border-dark-border rounded-xl p-6">
+        <p class="text-gray-400 text-sm font-medium">Available for Sale</p>
+        <p class="text-3xl font-black mt-2 bacon-text">{{ metrics.available_for_sale }}</p>
+    </div>
+    <div class="bg-dark-card border border-dark-border rounded-xl p-6">
+        <p class="text-gray-400 text-sm font-medium">Sold This Month</p>
+        <p class="text-3xl font-black mt-2 text-green-400">{{ metrics.sold_this_month }}</p>
+    </div>
+    <div class="bg-dark-card border border-dark-border rounded-xl p-6">
+        <p class="text-gray-400 text-sm font-medium">Revenue This Month</p>
+        <p class="text-3xl font-black mt-2 text-green-400">${{ "%.2f"|format(metrics.revenue_this_month) }}</p>
+    </div>
+    <div class="bg-dark-card border border-dark-border rounded-xl p-6">
+        <p class="text-gray-400 text-sm font-medium">Active Leads</p>
+        <p class="text-3xl font-black mt-2 text-blue-400">{{ metrics.active_leads }}</p>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+    <a href="{{ url_for('admin.animal_new') }}" class="bg-dark-card border border-dark-border rounded-xl p-4 hover:border-bacon-orange transition-colors text-center">
+        <span class="text-2xl">🦎</span>
+        <p class="font-bold mt-2">Add Animal</p>
+    </a>
+    <a href="{{ url_for('admin.sale_new') }}" class="bg-dark-card border border-dark-border rounded-xl p-4 hover:border-bacon-orange transition-colors text-center">
+        <span class="text-2xl">💰</span>
+        <p class="font-bold mt-2">Record Sale</p>
+    </a>
+    <a href="{{ url_for('admin.expense_new') }}" class="bg-dark-card border border-dark-border rounded-xl p-4 hover:border-bacon-orange transition-colors text-center">
+        <span class="text-2xl">📝</span>
+        <p class="font-bold mt-2">Add Expense</p>
+    </a>
+    <a href="{{ url_for('admin.reports') }}" class="bg-dark-card border border-dark-border rounded-xl p-4 hover:border-bacon-orange transition-colors text-center">
+        <span class="text-2xl">📊</span>
+        <p class="font-bold mt-2">View Reports</p>
+    </a>
+</div>
+
+<!-- Recent Activity -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Recent Sales -->
+    <div class="bg-dark-card border border-dark-border rounded-xl p-6">
+        <h2 class="text-xl font-bold mb-4">Recent Sales</h2>
+        {% if metrics.recent_sales %}
+            <div class="space-y-3">
+                {% for sale in metrics.recent_sales %}
+                    <div class="flex justify-between items-center p-3 bg-dark rounded-lg">
+                        <div>
+                            <p class="font-medium">{{ sale.Morph or 'Unknown' }}</p>
+                            <p class="text-sm text-gray-400">{{ sale.Sale_Date }} &middot; {{ sale.Buyer_Name or 'Unknown' }}</p>
+                        </div>
+                        <p class="font-bold text-green-400">${{ sale.Net_Revenue or sale.Sale_Price or 0 }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-gray-500">No recent sales</p>
+        {% endif %}
+        <a href="{{ url_for('admin.sales_list') }}" class="block mt-4 text-bacon-orange text-sm hover:underline">View all sales &rarr;</a>
+    </div>
+
+    <!-- Recent Leads -->
+    <div class="bg-dark-card border border-dark-border rounded-xl p-6">
+        <h2 class="text-xl font-bold mb-4">Recent Leads</h2>
+        {% if metrics.recent_leads %}
+            <div class="space-y-3">
+                {% for lead in metrics.recent_leads %}
+                    <div class="flex justify-between items-center p-3 bg-dark rounded-lg">
+                        <div>
+                            <p class="font-medium">{{ lead.Customer_Name or 'Unknown' }}</p>
+                            <p class="text-sm text-gray-400">{{ lead.Animal_Interested_In or 'General' }}</p>
+                        </div>
+                        <span class="px-2 py-1 text-xs rounded
+                            {% if lead.Status == 'New Lead' %}bg-blue-900 text-blue-300
+                            {% elif lead.Status == 'Contacted' %}bg-yellow-900 text-yellow-300
+                            {% elif lead.Status == 'Negotiating' %}bg-orange-900 text-orange-300
+                            {% elif lead.Status == 'Won - Sold' %}bg-green-900 text-green-300
+                            {% else %}bg-gray-800 text-gray-400{% endif %}">
+                            {{ lead.Status or 'Unknown' }}
+                        </span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-gray-500">No recent leads</p>
+        {% endif %}
+        <a href="{{ url_for('admin.leads_list') }}" class="block mt-4 text-bacon-orange text-sm hover:underline">View all leads &rarr;</a>
+    </div>
+</div>
+{% endblock %}

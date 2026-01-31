@@ -1,0 +1,69 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Expenses{% endblock %}
+
+{% block content %}
+<div class="flex justify-between items-center mb-8">
+    <div>
+        <h1 class="text-3xl font-black">Expenses</h1>
+        <p class="text-gray-400 mt-1">Track all business expenses</p>
+    </div>
+    <a href="{{ url_for('admin.expense_new') }}" class="bacon-gradient px-6 py-3 rounded-lg font-bold hover:opacity-90">
+        + Add Expense
+    </a>
+</div>
+
+<!-- Expenses Table -->
+<div class="bg-dark-card border border-dark-border rounded-xl overflow-hidden">
+    <table class="w-full">
+        <thead class="bg-dark-border">
+            <tr>
+                <th class="text-left px-6 py-3 text-sm font-bold text-gray-400">Expense ID</th>
+                <th class="text-left px-6 py-3 text-sm font-bold text-gray-400">Date</th>
+                <th class="text-left px-6 py-3 text-sm font-bold text-gray-400">Category</th>
+                <th class="text-left px-6 py-3 text-sm font-bold text-gray-400">Description</th>
+                <th class="text-left px-6 py-3 text-sm font-bold text-gray-400">Vendor</th>
+                <th class="text-left px-6 py-3 text-sm font-bold text-gray-400">Tax Ded.</th>
+                <th class="text-right px-6 py-3 text-sm font-bold text-gray-400">Amount</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-dark-border">
+            {% for expense in expenses %}
+            <tr class="hover:bg-dark">
+                <td class="px-6 py-4 font-mono text-sm">{{ expense.Expense_ID }}</td>
+                <td class="px-6 py-4">{{ expense.Date }}</td>
+                <td class="px-6 py-4">
+                    <span class="px-2 py-1 text-xs bg-dark-border rounded">{{ expense.Category or 'Other' }}</span>
+                </td>
+                <td class="px-6 py-4">{{ expense.Description or '-' }}</td>
+                <td class="px-6 py-4 text-gray-400">{{ expense.Vendor or '-' }}</td>
+                <td class="px-6 py-4">
+                    {% if expense.Tax_Deductible == 'Yes' %}
+                        <span class="text-green-400">✓</span>
+                    {% elif expense.Tax_Deductible == 'Partial' %}
+                        <span class="text-yellow-400">~</span>
+                    {% else %}
+                        <span class="text-gray-600">-</span>
+                    {% endif %}
+                </td>
+                <td class="px-6 py-4 text-right font-bold text-red-400">${{ "%.2f"|format(expense.Amount|float) if expense.Amount else '-' }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="7" class="px-6 py-12 text-center text-gray-500">
+                    No expenses recorded yet. <a href="{{ url_for('admin.expense_new') }}" class="text-bacon-orange hover:underline">Add one?</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% if expenses %}
+<div class="mt-4 text-right">
+    <p class="text-gray-400">
+        Total Expenses: <span class="text-red-400 font-bold">${{ "%.2f"|format(expenses|sum(attribute='Amount')|float) }}</span>
+    </p>
+</div>
+{% endif %}
+{% endblock %}
