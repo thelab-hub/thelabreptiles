@@ -6,7 +6,12 @@
  * Replace the placeholder values with your actual tracking IDs
  */
 
-
+const AnalyticsConfig = {
+    GA4_MEASUREMENT_ID: 'G-45TTT09VBL',
+    META_PIXEL_ID: 'YOUR_META_PIXEL_ID_HERE',
+    ENABLED: true,
+    DEBUG: false
+};
 
 const GoogleAnalytics = {
     initialized: false,
