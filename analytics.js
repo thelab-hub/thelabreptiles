@@ -6,23 +6,8 @@
  * Replace the placeholder values with your actual tracking IDs
  */
 
-const AnalyticsConfig = {
-    // Google Analytics 4 Measurement ID
-    GA4_MEASUREMENT_ID: 'G-45TTT09VBL',
 
-    // Meta (Facebook) Pixel ID
-    META_PIXEL_ID: 'YOUR_META_PIXEL_ID_HERE',
 
-    // Enable/disable tracking (useful for development)
-    ENABLED: true,
-
-    // Debug mode - logs events to console
-    DEBUG: false
-};
-
-/**
- * Google Analytics 4 Integration
- */
 const GoogleAnalytics = {
     initialized: false,
 
