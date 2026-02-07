@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Sold Archive | The Lab Reptiles - Past Placements</title>
+    <meta name="title" content="Sold Archive | The Lab Reptiles">
+    <meta name="description" content="Browse our archive of previously sold Gargoyle Geckos and Ball Pythons. See the quality genetics and healthy animals that have found new homes through The Lab Reptiles.">
+    <meta name="keywords" content="Gargoyle Gecko breeder, sold reptiles, Bacon Line Gargoyle Gecko, reptile breeder track record, The Lab Reptiles">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://thelabreptiles.com/sold.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thelabreptiles.com/sold.html">
+    <meta property="og:title" content="Sold Archive | The Lab Reptiles">
+    <meta property="og:description" content="See the quality genetics placed by The Lab Reptiles.">
+    <meta property="og:image" content="https://thelabreptiles.com/images/breeders/Demeter1.jpg">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#0a0a0a">
+</head>
+<body>
+    <!-- Skip to main content -->
+    <a href="#main-content" class="skip-to-main">Skip to main content</a>
+
+    <header role="banner">
+        <div class="container">
+            <nav role="navigation" aria-label="Main navigation">
+                <div class="logo" aria-label="The Lab Reptiles Home">THE LAB REPTILES</div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="available.html">Available</a>
+                    <a href="collection.html">Collection</a>
+                    <a href="sold.html" aria-current="page">Sold</a>
+                    <a href="caresheets.html">Care</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" class="container" role="main">
+        <div class="page-header">
+            <h1>
+                Sold <span class="bacon-text">Archive</span>
+            </h1>
+            <p style="color: #666; margin-top: 10px; font-size: 0.95rem;">Animals that have found their forever homes</p>
+        </div>
+
+        <!-- Stats -->
+        <div id="sold-stats" style="display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap;"></div>
+
+        <!-- Filter pills for sold -->
+        <div id="sold-filters" style="display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap;"></div>
+
+        <!-- Results Count -->
+        <div class="results-count" id="results-count"></div>
+
+        <!-- Sold grid -->
+        <div class="animal-grid" id="sold-container" role="list" aria-label="Previously sold reptiles">
+            <div class="loading-message" style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #666;">
+                Loading sold archive...
+            </div>
+        </div>
+
+        <!-- CTA to available -->
+        <div id="cta-section" style="text-align: center; padding: 60px 20px; margin-top: 40px; display: none;">
+            <h2 style="font-size: 1.3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 15px;">
+                Interested in <span class="bacon-text">Our Animals?</span>
+            </h2>
+            <p style="color: #666; margin-bottom: 25px;">Check out what's currently available or follow us for upcoming clutches.</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="available.html" class="btn" style="display: inline-block; text-decoration: none; padding: 14px 30px;">Browse Available</a>
+                <a href="https://www.instagram.com/thelabreptiles" target="_blank" rel="noopener noreferrer" class="btn" style="display: inline-block; text-decoration: none; padding: 14px 30px; background: #222; border: 1px solid #444;">Follow on Instagram</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Load scripts -->
+    <script src="inventory.js"></script>
+    <script src="analytics.js"></script>
+
+    <script>
+        (function() {
+            'use strict';
+
+            const container = document.getElementById('sold-container');
+            const resultsCount = document.getElementById('results-count');
+            const statsContainer = document.getElementById('sold-stats');
+            const filtersContainer = document.getElementById('sold-filters');
+            const ctaSection = document.getElementById('cta-section');
+
+            // Remove loading message
+            const loadingMsg = container.querySelector('.loading-message');
+            if (loadingMsg) loadingMsg.remove();
+
+            // Check if inventory data exists
+            if (typeof inventory === 'undefined' || !Array.isArray(inventory)) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <p style="color: #666; font-size: 1.2rem;">No archive data available.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Get sold animals
+            const soldAnimals = inventory.filter(gecko => gecko.sold);
+            let currentFiltered = [...soldAnimals];
+
+            if (soldAnimals.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+                        <p style="color: #666; font-size: 1.2rem;">No sold animals yet.</p>
+                        <p style="color: #999; margin-top: 10px;">Check out our <a href="available.html" style="color: #ff9100;">available inventory</a> for current animals.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Show CTA
+            ctaSection.style.display = 'block';
+
+            // Build stats
+            const morphCounts = {};
+            soldAnimals.forEach(a => {
+                morphCounts[a.name] = (morphCounts[a.name] || 0) + 1;
+            });
+
+            statsContainer.innerHTML = `
+                <div style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 12px 20px; text-align: center;">
+                    <div style="font-size: 1.4rem; font-weight: 900; background: linear-gradient(90deg, #ff002b, #ff9100); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">${soldAnimals.length}</div>
+                    <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #666; margin-top: 4px;">Placed</div>
+                </div>
+                <div style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 12px 20px; text-align: center;">
+                    <div style="font-size: 1.4rem; font-weight: 900; background: linear-gradient(90deg, #ff002b, #ff9100); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">${Object.keys(morphCounts).length}</div>
+                    <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #666; margin-top: 4px;">Morphs</div>
+                </div>
+                <div style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 12px 20px; text-align: center;">
+                    <div style="font-size: 1.4rem; font-weight: 900; background: linear-gradient(90deg, #ff002b, #ff9100); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">${[...new Set(soldAnimals.map(a => a.lineage))].length}</div>
+                    <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #666; margin-top: 4px;">Lineages</div>
+                </div>
+            `;
+
+            // Build filter pills
+            const morphNames = Object.keys(morphCounts).sort();
+            filtersContainer.innerHTML = `
+                <button class="filter-pill active" data-filter="all" onclick="filterSold('all', this)">All (${soldAnimals.length})</button>
+                ${morphNames.map(m => `
+                    <button class="filter-pill" data-filter="${m}" onclick="filterSold('${m}', this)">${m} (${morphCounts[m]})</button>
+                `).join('')}
+            `;
+
+            window.filterSold = function(morph, btn) {
+                filtersContainer.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+
+                if (morph === 'all') {
+                    currentFiltered = [...soldAnimals];
+                } else {
+                    currentFiltered = soldAnimals.filter(a => a.name === morph);
+                }
+                renderSold(currentFiltered);
+            };
+
+            // Render sold animals
+            function renderSold(animals) {
+                container.innerHTML = '';
+                resultsCount.innerHTML = `Showing <span>${animals.length}</span> of <span>${soldAnimals.length}</span> placed`;
+
+                animals.forEach(gecko => {
+                    const card = document.createElement('article');
+                    card.className = 'animal-card';
+                    card.setAttribute('role', 'listitem');
+
+                    const sliderHTML = `
+                        <div class="slider-container">
+                            <button class="slider-arrow arrow-left"
+                                    aria-label="Previous image"
+                                    onclick="handleSliderNavigation(this, 'prev')">
+                                &#10094;
+                            </button>
+                            <div class="slider" role="region" aria-label="Images for ${escapeHtml(gecko.name)}">
+                                ${gecko.photos.map((photo, idx) => `
+                                    <img src="${photo}"
+                                         alt="${escapeHtml(gecko.name)} - Image ${idx + 1}"
+                                         loading="lazy">
+                                `).join('')}
+                            </div>
+                            <button class="slider-arrow arrow-right"
+                                    aria-label="Next image"
+                                    onclick="handleSliderNavigation(this, 'next')">
+                                &#10095;
+                            </button>
+                            <span class="status-badge" style="background: rgba(255,0,0,0.9);">Sold</span>
+                        </div>
+                    `;
+
+                    card.innerHTML = `
+                        ${sliderHTML}
+                        <div class="card-details">
+                            <div class="card-header-info">
+                                <h3 class="bacon-text">${escapeHtml(gecko.name)}</h3>
+                                <div class="price" aria-label="Sold price" style="opacity: 0.5;">${escapeHtml(gecko.price)}</div>
+                            </div>
+                            <div class="card-description">
+                                <p><strong>ID:</strong> ${escapeHtml(gecko.id)}</p>
+                                <p><strong>Sex:</strong> ${escapeHtml(gecko.sex)}</p>
+                                <p><strong>Lineage:</strong> ${escapeHtml(gecko.lineage)}</p>
+                                <p><strong>Hatch Date:</strong> ${escapeHtml(gecko.hatch)}</p>
+                            </div>
+                            <div class="card-buttons">
+                                <a href="profile.html?id=${encodeURIComponent(gecko.id)}"
+                                   class="inquire-btn"
+                                   style="text-align: center; text-decoration: none;"
+                                   aria-label="View details for ${escapeHtml(gecko.name)}">
+                                    View Details
+                                </a>
+                            </div>
+                        </div>
+                    `;
+
+                    container.appendChild(card);
+                });
+            }
+
+            function escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            window.handleSliderNavigation = function(button, direction) {
+                const slider = button.parentElement.querySelector('.slider');
+                const scrollAmount = 400;
+                if (direction === 'prev') {
+                    if (slider.scrollLeft <= 0) {
+                        slider.scrollTo({left: slider.scrollWidth, behavior: 'smooth'});
+                    } else {
+                        slider.scrollBy({left: -scrollAmount, behavior: 'smooth'});
+                    }
+                } else if (direction === 'next') {
+                    if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth - 10) {
+                        slider.scrollTo({left: 0, behavior: 'smooth'});
+                    } else {
+                        slider.scrollBy({left: scrollAmount, behavior: 'smooth'});
+                    }
+                }
+            };
+
+            // Initial render
+            renderSold(soldAnimals);
+        })();
+    </script>
+
+    <footer role="contentinfo">
+        <div class="container" style="text-align: center; padding: 80px 0; border-top: 1px solid #111; margin-top: 60px;">
+            <div class="logo" style="margin-bottom: 10px;">THE LAB REPTILES</div>
+            <p style="color: #666; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;">
+                Premium Genetics &middot; Engineered by Nature
+            </p>
+            <div style="border-top: 1px solid #222; margin-top: 40px; padding-top: 40px; color: #444; font-size: 0.7rem; font-weight: 800;">
+                &copy; 2026 THE LAB REPTILES
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
