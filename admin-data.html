@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Entry Tool | The Lab Reptiles Admin</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0a0a0a;
+            --bg-card: #111;
+            --bacon-red: #ff002b;
+            --bacon-orange: #ff9100;
+            --bacon-gradient: linear-gradient(90deg, #ff002b 0%, #ff9100 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-deep);
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .bacon-text {
+            background: var(--bacon-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: transparent;
+            border: 1px solid #333;
+            color: #888;
+            padding: 12px 25px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        .tab:hover {
+            border-color: var(--bacon-orange);
+            color: var(--bacon-orange);
+        }
+
+        .tab.active {
+            background: var(--bacon-gradient);
+            border-color: transparent;
+            color: white;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .section-header h2 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* Existing entries list */
+        .entries-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .entry-card {
+            background: var(--bg-card);
+            border: 1px solid #222;
+            border-radius: 10px;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .entry-card.sold {
+            opacity: 0.5;
+            border-color: #333;
+        }
+
+        .entry-info {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .entry-name {
+            font-weight: 800;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .entry-details {
+            color: #888;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+
+        .entry-details span {
+            margin-right: 15px;
+        }
+
+        .entry-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-left: 8px;
+        }
+
+        .badge-available { background: rgba(0,255,0,0.15); color: #0f0; }
+        .badge-sold { background: rgba(255,0,0,0.15); color: #f44; }
+        .badge-active { background: rgba(0,255,0,0.15); color: #0f0; }
+        .badge-planned { background: rgba(255,145,0,0.15); color: #ff9100; }
+
+        .entry-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: var(--bacon-gradient);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 6px;
+            font-family: inherit;
+            transition: filter 0.2s ease;
+        }
+
+        .btn:hover { filter: brightness(1.1); }
+
+        .btn-sm {
+            padding: 7px 14px;
+            font-size: 0.7rem;
+        }
+
+        .btn-secondary {
+            background: #222;
+            border: 1px solid #444;
+        }
+
+        .btn-secondary:hover {
+            background: #333;
+            filter: none;
+        }
+
+        .btn-danger {
+            background: #331111;
+            border: 1px solid #552222;
+            color: #f44;
+        }
+
+        .btn-danger:hover {
+            background: #442222;
+            filter: none;
+        }
+
+        .btn-success {
+            background: #113311;
+            border: 1px solid #225522;
+            color: #0f0;
+        }
+
+        .btn-success:hover {
+            background: #224422;
+            filter: none;
+        }
+
+        .btn-download {
+            background: linear-gradient(90deg, #0066ff 0%, #00ccff 100%);
+        }
+
+        /* Modal / Edit Form */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .modal-overlay.active { display: block; }
+
+        .modal {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .modal h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #888;
+            letter-spacing: 0.5px;
+        }
+
+        input, select, textarea {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 12px 15px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            border-radius: 6px;
+            transition: border-color 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--bacon-orange);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .photo-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .photo-input-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .photo-input-row input { flex: 1; }
+
+        .photo-input-row span {
+            color: #666;
+            font-size: 0.8rem;
+            min-width: 60px;
+        }
+
+        .helper-text {
+            font-size: 0.75rem;
+            color: #555;
+            margin-top: 4px;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .instructions {
+            background: rgba(255, 145, 0, 0.1);
+            border: 1px solid rgba(255, 145, 0, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .instructions h3 {
+            color: var(--bacon-orange);
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .instructions ol {
+            color: #999;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            padding-left: 20px;
+        }
+
+        .instructions code {
+            background: #000;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            color: #0f0;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            background: var(--bg-card);
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 12px 20px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.4rem;
+            font-weight: 900;
+            background: var(--bacon-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            z-index: 2000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.success { border-color: #0f0; }
+        .toast.error { border-color: #f44; }
+
+        .pairing-year-group {
+            margin-bottom: 25px;
+        }
+
+        .pairing-year-group h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--bacon-orange);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data <span class="bacon-text">Manager</span></h1>
+        <p class="subtitle">Add, edit, and download updated data files for your website</p>
+
+        <div class="instructions">
+            <h3>How It Works</h3>
+            <ol>
+                <li>Your current data is loaded from <code>inventory.js</code>, <code>collection.js</code>, and <code>pairings.js</code></li>
+                <li>Add new animals, edit existing ones, or mark inventory as sold</li>
+                <li>Click <strong>"Download [file].js"</strong> to get the complete updated file</li>
+                <li>Replace the old file in your repo with the downloaded one and push</li>
+            </ol>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('inventory')">Inventory</button>
+            <button class="tab" onclick="switchTab('breeder')">Breeders</button>
+            <button class="tab" onclick="switchTab('pairing')">Pairings</button>
+        </div>
+
+        <!-- INVENTORY TAB -->
+        <div id="inventory-tab" class="form-section active">
+            <div class="stats-bar" id="inv-stats"></div>
+            <div class="section-header">
+                <h2>Available <span class="bacon-text">Inventory</span></h2>
+                <div class="header-buttons">
+                    <button class="btn" onclick="openAddInventory()">+ Add Animal</button>
+                    <button class="btn btn-download" onclick="downloadInventoryJS()">Download inventory.js</button>
+                </div>
+            </div>
+            <div class="entries-list" id="inv-list"></div>
+        </div>
+
+        <!-- BREEDER TAB -->
+        <div id="breeder-tab" class="form-section">
+            <div class="stats-bar" id="br-stats"></div>
+            <div class="section-header">
+                <h2>Breeding <span class="bacon-text">Collection</span></h2>
+                <div class="header-buttons">
+                    <button class="btn" onclick="openAddBreeder()">+ Add Breeder</button>
+                    <button class="btn btn-download" onclick="downloadCollectionJS()">Download collection.js</button>
+                </div>
+            </div>
+            <div class="entries-list" id="br-list"></div>
+        </div>
+
+        <!-- PAIRINGS TAB -->
+        <div id="pairing-tab" class="form-section">
+            <div class="stats-bar" id="pair-stats"></div>
+            <div class="section-header">
+                <h2>Breeding <span class="bacon-text">Pairings</span></h2>
+                <div class="header-buttons">
+                    <button class="btn" onclick="openAddPairing()">+ Add Pairing</button>
+                    <button class="btn btn-download" onclick="downloadPairingsJS()">Download pairings.js</button>
+                </div>
+            </div>
+            <div id="pair-list"></div>
+        </div>
+    </div>
+
+    <!-- MODAL OVERLAY -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="modal-content"></div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Load data files -->
+    <script src="inventory.js"></script>
+    <script src="collection.js"></script>
+    <script src="pairings.js"></script>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // =============================================
+        // WORKING DATA (cloned from loaded globals)
+        // =============================================
+        let invData = JSON.parse(JSON.stringify(inventory));
+        let colData = JSON.parse(JSON.stringify(collection));
+        let pairData = JSON.parse(JSON.stringify(breedingPairings));
+
+        // =============================================
+        // TAB SWITCHING
+        // =============================================
+        window.switchTab = function(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('.form-section').forEach(f => f.classList.remove('active'));
+            document.getElementById(tab + '-tab').classList.add('active');
+        };
+
+        // =============================================
+        // TOAST NOTIFICATION
+        // =============================================
+        function showToast(message, type) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast ' + (type || 'success');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        // =============================================
+        // MODAL
+        // =============================================
+        function openModal(html) {
+            document.getElementById('modal-content').innerHTML = html;
+            document.getElementById('modal-overlay').classList.add('active');
+        }
+
+        window.closeModal = function() {
+            document.getElementById('modal-overlay').classList.remove('active');
+        };
+
+        document.getElementById('modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // =============================================
+        // ESCAPE HTML
+        // =============================================
+        function esc(str) {
+            if (!str) return '';
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // =============================================
+        // FILE DOWNLOAD HELPER
+        // =============================================
+        function downloadFile(filename, content) {
+            const blob = new Blob([content], { type: 'application/javascript' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast(filename + ' downloaded!', 'success');
+        }
+
+        // =============================================
+        //  INVENTORY
+        // =============================================
+        function renderInventory() {
+            const list = document.getElementById('inv-list');
+            const stats = document.getElementById('inv-stats');
+            const available = invData.filter(a => !a.sold);
+            const sold = invData.filter(a => a.sold);
+
+            stats.innerHTML = `
+                <div class="stat"><div class="stat-number">${invData.length}</div><div class="stat-label">Total</div></div>
+                <div class="stat"><div class="stat-number">${available.length}</div><div class="stat-label">Available</div></div>
+                <div class="stat"><div class="stat-number">${sold.length}</div><div class="stat-label">Sold</div></div>
+            `;
+
+            if (invData.length === 0) {
+                list.innerHTML = '<div class="empty-state">No inventory animals. Click "+ Add Animal" to get started.</div>';
+                return;
+            }
+
+            list.innerHTML = invData.map((a, i) => `
+                <div class="entry-card ${a.sold ? 'sold' : ''}">
+                    <div class="entry-info">
+                        <div class="entry-name">
+                            ${esc(a.name)}
+                            <span class="entry-badge ${a.sold ? 'badge-sold' : 'badge-available'}">${a.sold ? 'Sold' : 'Available'}</span>
+                        </div>
+                        <div class="entry-details">
+                            <span>ID: ${esc(a.id)}</span>
+                            <span>${esc(a.sex)}</span>
+                            <span>${esc(a.price)}</span>
+                            <span>${esc(a.weight)}</span>
+                            <span>${esc(a.lineage)}</span>
+                        </div>
+                    </div>
+                    <div class="entry-actions">
+                        <button class="btn btn-sm ${a.sold ? 'btn-success' : 'btn-secondary'}" onclick="toggleSold(${i})">
+                            ${a.sold ? 'Mark Available' : 'Mark Sold'}
+                        </button>
+                        <button class="btn btn-sm btn-secondary" onclick="openEditInventory(${i})">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteInventory(${i})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        window.toggleSold = function(index) {
+            invData[index].sold = !invData[index].sold;
+            renderInventory();
+            showToast(invData[index].sold ? 'Marked as sold' : 'Marked as available');
+        };
+
+        window.deleteInventory = function(index) {
+            if (confirm('Delete "' + invData[index].name + '" (' + invData[index].id + ')?')) {
+                invData.splice(index, 1);
+                renderInventory();
+                showToast('Animal removed');
+            }
+        };
+
+        window.openAddInventory = function() {
+            openInventoryForm(null);
+        };
+
+        window.openEditInventory = function(index) {
+            openInventoryForm(index);
+        };
+
+        function openInventoryForm(index) {
+            const a = index !== null ? invData[index] : null;
+            const title = a ? 'Edit Animal' : 'Add New Animal';
+
+            openModal(`
+                <h3>${title}</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Animal ID *</label>
+                        <input type="text" id="m-inv-id" value="${esc(a ? a.id : '')}" placeholder="e.g., GG-ATH-01-1-25">
+                    </div>
+                    <div class="form-group">
+                        <label>Morph Name *</label>
+                        <input type="text" id="m-inv-name" value="${esc(a ? a.name : '')}" placeholder="e.g., Bacon Quad Stripe">
+                    </div>
+                    <div class="form-group">
+                        <label>Price *</label>
+                        <input type="text" id="m-inv-price" value="${esc(a ? a.price : '')}" placeholder="e.g., $350">
+                    </div>
+                    <div class="form-group">
+                        <label>Weight</label>
+                        <input type="text" id="m-inv-weight" value="${esc(a ? a.weight : '')}" placeholder="e.g., 10g">
+                    </div>
+                    <div class="form-group">
+                        <label>Sex</label>
+                        <select id="m-inv-sex">
+                            <option value="Unsexed" ${a && a.sex === 'Unsexed' ? 'selected' : ''}>Unsexed</option>
+                            <option value="Male" ${a && a.sex === 'Male' ? 'selected' : ''}>Male</option>
+                            <option value="Female" ${a && a.sex === 'Female' ? 'selected' : ''}>Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Hatch Date</label>
+                        <input type="text" id="m-inv-hatch" value="${esc(a ? a.hatch : '')}" placeholder="e.g., July 14, 2025">
+                    </div>
+                    <div class="form-group">
+                        <label>Lineage</label>
+                        <input type="text" id="m-inv-lineage" value="${esc(a ? a.lineage : '')}" placeholder="e.g., Tempest x Athena">
+                    </div>
+                    <div class="form-group">
+                        <label>MorphMarket Link</label>
+                        <input type="text" id="m-inv-mmlink" value="${esc(a ? a.mmLink : '')}" placeholder="https://www.morphmarket.com/...">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Description</label>
+                        <textarea id="m-inv-desc" placeholder="Describe colors, patterns, etc.">${esc(a ? a.description : '')}</textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Photo Paths (3 recommended)</label>
+                        <div class="photo-inputs">
+                            <div class="photo-input-row">
+                                <span>Photo 1:</span>
+                                <input type="text" id="m-inv-p1" value="${esc(a && a.photos[0] ? a.photos[0] : '')}" placeholder="images/inventory/ID-1.jpg">
+                            </div>
+                            <div class="photo-input-row">
+                                <span>Photo 2:</span>
+                                <input type="text" id="m-inv-p2" value="${esc(a && a.photos[1] ? a.photos[1] : '')}" placeholder="images/inventory/ID-2.jpg">
+                            </div>
+                            <div class="photo-input-row">
+                                <span>Photo 3:</span>
+                                <input type="text" id="m-inv-p3" value="${esc(a && a.photos[2] ? a.photos[2] : '')}" placeholder="images/inventory/ID-3.jpg">
+                            </div>
+                        </div>
+                        <span class="helper-text">Place photos in images/inventory/ folder</span>
+                    </div>
+                </div>
+                <div class="button-row">
+                    <button class="btn" onclick="saveInventory(${index})">${a ? 'Save Changes' : 'Add Animal'}</button>
+                    <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                </div>
+            `);
+        }
+
+        window.saveInventory = function(index) {
+            const id = document.getElementById('m-inv-id').value.trim();
+            const name = document.getElementById('m-inv-name').value.trim();
+            const price = document.getElementById('m-inv-price').value.trim();
+
+            if (!id || !name || !price) {
+                showToast('ID, Morph Name, and Price are required', 'error');
+                return;
+            }
+
+            const photos = [
+                document.getElementById('m-inv-p1').value.trim(),
+                document.getElementById('m-inv-p2').value.trim(),
+                document.getElementById('m-inv-p3').value.trim()
+            ].filter(p => p);
+
+            const entry = {
+                id: id,
+                name: name,
+                price: price,
+                weight: document.getElementById('m-inv-weight').value.trim() || 'TBD',
+                sex: document.getElementById('m-inv-sex').value,
+                hatch: document.getElementById('m-inv-hatch').value.trim() || 'TBD',
+                lineage: document.getElementById('m-inv-lineage').value.trim() || 'TBD',
+                description: document.getElementById('m-inv-desc').value.trim(),
+                sold: (index !== null) ? invData[index].sold : false,
+                mmLink: document.getElementById('m-inv-mmlink').value.trim(),
+                photos: photos.length > 0 ? photos : ['images/inventory/placeholder.jpg']
+            };
+
+            if (index !== null) {
+                invData[index] = entry;
+                showToast('Animal updated');
+            } else {
+                invData.push(entry);
+                showToast('Animal added');
+            }
+
+            closeModal();
+            renderInventory();
+        };
+
+        // =============================================
+        //  GENERATE inventory.js CONTENT
+        // =============================================
+        function generateInventoryJS() {
+            let js = `/**
+ * THE LAB REPTILES - INVENTORY DATA
+ * Optimized inventory management system
+ *
+ * Structure:
+ * - Clean data organization
+ * - Consistent property naming
+ * - Easy to maintain and update
+ */
+
+const inventory = [\n`;
+
+            invData.forEach((a, i) => {
+                js += `    {\n`;
+                js += `        id: ${JSON.stringify(a.id)},\n`;
+                js += `        name: ${JSON.stringify(a.name)},\n`;
+                js += `        price: ${JSON.stringify(a.price)},\n`;
+                js += `        weight: ${JSON.stringify(a.weight)},\n`;
+                js += `        sex: ${JSON.stringify(a.sex)},\n`;
+                js += `        hatch: ${JSON.stringify(a.hatch)},\n`;
+                js += `        lineage: ${JSON.stringify(a.lineage)},\n`;
+                js += `        description: ${JSON.stringify(a.description)},\n`;
+                js += `        sold: ${a.sold},\n`;
+                js += `        mmLink: ${JSON.stringify(a.mmLink)},\n`;
+                js += `        photos: [\n`;
+                a.photos.forEach((p, pi) => {
+                    js += `            ${JSON.stringify(p)}${pi < a.photos.length - 1 ? ',' : ''}\n`;
+                });
+                js += `        ]\n`;
+                js += `    }${i < invData.length - 1 ? ',' : ''}\n`;
+            });
+
+            js += `];\n`;
+
+            // Append utility functions
+            js += `
+/**
+ * Utility Functions for Inventory Management
+ */
+
+// Get available animals only
+function getAvailableInventory() {
+    return inventory.filter(animal => !animal.sold);
+}
+
+// Get sold animals
+function getSoldInventory() {
+    return inventory.filter(animal => animal.sold);
+}
+
+// Find animal by ID
+function findAnimalById(id) {
+    return inventory.find(animal => animal.id === id);
+}
+
+// Get animals by lineage
+function getAnimalsByLineage(lineage) {
+    return inventory.filter(animal =>
+        animal.lineage.toLowerCase().includes(lineage.toLowerCase())
+    );
+}
+
+// Get animals by price range
+function getAnimalsByPriceRange(min, max) {
+    return inventory.filter(animal => {
+        const price = parseFloat(animal.price.replace('$', ''));
+        return price >= min && price <= max;
+    });
+}
+
+// Sort animals by price
+function sortByPrice(ascending = true) {
+    return [...inventory].sort((a, b) => {
+        const priceA = parseFloat(a.price.replace('$', ''));
+        const priceB = parseFloat(b.price.replace('$', ''));
+        return ascending ? priceA - priceB : priceB - priceA;
+    });
+}
+
+// Sort animals by hatch date (newest first)
+function sortByHatchDate(newestFirst = true) {
+    return [...inventory].sort((a, b) => {
+        const dateA = new Date(a.hatch);
+        const dateB = new Date(b.hatch);
+        return newestFirst ? dateB - dateA : dateA - dateB;
+    });
+}
+
+// Get inventory statistics
+function getInventoryStats() {
+    const available = getAvailableInventory();
+    const sold = getSoldInventory();
+
+    return {
+        total: inventory.length,
+        available: available.length,
+        sold: sold.length,
+        averagePrice: (
+            available.reduce((sum, animal) =>
+                sum + parseFloat(animal.price.replace('$', '')), 0
+            ) / available.length
+        ).toFixed(2)
+    };
+}
+
+// Export for use in other scripts (if using modules)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        inventory,
+        getAvailableInventory,
+        getSoldInventory,
+        findAnimalById,
+        getAnimalsByLineage,
+        getAnimalsByPriceRange,
+        sortByPrice,
+        sortByHatchDate,
+        getInventoryStats
+    };
+}
+`;
+            return js;
+        }
+
+        window.downloadInventoryJS = function() {
+            downloadFile('inventory.js', generateInventoryJS());
+        };
+
+        // =============================================
+        //  BREEDERS / COLLECTION
+        // =============================================
+        function renderBreeders() {
+            const list = document.getElementById('br-list');
+            const stats = document.getElementById('br-stats');
+            const breeding = colData.filter(b => b.status.includes('CURRENTLY'));
+
+            stats.innerHTML = `
+                <div class="stat"><div class="stat-number">${colData.length}</div><div class="stat-label">Total</div></div>
+                <div class="stat"><div class="stat-number">${breeding.length}</div><div class="stat-label">Breeding</div></div>
+                <div class="stat"><div class="stat-number">${[...new Set(colData.map(b => b.badge))].length}</div><div class="stat-label">Lines</div></div>
+            `;
+
+            if (colData.length === 0) {
+                list.innerHTML = '<div class="empty-state">No breeders. Click "+ Add Breeder" to get started.</div>';
+                return;
+            }
+
+            list.innerHTML = colData.map((b, i) => `
+                <div class="entry-card">
+                    <div class="entry-info">
+                        <div class="entry-name">
+                            ${esc(b.name)}
+                            <span class="entry-badge badge-active" style="background:${b.statusColor}22;color:${b.statusColor}">${esc(b.status)}</span>
+                        </div>
+                        <div class="entry-details">
+                            <span>${esc(b.morph)}</span>
+                            <span>${esc(b.sex)}</span>
+                            <span>${esc(b.badge)}</span>
+                            <span>${esc(b.lineage)}</span>
+                        </div>
+                    </div>
+                    <div class="entry-actions">
+                        <button class="btn btn-sm btn-secondary" onclick="openEditBreeder(${i})">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteBreeder(${i})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        window.deleteBreeder = function(index) {
+            if (confirm('Delete breeder "' + colData[index].name + '"?')) {
+                colData.splice(index, 1);
+                renderBreeders();
+                showToast('Breeder removed');
+            }
+        };
+
+        window.openAddBreeder = function() { openBreederForm(null); };
+        window.openEditBreeder = function(index) { openBreederForm(index); };
+
+        function openBreederForm(index) {
+            const b = index !== null ? colData[index] : null;
+            const title = b ? 'Edit Breeder' : 'Add New Breeder';
+            const statuses = ['CURRENTLY BREEDING', 'BREEDING 2026', 'BREEDING 2027', 'BREEDING 2028', 'RETIRED', 'HOLDBACK'];
+
+            openModal(`
+                <h3>${title}</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Breeder ID / Name *</label>
+                        <input type="text" id="m-br-id" value="${esc(b ? b.id : '')}" placeholder="e.g., Demeter">
+                    </div>
+                    <div class="form-group">
+                        <label>Display Name *</label>
+                        <input type="text" id="m-br-name" value="${esc(b ? b.name : '')}" placeholder="e.g., Demeter">
+                    </div>
+                    <div class="form-group">
+                        <label>Morph *</label>
+                        <input type="text" id="m-br-morph" value="${esc(b ? b.morph : '')}" placeholder="e.g., Bacon Quad Stripe Gargoyle">
+                    </div>
+                    <div class="form-group">
+                        <label>Project Badge</label>
+                        <input type="text" id="m-br-badge" value="${esc(b ? b.badge : '')}" placeholder="e.g., Bacon Line">
+                    </div>
+                    <div class="form-group">
+                        <label>Sex</label>
+                        <select id="m-br-sex">
+                            <option value="Female" ${b && b.sex === 'Female' ? 'selected' : ''}>Female</option>
+                            <option value="Male" ${b && b.sex === 'Male' ? 'selected' : ''}>Male</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="m-br-status">
+                            ${statuses.map(s => `<option value="${s}" ${b && b.status === s ? 'selected' : ''}>${s}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Lineage</label>
+                        <input type="text" id="m-br-lineage" value="${esc(b ? b.lineage : '')}" placeholder="e.g., Foundational Bacon Line">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Description</label>
+                        <textarea id="m-br-desc" placeholder="Describe genetics, history, breeding goals...">${esc(b ? b.description : '')}</textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Photo Paths</label>
+                        <div class="photo-inputs">
+                            <div class="photo-input-row"><span>Photo 1:</span><input type="text" id="m-br-p1" value="${esc(b && b.photos[0] ? b.photos[0] : '')}" placeholder="images/breeders/Name1.jpg"></div>
+                            <div class="photo-input-row"><span>Photo 2:</span><input type="text" id="m-br-p2" value="${esc(b && b.photos[1] ? b.photos[1] : '')}" placeholder="images/breeders/Name2.jpg"></div>
+                            <div class="photo-input-row"><span>Photo 3:</span><input type="text" id="m-br-p3" value="${esc(b && b.photos[2] ? b.photos[2] : '')}" placeholder="images/breeders/Name3.jpg"></div>
+                        </div>
+                        <span class="helper-text">Place photos in images/breeders/ folder</span>
+                    </div>
+                </div>
+                <div class="button-row">
+                    <button class="btn" onclick="saveBreeder(${index})">${b ? 'Save Changes' : 'Add Breeder'}</button>
+                    <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                </div>
+            `);
+        }
+
+        window.saveBreeder = function(index) {
+            const id = document.getElementById('m-br-id').value.trim();
+            const name = document.getElementById('m-br-name').value.trim();
+            const morph = document.getElementById('m-br-morph').value.trim();
+
+            if (!id || !name || !morph) {
+                showToast('ID, Name, and Morph are required', 'error');
+                return;
+            }
+
+            const status = document.getElementById('m-br-status').value;
+            const statusColors = {
+                'CURRENTLY BREEDING': '#00ff00',
+                'BREEDING 2026': '#ff9100',
+                'BREEDING 2027': '#ff9100',
+                'BREEDING 2028': '#ff9100',
+                'RETIRED': '#888888',
+                'HOLDBACK': '#4dabf7'
+            };
+
+            const photos = [
+                document.getElementById('m-br-p1').value.trim(),
+                document.getElementById('m-br-p2').value.trim(),
+                document.getElementById('m-br-p3').value.trim()
+            ].filter(p => p);
+
+            const entry = {
+                id: id,
+                name: name,
+                morph: morph,
+                badge: document.getElementById('m-br-badge').value.trim() || 'TBD',
+                status: status,
+                statusColor: statusColors[status] || '#888888',
+                sex: document.getElementById('m-br-sex').value,
+                lineage: document.getElementById('m-br-lineage').value.trim() || 'TBD',
+                description: document.getElementById('m-br-desc').value.trim(),
+                photos: photos.length > 0 ? photos : ['images/breeders/placeholder.jpg']
+            };
+
+            if (index !== null) {
+                colData[index] = entry;
+                showToast('Breeder updated');
+            } else {
+                colData.push(entry);
+                showToast('Breeder added');
+            }
+
+            closeModal();
+            renderBreeders();
+        };
+
+        // =============================================
+        //  GENERATE collection.js CONTENT
+        // =============================================
+        function generateCollectionJS() {
+            let js = `/**
+ * THE LAB REPTILES - BREEDING COLLECTION DATA
+ * Optimized collection management system
+ *
+ * Structure:
+ * - Clean data organization
+ * - Consistent property naming
+ * - Status tracking for breeding pairs
+ * - Easy to maintain and update
+ */
+
+const collection = [\n`;
+
+            colData.forEach((b, i) => {
+                js += `    {\n`;
+                js += `        id: ${JSON.stringify(b.id)},\n`;
+                js += `        name: ${JSON.stringify(b.name)},\n`;
+                js += `        morph: ${JSON.stringify(b.morph)},\n`;
+                js += `        badge: ${JSON.stringify(b.badge)},\n`;
+                js += `        status: ${JSON.stringify(b.status)},\n`;
+                js += `        statusColor: ${JSON.stringify(b.statusColor)},\n`;
+                js += `        sex: ${JSON.stringify(b.sex)},\n`;
+                js += `        lineage: ${JSON.stringify(b.lineage)},\n`;
+                js += `        description: ${JSON.stringify(b.description)},\n`;
+                js += `        photos: [\n`;
+                b.photos.forEach((p, pi) => {
+                    js += `            ${JSON.stringify(p)}${pi < b.photos.length - 1 ? ',' : ''}\n`;
+                });
+                js += `        ]\n`;
+                js += `    }${i < colData.length - 1 ? ',' : ''}\n`;
+            });
+
+            js += `];\n`;
+
+            js += `
+/**
+ * Utility Functions for Collection Management
+ */
+
+// Get currently breeding animals
+function getCurrentlyBreeding() {
+    return collection.filter(breeder =>
+        breeder.status.toUpperCase().includes('CURRENTLY BREEDING')
+    );
+}
+
+// Get animals breeding in specific year
+function getBreedingByYear(year) {
+    return collection.filter(breeder =>
+        breeder.status.includes(year.toString())
+    );
+}
+
+// Find breeder by ID
+function findBreederById(id) {
+    return collection.find(breeder => breeder.id === id);
+}
+
+// Get breeders by badge/line
+function getBreedersByLine(line) {
+    return collection.filter(breeder =>
+        breeder.badge.toLowerCase().includes(line.toLowerCase())
+    );
+}
+
+// Get breeders by morph
+function getBreedersByMorph(morph) {
+    return collection.filter(breeder =>
+        breeder.morph.toLowerCase().includes(morph.toLowerCase())
+    );
+}
+
+// Get breeders by sex
+function getBreedersBySex(sex) {
+    return collection.filter(breeder =>
+        breeder.sex.toLowerCase() === sex.toLowerCase()
+    );
+}
+
+// Get collection statistics
+function getCollectionStats() {
+    const currentlyBreeding = getCurrentlyBreeding();
+    const femaleCount = collection.filter(b => b.sex === 'Female').length;
+    const maleCount = collection.filter(b => b.sex === 'Male').length;
+
+    return {
+        total: collection.length,
+        currentlyBreeding: currentlyBreeding.length,
+        females: femaleCount,
+        males: maleCount,
+        lines: [...new Set(collection.map(b => b.badge))].length
+    };
+}
+
+// Get breeding pairs (if you track pairings)
+function getBreedingPairs() {
+    return [];
+}
+
+// Sort collection by status (currently breeding first)
+function sortByBreedingStatus() {
+    return [...collection].sort((a, b) => {
+        const aActive = a.status.toUpperCase().includes('CURRENTLY');
+        const bActive = b.status.toUpperCase().includes('CURRENTLY');
+        if (aActive && !bActive) return -1;
+        if (!aActive && bActive) return 1;
+        return 0;
+    });
+}
+
+// Export for use in other scripts (if using modules)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        collection,
+        getCurrentlyBreeding,
+        getBreedingByYear,
+        findBreederById,
+        getBreedersByLine,
+        getBreedersByMorph,
+        getBreedersBySex,
+        getCollectionStats,
+        getBreedingPairs,
+        sortByBreedingStatus
+    };
+}
+`;
+            return js;
+        }
+
+        window.downloadCollectionJS = function() {
+            downloadFile('collection.js', generateCollectionJS());
+        };
+
+        // =============================================
+        //  PAIRINGS
+        // =============================================
+        function renderPairings() {
+            const container = document.getElementById('pair-list');
+            const stats = document.getElementById('pair-stats');
+
+            let totalCount = 0;
+            let activeCount = 0;
+            let plannedCount = 0;
+            const years = Object.keys(pairData).sort((a, b) => b - a);
+
+            years.forEach(year => {
+                pairData[year].forEach(p => {
+                    totalCount++;
+                    if (p.status === 'Active') activeCount++;
+                    if (p.status === 'Planned') plannedCount++;
+                });
+            });
+
+            stats.innerHTML = `
+                <div class="stat"><div class="stat-number">${totalCount}</div><div class="stat-label">Total</div></div>
+                <div class="stat"><div class="stat-number">${activeCount}</div><div class="stat-label">Active</div></div>
+                <div class="stat"><div class="stat-number">${plannedCount}</div><div class="stat-label">Planned</div></div>
+            `;
+
+            if (years.length === 0) {
+                container.innerHTML = '<div class="empty-state">No pairings. Click "+ Add Pairing" to get started.</div>';
+                return;
+            }
+
+            container.innerHTML = years.map(year => `
+                <div class="pairing-year-group">
+                    <h3>${year} Season</h3>
+                    <div class="entries-list">
+                        ${(pairData[year] || []).map((p, i) => `
+                            <div class="entry-card">
+                                <div class="entry-info">
+                                    <div class="entry-name">
+                                        ${esc(p.male.name)} x ${esc(p.female.name)}
+                                        <span class="entry-badge ${p.status === 'Active' ? 'badge-active' : 'badge-planned'}">${esc(p.status)}</span>
+                                    </div>
+                                    <div class="entry-details">
+                                        <span>${esc(p.project)}</span>
+                                        <span>${esc(p.male.morph)} x ${esc(p.female.morph)}</span>
+                                    </div>
+                                </div>
+                                <div class="entry-actions">
+                                    <button class="btn btn-sm btn-secondary" onclick="openEditPairing('${year}', ${i})">Edit</button>
+                                    <button class="btn btn-sm btn-danger" onclick="deletePairing('${year}', ${i})">Delete</button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        window.deletePairing = function(year, index) {
+            const p = pairData[year][index];
+            if (confirm('Delete pairing "' + p.male.name + ' x ' + p.female.name + '"?')) {
+                pairData[year].splice(index, 1);
+                if (pairData[year].length === 0) delete pairData[year];
+                renderPairings();
+                showToast('Pairing removed');
+            }
+        };
+
+        window.openAddPairing = function() { openPairingForm(null, null); };
+        window.openEditPairing = function(year, index) { openPairingForm(year, index); };
+
+        function openPairingForm(year, index) {
+            const p = (year !== null && index !== null) ? pairData[year][index] : null;
+            const title = p ? 'Edit Pairing' : 'Add New Pairing';
+            const yearOptions = ['2025','2026','2027','2028','2029'];
+
+            openModal(`
+                <h3>${title}</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Breeding Year *</label>
+                        <select id="m-pair-year">
+                            ${yearOptions.map(y => `<option value="${y}" ${year === y ? 'selected' : ''}>${y}</option>`).join('')}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Project Name *</label>
+                        <input type="text" id="m-pair-project" value="${esc(p ? p.project : '')}" placeholder="e.g., Bacon Line">
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="m-pair-status">
+                            <option value="Active" ${p && p.status === 'Active' ? 'selected' : ''}>Active</option>
+                            <option value="Planned" ${p && p.status === 'Planned' ? 'selected' : ''}>Planned</option>
+                            <option value="Complete" ${p && p.status === 'Complete' ? 'selected' : ''}>Complete</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Male Name</label>
+                        <input type="text" id="m-pair-mn" value="${esc(p ? p.male.name : '')}" placeholder="e.g., Tempest">
+                    </div>
+                    <div class="form-group">
+                        <label>Male Morph</label>
+                        <input type="text" id="m-pair-mm" value="${esc(p ? p.male.morph : '')}" placeholder="e.g., Bacon Quad Stripe">
+                    </div>
+                    <div class="form-group">
+                        <label>Male Photo</label>
+                        <input type="text" id="m-pair-mp" value="${esc(p && p.male.photo ? p.male.photo : '')}" placeholder="images/breeders/Name1.jpg">
+                    </div>
+                    <div class="form-group">
+                        <label>Female Name</label>
+                        <input type="text" id="m-pair-fn" value="${esc(p ? p.female.name : '')}" placeholder="e.g., Demeter">
+                    </div>
+                    <div class="form-group">
+                        <label>Female Morph</label>
+                        <input type="text" id="m-pair-fm" value="${esc(p ? p.female.morph : '')}" placeholder="e.g., Bacon Quad Stripe">
+                    </div>
+                    <div class="form-group">
+                        <label>Female Photo</label>
+                        <input type="text" id="m-pair-fp" value="${esc(p && p.female.photo ? p.female.photo : '')}" placeholder="images/breeders/Name1.jpg">
+                    </div>
+                    <div class="form-group">
+                        <label>Eggs</label>
+                        <input type="number" id="m-pair-eggs" value="${p && p.eggs ? p.eggs : ''}" placeholder="Leave blank if none">
+                    </div>
+                    <div class="form-group">
+                        <label>Expected Hatch Date</label>
+                        <input type="text" id="m-pair-hatch" value="${esc(p && p.hatchDate ? p.hatchDate : '')}" placeholder="e.g., August 2026">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Expected Outcome</label>
+                        <textarea id="m-pair-outcome" placeholder="Describe expected offspring...">${esc(p ? p.expectedOutcome : '')}</textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Notes</label>
+                        <textarea id="m-pair-notes" placeholder="Additional notes...">${esc(p ? p.notes : '')}</textarea>
+                    </div>
+                </div>
+                <div class="button-row">
+                    <button class="btn" onclick="savePairing('${year}', ${index})">${p ? 'Save Changes' : 'Add Pairing'}</button>
+                    <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                </div>
+            `);
+        }
+
+        window.savePairing = function(origYear, index) {
+            const newYear = document.getElementById('m-pair-year').value;
+            const project = document.getElementById('m-pair-project').value.trim();
+
+            if (!project) {
+                showToast('Project Name is required', 'error');
+                return;
+            }
+
+            const status = document.getElementById('m-pair-status').value;
+            const statusColors = { 'Active': '#00ff00', 'Planned': '#ff9100', 'Complete': '#4dabf7' };
+            const eggsVal = document.getElementById('m-pair-eggs').value;
+            const hatchVal = document.getElementById('m-pair-hatch').value.trim();
+
+            const entry = {
+                id: (origYear !== 'null' && index !== null && pairData[origYear] && pairData[origYear][index])
+                    ? pairData[origYear][index].id
+                    : 'pairing-' + newYear + '-' + String(Date.now()).slice(-3),
+                male: {
+                    name: document.getElementById('m-pair-mn').value.trim() || 'TBD',
+                    morph: document.getElementById('m-pair-mm').value.trim() || 'TBD',
+                    photo: document.getElementById('m-pair-mp').value.trim() || null
+                },
+                female: {
+                    name: document.getElementById('m-pair-fn').value.trim() || 'TBD',
+                    morph: document.getElementById('m-pair-fm').value.trim() || 'TBD',
+                    photo: document.getElementById('m-pair-fp').value.trim() || null
+                },
+                project: project,
+                status: status,
+                statusColor: statusColors[status] || '#888888',
+                expectedOutcome: document.getElementById('m-pair-outcome').value.trim() || 'TBD',
+                notes: document.getElementById('m-pair-notes').value.trim(),
+                eggs: eggsVal ? parseInt(eggsVal) : null,
+                hatchDate: hatchVal || null
+            };
+
+            // Remove from old year if editing and year changed
+            if (origYear !== 'null' && index !== null && pairData[origYear]) {
+                pairData[origYear].splice(index, 1);
+                if (pairData[origYear].length === 0) delete pairData[origYear];
+            }
+
+            // Add to new year
+            if (!pairData[newYear]) pairData[newYear] = [];
+            pairData[newYear].push(entry);
+
+            closeModal();
+            renderPairings();
+            showToast(origYear !== 'null' ? 'Pairing updated' : 'Pairing added');
+        };
+
+        // =============================================
+        //  GENERATE pairings.js CONTENT
+        // =============================================
+        function generatePairingsJS() {
+            const years = Object.keys(pairData).sort((a, b) => a - b);
+
+            let js = `/**
+ * THE LAB REPTILES - BREEDING PAIRINGS DATA
+ * Track current and planned breeding pairings
+ *
+ * Structure:
+ * - Year-based organization
+ * - Male/Female pairing information
+ * - Expected outcomes and status
+ */
+
+const breedingPairings = {\n`;
+
+            years.forEach((year, yi) => {
+                js += `    // ${year === String(new Date().getFullYear()) ? 'Current year' : year > new Date().getFullYear() ? 'Future planned' : 'Past'} pairings\n`;
+                js += `    ${year}: [\n`;
+
+                pairData[year].forEach((p, pi) => {
+                    js += `        {\n`;
+                    js += `            id: ${JSON.stringify(p.id)},\n`;
+                    js += `            male: {\n`;
+                    js += `                name: ${JSON.stringify(p.male.name)},\n`;
+                    js += `                morph: ${JSON.stringify(p.male.morph)},\n`;
+                    js += `                photo: ${p.male.photo ? JSON.stringify(p.male.photo) : 'null'}\n`;
+                    js += `            },\n`;
+                    js += `            female: {\n`;
+                    js += `                name: ${JSON.stringify(p.female.name)},\n`;
+                    js += `                morph: ${JSON.stringify(p.female.morph)},\n`;
+                    js += `                photo: ${p.female.photo ? JSON.stringify(p.female.photo) : 'null'}\n`;
+                    js += `            },\n`;
+                    js += `            project: ${JSON.stringify(p.project)},\n`;
+                    js += `            status: ${JSON.stringify(p.status)},\n`;
+                    js += `            statusColor: ${JSON.stringify(p.statusColor)},\n`;
+                    js += `            expectedOutcome: ${JSON.stringify(p.expectedOutcome)},\n`;
+                    js += `            notes: ${JSON.stringify(p.notes)},\n`;
+                    js += `            eggs: ${p.eggs !== null ? p.eggs : 'null'},\n`;
+                    js += `            hatchDate: ${p.hatchDate ? JSON.stringify(p.hatchDate) : 'null'}\n`;
+                    js += `        }${pi < pairData[year].length - 1 ? ',' : ''}\n`;
+                });
+
+                js += `    ]${yi < years.length - 1 ? ',' : ''}\n`;
+                if (yi < years.length - 1) js += `\n`;
+            });
+
+            js += `};\n`;
+
+            js += `
+/**
+ * Utility Functions for Pairings Management
+ */
+
+// Get pairings for a specific year
+function getPairingsByYear(year) {
+    return breedingPairings[year] || [];
+}
+
+// Get current year pairings
+function getCurrentYearPairings() {
+    const currentYear = new Date().getFullYear();
+    return getPairingsByYear(currentYear);
+}
+
+// Get all active pairings
+function getActivePairings() {
+    const allPairings = [];
+    Object.values(breedingPairings).forEach(yearPairings => {
+        yearPairings.forEach(pairing => {
+            if (pairing.status === 'Active') {
+                allPairings.push(pairing);
+            }
+        });
+    });
+    return allPairings;
+}
+
+// Get pairings by project/line
+function getPairingsByProject(project) {
+    const matchingPairings = [];
+    Object.values(breedingPairings).forEach(yearPairings => {
+        yearPairings.forEach(pairing => {
+            if (pairing.project.toLowerCase().includes(project.toLowerCase())) {
+                matchingPairings.push(pairing);
+            }
+        });
+    });
+    return matchingPairings;
+}
+
+// Get pairings statistics
+function getPairingsStats() {
+    let totalPairings = 0;
+    let activePairings = 0;
+    let plannedPairings = 0;
+    const projects = new Set();
+
+    Object.values(breedingPairings).forEach(yearPairings => {
+        yearPairings.forEach(pairing => {
+            totalPairings++;
+            if (pairing.status === 'Active') activePairings++;
+            if (pairing.status === 'Planned') plannedPairings++;
+            projects.add(pairing.project);
+        });
+    });
+
+    return {
+        total: totalPairings,
+        active: activePairings,
+        planned: plannedPairings,
+        projects: projects.size
+    };
+}
+
+// Get all years with pairings
+function getPairingYears() {
+    return Object.keys(breedingPairings).map(Number).sort((a, b) => b - a);
+}
+
+// Export for use in other scripts
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        breedingPairings,
+        getPairingsByYear,
+        getCurrentYearPairings,
+        getActivePairings,
+        getPairingsByProject,
+        getPairingsStats,
+        getPairingYears
+    };
+}
+`;
+            return js;
+        }
+
+        window.downloadPairingsJS = function() {
+            downloadFile('pairings.js', generatePairingsJS());
+        };
+
+        // =============================================
+        //  INITIAL RENDER
+        // =============================================
+        renderInventory();
+        renderBreeders();
+        renderPairings();
+
+    })();
+    </script>
+</body>
+</html>
