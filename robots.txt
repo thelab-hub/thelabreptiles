@@ -13,7 +13,8 @@ Sitemap: https://thelabreptiles.com/sitemap.xml
 
 # Allow image indexing
 User-agent: Googlebot-Image
-Allow: /ReptilePhotos/
+Allow: /images/inventory/
+Allow: /images/breeders/
 Allow: /images/
 
 # Block AI scrapers
