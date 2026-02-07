@@ -720,6 +720,7 @@
                         </div>
                         <div class="entry-details">
                             <span>ID: ${esc(a.id)}</span>
+                            <span>${esc(a.species || 'Unknown')}</span>
                             <span>${esc(a.sex)}</span>
                             <span>${esc(a.price)}</span>
                             <span>${esc(a.weight)}</span>
@@ -769,6 +770,14 @@
                     <div class="form-group">
                         <label>Animal ID *</label>
                         <input type="text" id="m-inv-id" value="${esc(a ? a.id : '')}" placeholder="e.g., GG-ATH-01-1-25">
+                    </div>
+                    <div class="form-group">
+                        <label>Species *</label>
+                        <select id="m-inv-species">
+                            <option value="Gargoyle Gecko" ${a && a.species === 'Gargoyle Gecko' ? 'selected' : ''}>Gargoyle Gecko</option>
+                            <option value="Crested Gecko" ${a && a.species === 'Crested Gecko' ? 'selected' : ''}>Crested Gecko</option>
+                            <option value="Ball Python" ${a && a.species === 'Ball Python' ? 'selected' : ''}>Ball Python</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Morph Name *</label>
@@ -861,6 +870,7 @@
 
             const entry = {
                 id: id,
+                species: document.getElementById('m-inv-species').value,
                 name: name,
                 price: price,
                 weight: document.getElementById('m-inv-weight').value.trim() || 'TBD',
@@ -904,6 +914,7 @@ const inventory = [\n`;
             invData.forEach((a, i) => {
                 js += `    {\n`;
                 js += `        id: ${JSON.stringify(a.id)},\n`;
+                js += `        species: ${JSON.stringify(a.species || 'Gargoyle Gecko')},\n`;
                 js += `        name: ${JSON.stringify(a.name)},\n`;
                 js += `        price: ${JSON.stringify(a.price)},\n`;
                 js += `        weight: ${JSON.stringify(a.weight)},\n`;
@@ -942,6 +953,13 @@ function getSoldInventory() {
 // Find animal by ID
 function findAnimalById(id) {
     return inventory.find(animal => animal.id === id);
+}
+
+// Get animals by species
+function getAnimalsBySpecies(species) {
+    return inventory.filter(animal =>
+        animal.species.toLowerCase() === species.toLowerCase()
+    );
 }
 
 // Get animals by lineage
@@ -1001,6 +1019,7 @@ if (typeof module !== 'undefined' && module.exports) {
         getAvailableInventory,
         getSoldInventory,
         findAnimalById,
+        getAnimalsBySpecies,
         getAnimalsByLineage,
         getAnimalsByPriceRange,
         sortByPrice,

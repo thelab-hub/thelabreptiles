@@ -81,6 +81,12 @@
             <!-- Dropdown Filters -->
             <div class="filter-dropdowns">
                 <div class="filter-dropdown">
+                    <label for="filter-species">Species</label>
+                    <select id="filter-species" onchange="applyFilters()">
+                        <option value="">All Species</option>
+                    </select>
+                </div>
+                <div class="filter-dropdown">
                     <label for="filter-morph">Morph</label>
                     <select id="filter-morph" onchange="applyFilters()">
                         <option value="">All Morphs</option>
@@ -179,6 +185,16 @@
                 return;
             }
 
+            // Populate species filter options
+            const speciesSelect = document.getElementById('filter-species');
+            const speciesList = [...new Set(availableAnimals.map(a => a.species || 'Unknown'))].sort();
+            speciesList.forEach(sp => {
+                const option = document.createElement('option');
+                option.value = sp;
+                option.textContent = sp;
+                speciesSelect.appendChild(option);
+            });
+
             // Populate morph filter options
             const morphs = [...new Set(availableAnimals.map(a => a.name))].sort();
             morphs.forEach(morph => {
@@ -193,12 +209,18 @@
 
             // Filter and sort functions
             window.applyFilters = function() {
+                const speciesFilter = document.getElementById('filter-species').value;
                 const morphFilter = document.getElementById('filter-morph').value;
                 const sexFilter = document.getElementById('filter-sex').value;
                 const priceFilter = document.getElementById('filter-price').value;
                 const sortBy = document.getElementById('filter-sort').value;
 
                 let filtered = [...availableAnimals];
+
+                // Apply species filter
+                if (speciesFilter) {
+                    filtered = filtered.filter(a => (a.species || 'Unknown') === speciesFilter);
+                }
 
                 // Apply morph filter
                 if (morphFilter) {
@@ -244,6 +266,7 @@
             };
 
             window.resetFilters = function() {
+                document.getElementById('filter-species').value = '';
                 document.getElementById('filter-morph').value = '';
                 document.getElementById('filter-sex').value = '';
                 document.getElementById('filter-price').value = '';
@@ -261,6 +284,7 @@
                 document.querySelector(`.filter-pill[data-filter="${filter}"]`).classList.add('active');
 
                 // Reset dropdowns
+                document.getElementById('filter-species').value = '';
                 document.getElementById('filter-morph').value = '';
                 document.getElementById('filter-price').value = '';
                 document.getElementById('filter-sex').value = '';
@@ -326,7 +350,7 @@
                             <div class="slider" role="region" aria-label="Product images for ${gecko.name}">
                                 ${gecko.photos.map((photo, idx) => `
                                     <img src="${photo}"
-                                         alt="${gecko.name} Gargoyle Gecko - Image ${idx + 1}"
+                                         alt="${gecko.name} ${gecko.species || ''} - Image ${idx + 1}"
                                          loading="lazy">
                                 `).join('')}
                             </div>

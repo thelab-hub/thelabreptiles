@@ -66,7 +66,10 @@
         <!-- Stats -->
         <div id="sold-stats" style="display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap;"></div>
 
-        <!-- Filter pills for sold -->
+        <!-- Species filter pills -->
+        <div id="species-filters" style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;"></div>
+
+        <!-- Morph filter pills -->
         <div id="sold-filters" style="display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap;"></div>
 
         <!-- Results Count -->
@@ -103,8 +106,10 @@
             const container = document.getElementById('sold-container');
             const resultsCount = document.getElementById('results-count');
             const statsContainer = document.getElementById('sold-stats');
+            const speciesFiltersContainer = document.getElementById('species-filters');
             const filtersContainer = document.getElementById('sold-filters');
             const ctaSection = document.getElementById('cta-section');
+            let activeSpecies = 'all';
 
             // Remove loading message
             const loadingMsg = container.querySelector('.loading-message');
@@ -139,42 +144,74 @@
 
             // Build stats
             const morphCounts = {};
+            const speciesCounts = {};
             soldAnimals.forEach(a => {
                 morphCounts[a.name] = (morphCounts[a.name] || 0) + 1;
+                const sp = a.species || 'Unknown';
+                speciesCounts[sp] = (speciesCounts[sp] || 0) + 1;
             });
 
+            const statStyle = 'background: #111; border: 1px solid #222; border-radius: 8px; padding: 12px 20px; text-align: center;';
+            const numStyle = 'font-size: 1.4rem; font-weight: 900; background: linear-gradient(90deg, #ff002b, #ff9100); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;';
+            const lblStyle = 'font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #666; margin-top: 4px;';
+
             statsContainer.innerHTML = `
-                <div style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 12px 20px; text-align: center;">
-                    <div style="font-size: 1.4rem; font-weight: 900; background: linear-gradient(90deg, #ff002b, #ff9100); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">${soldAnimals.length}</div>
-                    <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #666; margin-top: 4px;">Placed</div>
-                </div>
-                <div style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 12px 20px; text-align: center;">
-                    <div style="font-size: 1.4rem; font-weight: 900; background: linear-gradient(90deg, #ff002b, #ff9100); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">${Object.keys(morphCounts).length}</div>
-                    <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #666; margin-top: 4px;">Morphs</div>
-                </div>
-                <div style="background: #111; border: 1px solid #222; border-radius: 8px; padding: 12px 20px; text-align: center;">
-                    <div style="font-size: 1.4rem; font-weight: 900; background: linear-gradient(90deg, #ff002b, #ff9100); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">${[...new Set(soldAnimals.map(a => a.lineage))].length}</div>
-                    <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #666; margin-top: 4px;">Lineages</div>
-                </div>
+                <div style="${statStyle}"><div style="${numStyle}">${soldAnimals.length}</div><div style="${lblStyle}">Placed</div></div>
+                <div style="${statStyle}"><div style="${numStyle}">${Object.keys(speciesCounts).length}</div><div style="${lblStyle}">Species</div></div>
+                <div style="${statStyle}"><div style="${numStyle}">${Object.keys(morphCounts).length}</div><div style="${lblStyle}">Morphs</div></div>
+                <div style="${statStyle}"><div style="${numStyle}">${[...new Set(soldAnimals.map(a => a.lineage))].length}</div><div style="${lblStyle}">Lineages</div></div>
             `;
 
-            // Build filter pills
-            const morphNames = Object.keys(morphCounts).sort();
-            filtersContainer.innerHTML = `
-                <button class="filter-pill active" data-filter="all" onclick="filterSold('all', this)">All (${soldAnimals.length})</button>
-                ${morphNames.map(m => `
-                    <button class="filter-pill" data-filter="${m}" onclick="filterSold('${m}', this)">${m} (${morphCounts[m]})</button>
-                `).join('')}
-            `;
+            // Build species filter pills
+            const speciesNames = Object.keys(speciesCounts).sort();
+            if (speciesNames.length > 1) {
+                speciesFiltersContainer.innerHTML = `
+                    <button class="filter-pill active" data-filter="all" onclick="filterSpecies('all', this)">All Species (${soldAnimals.length})</button>
+                    ${speciesNames.map(s => `
+                        <button class="filter-pill" data-filter="${s}" onclick="filterSpecies('${s}', this)">${s} (${speciesCounts[s]})</button>
+                    `).join('')}
+                `;
+            }
+
+            function getFilteredBase() {
+                if (activeSpecies === 'all') return [...soldAnimals];
+                return soldAnimals.filter(a => (a.species || 'Unknown') === activeSpecies);
+            }
+
+            function rebuildMorphPills() {
+                const base = getFilteredBase();
+                const mc = {};
+                base.forEach(a => { mc[a.name] = (mc[a.name] || 0) + 1; });
+                const names = Object.keys(mc).sort();
+                filtersContainer.innerHTML = `
+                    <button class="filter-pill active" data-filter="all" onclick="filterSold('all', this)">All (${base.length})</button>
+                    ${names.map(m => `
+                        <button class="filter-pill" data-filter="${m}" onclick="filterSold('${m}', this)">${m} (${mc[m]})</button>
+                    `).join('')}
+                `;
+            }
+
+            // Build morph filter pills
+            rebuildMorphPills();
+
+            window.filterSpecies = function(species, btn) {
+                speciesFiltersContainer.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                activeSpecies = species;
+                rebuildMorphPills();
+                currentFiltered = getFilteredBase();
+                renderSold(currentFiltered);
+            };
 
             window.filterSold = function(morph, btn) {
                 filtersContainer.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
                 btn.classList.add('active');
 
+                const base = getFilteredBase();
                 if (morph === 'all') {
-                    currentFiltered = [...soldAnimals];
+                    currentFiltered = base;
                 } else {
-                    currentFiltered = soldAnimals.filter(a => a.name === morph);
+                    currentFiltered = base.filter(a => a.name === morph);
                 }
                 renderSold(currentFiltered);
             };
