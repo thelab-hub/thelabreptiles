@@ -16,12 +16,12 @@ const breedingPairings = {
             male: {
                 name: "Tempest",
                 morph: "Bacon Quad Stripe",
-                photo: "ReptilePhotos/Demeter1.jpg" // Placeholder - update with actual male photo
+                photo: "images/breeders/Demeter1.jpg" // Placeholder - update with actual male photo
             },
             female: {
                 name: "Demeter",
                 morph: "Bacon Quad Stripe",
-                photo: "ReptilePhotos/Demeter1.jpg"
+                photo: "images/breeders/Demeter1.jpg"
             },
             project: "Bacon Line",
             status: "Active",
@@ -36,12 +36,12 @@ const breedingPairings = {
             male: {
                 name: "Vulcan",
                 morph: "Bacon Red Stripe",
-                photo: "ReptilePhotos/Demeter1.jpg" // Placeholder
+                photo: "images/breeders/Demeter1.jpg" // Placeholder
             },
             female: {
                 name: "Ceres",
                 morph: "Quad Stripe",
-                photo: "ReptilePhotos/Demeter1.jpg" // Placeholder
+                photo: "images/breeders/Demeter1.jpg" // Placeholder
             },
             project: "Bacon Line",
             status: "Active",
@@ -65,7 +65,7 @@ const breedingPairings = {
             female: {
                 name: "Artemis",
                 morph: "Red Bicolour Crested Gecko",
-                photo: "ReptilePhotos/Artemis1.jpg"
+                photo: "images/breeders/Artemis1.jpg"
             },
             project: "Red Line",
             status: "Planned",
@@ -85,7 +85,7 @@ const breedingPairings = {
             female: {
                 name: "Kybele",
                 morph: "Deep Red Lily White",
-                photo: "ReptilePhotos/Kybele1.jpg"
+                photo: "images/breeders/Kybele1.jpg"
             },
             project: "Lily White",
             status: "Planned",

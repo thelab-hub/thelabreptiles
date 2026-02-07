@@ -21,9 +21,9 @@ const inventory = [
         sold: false,
         mmLink: "https://www.morphmarket.com/ca/c/reptiles/lizards/gargoyle-geckos/3534691",
         photos: [
-            "ReptilePhotos/GG-ATH-03-1-25-1.jpg",
-            "ReptilePhotos/GG-ATH-03-1-25-2.jpg",
-            "ReptilePhotos/GG-ATH-03-1-25-3.jpg"
+            "images/inventory/GG-ATH-03-1-25-1.jpg",
+            "images/inventory/GG-ATH-03-1-25-2.jpg",
+            "images/inventory/GG-ATH-03-1-25-3.jpg"
         ]
     },
     {
@@ -38,9 +38,9 @@ const inventory = [
         sold: false,
         mmLink: "https://www.morphmarket.com/ca/c/reptiles/lizards/gargoyle-geckos/3534654",
         photos: [
-            "ReptilePhotos/GG-ATH-03-2-25-1.jpg",
-            "ReptilePhotos/GG-ATH-03-2-25-2.jpg",
-            "ReptilePhotos/GG-ATH-03-2-25-3.jpg"
+            "images/inventory/GG-ATH-03-2-25-1.jpg",
+            "images/inventory/GG-ATH-03-2-25-2.jpg",
+            "images/inventory/GG-ATH-03-2-25-3.jpg"
         ]
     },
     {
@@ -55,9 +55,9 @@ const inventory = [
         sold: false,
         mmLink: "https://www.morphmarket.com/us/c/all?seller=thelabreptiles&state=for_sale",
         photos: [
-            "ReptilePhotos/AT-24-01-02-1.jpg",
-            "ReptilePhotos/AT-24-01-02-2.jpg",
-            "ReptilePhotos/AT-24-01-02-3.jpg"
+            "images/inventory/AT-24-01-02-1.jpg",
+            "images/inventory/AT-24-01-02-2.jpg",
+            "images/inventory/AT-24-01-02-3.jpg"
         ]
     },
     {
@@ -72,9 +72,9 @@ const inventory = [
         sold: false,
         mmLink: "https://www.morphmarket.com/us/c/all?seller=thelabreptiles&state=for_sale",
         photos: [
-            "ReptilePhotos/CER-24-03-02-1.jpg",
-            "ReptilePhotos/CER-24-03-02-2.jpg",
-            "ReptilePhotos/CER-24-03-02-3.jpg"
+            "images/inventory/CER-24-03-02-1.jpg",
+            "images/inventory/CER-24-03-02-2.jpg",
+            "images/inventory/CER-24-03-02-3.jpg"
         ]
     },
     {
@@ -89,9 +89,9 @@ const inventory = [
         sold: false,
         mmLink: "https://www.morphmarket.com/us/c/all?seller=thelabreptiles&state=for_sale",
         photos: [
-            "ReptilePhotos/TRxSE14-1.jpg",
-            "ReptilePhotos/TRxSE14-2.jpg",
-            "ReptilePhotos/TRxSE14-3.jpg"
+            "images/inventory/TRxSE14-1.jpg",
+            "images/inventory/TRxSE14-2.jpg",
+            "images/inventory/TRxSE14-3.jpg"
         ]
     },
     {
@@ -106,9 +106,9 @@ const inventory = [
         sold: false,
         mmLink: "https://www.morphmarket.com/ca/c/reptiles/lizards/gargoyle-geckos/353464",
         photos: [
-            "ReptilePhotos/GG-VE-01-01-24-1.jpg",
-            "ReptilePhotos/GG-VE-01-01-24-2.jpg",
-            "ReptilePhotos/GG-VE-01-01-24-3.jpg"
+            "images/inventory/GG-VE-01-01-24-1.jpg",
+            "images/inventory/GG-VE-01-01-24-2.jpg",
+            "images/inventory/GG-VE-01-01-24-3.jpg"
         ]
     },
     {
@@ -123,9 +123,9 @@ const inventory = [
         sold: false,
         mmLink: "https://www.morphmarket.com/ca/c/reptiles/lizards/gargoyle-geckos/3534654",
         photos: [
-            "ReptilePhotos/GG-HES-03-1-24-1.jpg",
-            "ReptilePhotos/GG-HES-03-1-24-2.jpg",
-            "ReptilePhotos/GG-HES-03-1-24-3.jpg"
+            "images/inventory/GG-HES-03-1-24-1.jpg",
+            "images/inventory/GG-HES-03-1-24-2.jpg",
+            "images/inventory/GG-HES-03-1-24-3.jpg"
         ]
     }
 ];
