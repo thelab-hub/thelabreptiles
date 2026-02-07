@@ -12,11 +12,31 @@ const breedingPairings = {
     // Current year pairings
     2026: [
         {
+            id: "pairing-2026-002",
+            male: {
+                name: "Tempest",
+                morph: "Bacon Quad Stripe",
+                photo: "images/breeders/tempest-1.jpg"
+            },
+            female: {
+                name: "Hestia",
+                morph: "Bacon Quad Stripe",
+                photo: "images/breeders/hestia-1.jpg"
+            },
+            project: "Bacon Line",
+            status: "Active",
+            statusColor: "#00ff00",
+            expectedOutcome: "Hatchlings with clean lines and deep saturation",
+            notes: "",
+            eggs: null,
+            hatchDate: null
+        },
+        {
             id: "pairing-2026-001",
             male: {
                 name: "Tempest",
                 morph: "Bacon Quad Stripe",
-                photo: "images/breeders/Demeter1.jpg" // Placeholder - update with actual male photo
+                photo: "images/breeders/tempest-1.jpg"
             },
             female: {
                 name: "Demeter",
@@ -28,70 +48,46 @@ const breedingPairings = {
             statusColor: "#00ff00",
             expectedOutcome: "High-contrast Bacon Quad Stripe offspring with deep red and orange coloration",
             notes: "Proven pairing producing consistent, high-quality offspring",
-            eggs: null, // Number of eggs if laid
-            hatchDate: null // Expected hatch date
+            eggs: null,
+            hatchDate: null
         },
         {
-            id: "pairing-2026-002",
+            id: "pairing-2026-407",
             male: {
-                name: "Vulcan",
-                morph: "Bacon Red Stripe",
-                photo: "images/breeders/Demeter1.jpg" // Placeholder
+                name: "Tex",
+                morph: "Bacon Quad Stripe",
+                photo: "images/breeders/tex-1.jpg"
             },
             female: {
-                name: "Ceres",
-                morph: "Quad Stripe",
-                photo: "images/breeders/Demeter1.jpg" // Placeholder
+                name: "Thalia",
+                morph: "Bacon Quad Stripe",
+                photo: "images/breeders/thalia-1.jpg"
             },
             project: "Bacon Line",
             status: "Active",
             statusColor: "#00ff00",
-            expectedOutcome: "Bacon Quad Stripe offspring with strong structural cresting",
-            notes: "Second season pairing",
-            eggs: null,
-            hatchDate: null
-        }
-    ],
-
-    // Future planned pairings
-    2027: [
-        {
-            id: "pairing-2027-001",
-            male: {
-                name: "TBD",
-                morph: "Red Line Male",
-                photo: null
-            },
-            female: {
-                name: "Artemis",
-                morph: "Red Bicolour Crested Gecko",
-                photo: "images/breeders/Artemis1.jpg"
-            },
-            project: "Red Line",
-            status: "Planned",
-            statusColor: "#ff9100",
-            expectedOutcome: "High-saturation red offspring",
-            notes: "Artemis will be ready for breeding in 2027",
+            expectedOutcome: "We are hoping with this project the white base will come through with Tex's strong colours",
+            notes: "",
             eggs: null,
             hatchDate: null
         },
         {
-            id: "pairing-2027-002",
+            id: "pairing-2026-258",
             male: {
-                name: "TBD",
-                morph: "Red Line Male",
-                photo: null
+                name: "Tex",
+                morph: "Bacon Quad Stripe",
+                photo: "images/breeders/tex-1.jpg"
             },
             female: {
-                name: "Kybele",
-                morph: "Deep Red Lily White",
-                photo: "images/breeders/Kybele1.jpg"
+                name: "Athena",
+                morph: "Bacon Quad Stripe",
+                photo: "images/breeders/athena-1.jpg"
             },
-            project: "Lily White",
-            status: "Planned",
-            statusColor: "#ff9100",
-            expectedOutcome: "Red Lily White offspring with exceptional pattern clarity",
-            notes: "Kybele will be ready for breeding in 2027",
+            project: "Bacon",
+            status: "Active",
+            statusColor: "#00ff00",
+            expectedOutcome: "Athena has made some high contrast hatchlings, combining with Tex should make some clean lines with her high contrast!",
+            notes: "",
             eggs: null,
             hatchDate: null
         }
