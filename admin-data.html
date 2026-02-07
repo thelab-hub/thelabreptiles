@@ -457,6 +457,50 @@
             margin-bottom: 12px;
             text-transform: uppercase;
         }
+
+        .photo-preview-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .photo-preview {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            overflow: hidden;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .photo-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-preview .preview-placeholder {
+            font-size: 0.6rem;
+            color: #444;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .photo-preview .preview-error {
+            font-size: 0.55rem;
+            color: #f44;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-align: center;
+            padding: 5px;
+        }
     </style>
 </head>
 <body>
@@ -592,6 +636,46 @@
         }
 
         // =============================================
+        // PHOTO PREVIEW HELPER
+        // =============================================
+        function updatePreview(inputId, previewId) {
+            const input = document.getElementById(inputId);
+            const preview = document.getElementById(previewId);
+            if (!input || !preview) return;
+
+            const path = input.value.trim();
+            if (!path) {
+                preview.innerHTML = '<span class="preview-placeholder">No photo</span>';
+                return;
+            }
+
+            const img = new Image();
+            img.onload = function() {
+                preview.innerHTML = '';
+                preview.appendChild(img);
+            };
+            img.onerror = function() {
+                preview.innerHTML = '<span class="preview-error">Not found</span>';
+            };
+            img.src = path;
+            img.alt = 'Preview';
+        }
+
+        function attachPreviewListeners(pairs) {
+            setTimeout(function() {
+                pairs.forEach(function(pair) {
+                    const input = document.getElementById(pair[0]);
+                    if (input) {
+                        updatePreview(pair[0], pair[1]);
+                        input.addEventListener('input', function() {
+                            updatePreview(pair[0], pair[1]);
+                        });
+                    }
+                });
+            }, 50);
+        }
+
+        // =============================================
         // FILE DOWNLOAD HELPER
         // =============================================
         function downloadFile(filename, content) {
@@ -636,6 +720,7 @@
                         </div>
                         <div class="entry-details">
                             <span>ID: ${esc(a.id)}</span>
+                            <span>${esc(a.species || 'Unknown')}</span>
                             <span>${esc(a.sex)}</span>
                             <span>${esc(a.price)}</span>
                             <span>${esc(a.weight)}</span>
@@ -685,6 +770,14 @@
                     <div class="form-group">
                         <label>Animal ID *</label>
                         <input type="text" id="m-inv-id" value="${esc(a ? a.id : '')}" placeholder="e.g., GG-ATH-01-1-25">
+                    </div>
+                    <div class="form-group">
+                        <label>Species *</label>
+                        <select id="m-inv-species">
+                            <option value="Gargoyle Gecko" ${a && a.species === 'Gargoyle Gecko' ? 'selected' : ''}>Gargoyle Gecko</option>
+                            <option value="Crested Gecko" ${a && a.species === 'Crested Gecko' ? 'selected' : ''}>Crested Gecko</option>
+                            <option value="Ball Python" ${a && a.species === 'Ball Python' ? 'selected' : ''}>Ball Python</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Morph Name *</label>
@@ -738,6 +831,11 @@
                                 <input type="text" id="m-inv-p3" value="${esc(a && a.photos[2] ? a.photos[2] : '')}" placeholder="images/inventory/ID-3.jpg">
                             </div>
                         </div>
+                        <div class="photo-preview-row">
+                            <div class="photo-preview" id="inv-preview-1"><span class="preview-placeholder">No photo</span></div>
+                            <div class="photo-preview" id="inv-preview-2"><span class="preview-placeholder">No photo</span></div>
+                            <div class="photo-preview" id="inv-preview-3"><span class="preview-placeholder">No photo</span></div>
+                        </div>
                         <span class="helper-text">Place photos in images/inventory/ folder</span>
                     </div>
                 </div>
@@ -746,6 +844,12 @@
                     <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
                 </div>
             `);
+
+            attachPreviewListeners([
+                ['m-inv-p1', 'inv-preview-1'],
+                ['m-inv-p2', 'inv-preview-2'],
+                ['m-inv-p3', 'inv-preview-3']
+            ]);
         }
 
         window.saveInventory = function(index) {
@@ -766,6 +870,7 @@
 
             const entry = {
                 id: id,
+                species: document.getElementById('m-inv-species').value,
                 name: name,
                 price: price,
                 weight: document.getElementById('m-inv-weight').value.trim() || 'TBD',
@@ -809,6 +914,7 @@ const inventory = [\n`;
             invData.forEach((a, i) => {
                 js += `    {\n`;
                 js += `        id: ${JSON.stringify(a.id)},\n`;
+                js += `        species: ${JSON.stringify(a.species || 'Gargoyle Gecko')},\n`;
                 js += `        name: ${JSON.stringify(a.name)},\n`;
                 js += `        price: ${JSON.stringify(a.price)},\n`;
                 js += `        weight: ${JSON.stringify(a.weight)},\n`;
@@ -847,6 +953,13 @@ function getSoldInventory() {
 // Find animal by ID
 function findAnimalById(id) {
     return inventory.find(animal => animal.id === id);
+}
+
+// Get animals by species
+function getAnimalsBySpecies(species) {
+    return inventory.filter(animal =>
+        animal.species.toLowerCase() === species.toLowerCase()
+    );
 }
 
 // Get animals by lineage
@@ -906,6 +1019,7 @@ if (typeof module !== 'undefined' && module.exports) {
         getAvailableInventory,
         getSoldInventory,
         findAnimalById,
+        getAnimalsBySpecies,
         getAnimalsByLineage,
         getAnimalsByPriceRange,
         sortByPrice,
@@ -1025,6 +1139,11 @@ if (typeof module !== 'undefined' && module.exports) {
                             <div class="photo-input-row"><span>Photo 2:</span><input type="text" id="m-br-p2" value="${esc(b && b.photos[1] ? b.photos[1] : '')}" placeholder="images/breeders/Name2.jpg"></div>
                             <div class="photo-input-row"><span>Photo 3:</span><input type="text" id="m-br-p3" value="${esc(b && b.photos[2] ? b.photos[2] : '')}" placeholder="images/breeders/Name3.jpg"></div>
                         </div>
+                        <div class="photo-preview-row">
+                            <div class="photo-preview" id="br-preview-1"><span class="preview-placeholder">No photo</span></div>
+                            <div class="photo-preview" id="br-preview-2"><span class="preview-placeholder">No photo</span></div>
+                            <div class="photo-preview" id="br-preview-3"><span class="preview-placeholder">No photo</span></div>
+                        </div>
                         <span class="helper-text">Place photos in images/breeders/ folder</span>
                     </div>
                 </div>
@@ -1033,6 +1152,12 @@ if (typeof module !== 'undefined' && module.exports) {
                     <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
                 </div>
             `);
+
+            attachPreviewListeners([
+                ['m-br-p1', 'br-preview-1'],
+                ['m-br-p2', 'br-preview-2'],
+                ['m-br-p3', 'br-preview-3']
+            ]);
         }
 
         window.saveBreeder = function(index) {
@@ -1331,6 +1456,7 @@ if (typeof module !== 'undefined' && module.exports) {
                     <div class="form-group">
                         <label>Male Photo</label>
                         <input type="text" id="m-pair-mp" value="${esc(p && p.male.photo ? p.male.photo : '')}" placeholder="images/breeders/Name1.jpg">
+                        <div class="photo-preview" id="pair-preview-m" style="margin-top:6px;"><span class="preview-placeholder">No photo</span></div>
                     </div>
                     <div class="form-group">
                         <label>Female Name</label>
@@ -1343,6 +1469,7 @@ if (typeof module !== 'undefined' && module.exports) {
                     <div class="form-group">
                         <label>Female Photo</label>
                         <input type="text" id="m-pair-fp" value="${esc(p && p.female.photo ? p.female.photo : '')}" placeholder="images/breeders/Name1.jpg">
+                        <div class="photo-preview" id="pair-preview-f" style="margin-top:6px;"><span class="preview-placeholder">No photo</span></div>
                     </div>
                     <div class="form-group">
                         <label>Eggs</label>
@@ -1366,6 +1493,11 @@ if (typeof module !== 'undefined' && module.exports) {
                     <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
                 </div>
             `);
+
+            attachPreviewListeners([
+                ['m-pair-mp', 'pair-preview-m'],
+                ['m-pair-fp', 'pair-preview-f']
+            ]);
         }
 
         window.savePairing = function(origYear, index) {

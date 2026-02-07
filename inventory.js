@@ -11,6 +11,7 @@
 const inventory = [
     {
         id: "GG-ATH-03-1-25",
+        species: "Gargoyle Gecko",
         name: "Bacon Quad Stripe",
         price: "$350",
         weight: "10g",
@@ -28,6 +29,7 @@ const inventory = [
     },
     {
         id: "GG-ATH-03-2-25",
+        species: "Gargoyle Gecko",
         name: "Bacon Quad Stripe",
         price: "$225",
         weight: "10g",
@@ -45,6 +47,7 @@ const inventory = [
     },
     {
         id: "AT-24-01-02",
+        species: "Gargoyle Gecko",
         name: "Red Stripe",
         price: "$200",
         weight: "16g",
@@ -62,6 +65,7 @@ const inventory = [
     },
     {
         id: "CER-24-03-02",
+        species: "Gargoyle Gecko",
         name: "Bacon Quad Stripe",
         price: "$200",
         weight: "11g",
@@ -79,6 +83,7 @@ const inventory = [
     },
     {
         id: "TLR-GG-0000-023",
+        species: "Gargoyle Gecko",
         name: "Orange Blotch",
         price: "$275",
         weight: "40g",
@@ -96,6 +101,7 @@ const inventory = [
     },
     {
         id: "GG-VE-01-1-24",
+        species: "Gargoyle Gecko",
         name: "Orange Stripe",
         price: "$200",
         weight: "16g",
@@ -113,6 +119,7 @@ const inventory = [
     },
     {
         id: "GG-HES-03-1-24",
+        species: "Gargoyle Gecko",
         name: "Bacon Quad Stripe",
         price: "$400",
         weight: "13g",
@@ -147,6 +154,13 @@ function getSoldInventory() {
 // Find animal by ID
 function findAnimalById(id) {
     return inventory.find(animal => animal.id === id);
+}
+
+// Get animals by species
+function getAnimalsBySpecies(species) {
+    return inventory.filter(animal =>
+        animal.species.toLowerCase() === species.toLowerCase()
+    );
 }
 
 // Get animals by lineage
@@ -206,6 +220,7 @@ if (typeof module !== 'undefined' && module.exports) {
         getAvailableInventory,
         getSoldInventory,
         findAnimalById,
+        getAnimalsBySpecies,
         getAnimalsByLineage,
         getAnimalsByPriceRange,
         sortByPrice,
