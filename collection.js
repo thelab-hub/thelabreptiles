@@ -21,9 +21,9 @@ const collection = [
         lineage: "Foundational Bacon Line",
         description: "Demeter is a powerhouse within our Gargoyle project. Her saturation and structural cresting are hallmarks of the Bacon lineage. She consistently produces high-quality offspring with exceptional red and orange coloration.",
         photos: [
-            "ReptilePhotos/Demeter1.jpg", 
-            "ReptilePhotos/Demeter2.jpg", 
-            "ReptilePhotos/Demeter3.jpg"
+            "images/breeders/Demeter1.jpg", 
+            "images/breeders/Demeter2.jpg", 
+            "images/breeders/Demeter3.jpg"
         ]
     },
     {
@@ -37,9 +37,9 @@ const collection = [
         lineage: "Venus x Eros",
         description: "Artemis represents our future in high-saturation Reds. She is currently being grown out for our 2027 season. Her vibrant bicolour pattern and robust health make her an exciting addition to our breeding program.",
         photos: [
-            "ReptilePhotos/Artemis1.jpg", 
-            "ReptilePhotos/Artemis2.jpg", 
-            "ReptilePhotos/Artemis3.jpg"
+            "images/breeders/Artemis1.jpg", 
+            "images/breeders/Artemis2.jpg", 
+            "images/breeders/Artemis3.jpg"
         ]
     },
     {
@@ -53,9 +53,9 @@ const collection = [
         lineage: "Red Lineage",
         description: "Kybele is a project-defining female, combining the cleanliness of the Lily White trait with deep, velvet reds. This unique combination will produce stunning offspring for collectors seeking both pattern clarity and rich coloration.",
         photos: [
-            "ReptilePhotos/Kybele1.jpg", 
-            "ReptilePhotos/Kybele2.jpg", 
-            "ReptilePhotos/Kybele3.jpg"
+            "images/breeders/Kybele1.jpg", 
+            "images/breeders/Kybele2.jpg", 
+            "images/breeders/Kybele3.jpg"
         ]
     }
 ];
